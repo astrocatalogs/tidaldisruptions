@@ -2,8 +2,6 @@
 """
 import warnings
 
-from astropy.time import Time as astrotime
-
 from astrocats.catalog.entry import KEYS, Entry
 from astrocats.catalog.error import ERROR
 from astrocats.catalog.photometry import PHOTOMETRY
@@ -13,20 +11,22 @@ from astrocats.catalog.spectrum import SPECTRUM
 from astrocats.catalog.utils import (entry_to_filename, get_sig_digits,
                                      get_source_year, is_number, jd_to_mjd,
                                      make_date_string, pretty_num, uniq_cdl)
-from astrocats.supernovae.constants import (MAX_BANDS, PREF_KINDS,
-                                            REPR_BETTER_QUANTITY)
-from astrocats.supernovae.utils import (frame_priority, host_clean, name_clean,
-                                        radec_clean)
+from astrocats.tidaldisruptions.constants import (MAX_BANDS, PREF_KINDS,
+                                                  REPR_BETTER_QUANTITY)
+from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
+                                              name_clean, radec_clean)
+from astropy.time import Time as astrotime
+
 from cdecimal import Decimal
 
 
-class SUPERNOVA(KEYS):
+class TIDALDISRUPTION(KEYS):
     CLAIMED_TYPE = 'clamedtype'
     DISCOVERY_DATE = 'discoverdate'
     ERRORS = 'errors'
 
 
-class Supernova(Entry):
+class TidalDisruption(Entry):
     """
     NOTE: OrderedDict data is just the `name` values from the JSON file.
           I.e. it does not include the highest nesting level
@@ -37,7 +37,7 @@ class Supernova(Entry):
 
     """
 
-    _KEYS = SUPERNOVA
+    _KEYS = TIDALDISRUPTION
 
     def __init__(self, catalog, name, stub=False):
         super().__init__(catalog, name, stub=stub)

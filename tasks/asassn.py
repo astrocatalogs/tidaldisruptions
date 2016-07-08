@@ -8,7 +8,8 @@ from astrocats.catalog.utils import pbar
 
 def do_asassn(catalog):
     task_str = catalog.get_current_task_str()
-    asn_url = 'http://www.astronomy.ohio-state.edu/~assassin/sn_list.html'
+    asn_url = 'http://www.astronomy.ohio-state.edu/~assassin/transients.html'
+    raise(SystemExit('update task for TDEs')
     html = catalog.load_cached_url(asn_url, os.path.join(
         catalog.get_current_task_repo(), 'ASASSN/sn_list.html'))
     if not html:

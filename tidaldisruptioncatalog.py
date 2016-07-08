@@ -7,10 +7,11 @@ from subprocess import check_output
 from astrocats.catalog.catalog import Catalog
 from astrocats.catalog.utils import (is_number, pbar, read_json_arr,
                                      read_json_dict)
-from astrocats.supernovae.supernova import SUPERNOVA, Supernova
+from astrocats.tidaldisruptions.tidaldisruption import (TIDALDISRUPTION,
+                                                        TidalDisruption)
 
 
-class SupernovaCatalog(Catalog):
+class TidalDisruptionCatalog(Catalog):
 
     class PATHS(Catalog.PATHS):
 
@@ -102,8 +103,8 @@ class SupernovaCatalog(Catalog):
                 "Killing '{}', non-SNe prefix.".format(name))
             save_entry = False
         else:
-            if SUPERNOVA.CLAIMED_TYPE in self.entries[name]:
-                for ct in self.entries[name][SUPERNOVA.CLAIMED_TYPE]:
+            if TIDALDISRUPTION.CLAIMED_TYPE in self.entries[name]:
+                for ct in self.entries[name][TIDALDISRUPTION.CLAIMED_TYPE]:
                     up_val = ct['value'].upper()
                     if up_val not in self.non_sne_types and \
                             up_val != 'CANDIDATE':

@@ -1,5 +1,4 @@
-"""The Supernova AstroCatalog.
+"""The Tidal Disruption AstroCatalog.
 """
 
-# from . import supernova
 from . import main

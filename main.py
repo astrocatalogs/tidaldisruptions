@@ -1,17 +1,18 @@
-"""Entry point for the Supernova Catalog
+"""Entry point for the Tidal Disruption Catalog
 """
 from datetime import datetime
 
 
 def main(args, clargs, log):
-    from .supernovacatalog import SupernovaCatalog
+    from .tidaldisruptioncatalog import TidalDisruptionCatalog
 
-    # Load supernovae-specific command-line argumenets (adding them to existing settings)
+    # Load tidal disruption-specific command-line argumenets
+    # (adding them to existing settings)
     args = load_command_line_args(args=args, clargs=clargs)
     if args is None:
         return
 
-    catalog = SupernovaCatalog(args, log)
+    catalog = TidalDisruptionCatalog(args, log)
 
     if args.subcommand == 'import':
         log.info("Running `importer`.")
@@ -25,14 +26,14 @@ def load_command_line_args(args=None, clargs=None):
     """
     import argparse
 
-    parser = argparse.ArgumentParser(prog='supernovae',
-        description='The Supernova Catalog.')
+    parser = argparse.ArgumentParser(prog='tidaldisruptions',
+        description='The Open Tidal Disruption Event Catalog.')
 
     subparsers = parser.add_subparsers(
         description='valid subcommands', dest='subcommand')
-    # `import` --- importing supernova data
+    # `import` --- importing tidal disruption data
     import_pars = subparsers.add_parser("import",
-                                        help="Input supernova data.")
+                                        help="Import tidal disruption data.")
     import_pars.add_argument('--update', '-u', dest='update',
                              default=False, action='store_true',
                              help='Only update catalog using live sources.')

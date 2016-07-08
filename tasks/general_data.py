@@ -6,10 +6,11 @@ from collections import OrderedDict
 from glob import glob
 
 from astrocats.catalog.utils import pbar_strings
-from astrocats.supernovae.supernova import KEYS, Supernova
+from astrocats.tidaldisruptions.tidaldisruption import KEYS, TidalDisruption
 
 
-def do_external_radio(catalog):
+def do_external(catalog):
+    raise(SystemExit('Need to rewrite for TDEs'))
     task_str = catalog.get_current_task_str()
     path_pattern = os.path.join(catalog.get_current_task_repo(), '*.txt')
     for datafile in pbar_strings(glob(path_pattern), task_str):
@@ -34,36 +35,6 @@ def do_external_radio(catalog):
                         fluxdensity=cols[3], e_fluxdensity=cols[4],
                         u_fluxdensity='µJy',
                         instrument=cols[5], source=source)
-                    catalog.entries[name].add_quantity(
-                        'alias', oldname, source)
-
-    catalog.journal_entries()
-    return
-
-
-def do_external_xray(catalog):
-    task_str = catalog.get_current_task_str()
-    path_pattern = os.path.join(catalog.get_current_task_repo(), '*.txt')
-    for datafile in pbar_strings(glob(path_pattern), task_str):
-        oldname = os.path.basename(datafile).split('.')[0]
-        name = catalog.add_entry(oldname)
-        with open(datafile, 'r') as ff:
-            for li, line in enumerate(ff.read().splitlines()):
-                if li == 0:
-                    source = catalog.entries[name].add_source(
-                        bibcode=line.split()[-1])
-                elif li in [1, 2, 3]:
-                    continue
-                else:
-                    cols = list(filter(None, line.split()))
-                    catalog.entries[name].add_photometry(
-                        time=cols[:2],
-                        energy=cols[2:4], u_energy='keV', counts=cols[4],
-                        flux=cols[6],
-                        unabsorbedflux=cols[8], u_flux='ergs/ss/cm^2',
-                        photonindex=cols[15], instrument=cols[
-                            17], nhmw=cols[11],
-                        upperlimit=(float(cols[5]) < 0), source=source)
                     catalog.entries[name].add_quantity(
                         'alias', oldname, source)
 

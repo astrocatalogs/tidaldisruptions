@@ -2,7 +2,7 @@
 """
 import os
 
-from astrocats.supernovae.supernova import KEYS
+from astrocats.tidaldisruptions.tidaldisruption import KEYS
 
 TEST_NAME = 'SN-TEST-AA'
 
