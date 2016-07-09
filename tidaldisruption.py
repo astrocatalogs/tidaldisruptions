@@ -2,7 +2,7 @@
 """
 import warnings
 
-from astrocats.catalog.entry import KEYS, Entry
+from astrocats.catalog.entry import ENTRY, Entry
 from astrocats.catalog.error import ERROR
 from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.quantity import QUANTITY
@@ -20,7 +20,7 @@ from astropy.time import Time as astrotime
 from cdecimal import Decimal
 
 
-class TIDALDISRUPTION(KEYS):
+class TIDALDISRUPTION(ENTRY):
     CLAIMED_TYPE = 'clamedtype'
     DISCOVERY_DATE = 'discoverdate'
     ERRORS = 'errors'

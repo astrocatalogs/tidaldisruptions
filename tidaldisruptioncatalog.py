@@ -60,9 +60,9 @@ class TidalDisruptionCatalog(Catalog):
     def __init__(self, args, log):
         """
         """
-        self.proto = TidalDisruption
         # Initialize super `astrocats.catalog.catalog.Catalog` object
         super().__init__(args, log)
+        self.proto = TidalDisruption
         self._load_aux_data()
         return
 

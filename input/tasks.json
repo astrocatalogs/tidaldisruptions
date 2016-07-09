@@ -3,7 +3,7 @@
         "nice_name": "%pre TEST",
         "active": false,
         "update": false,
-        "module": "tidaldisruptions.tasks.test",
+        "module": "catalog.tasks.test",
         "function": "do_test",
         "groups": ["meta"],
         "priority": 0
@@ -22,7 +22,7 @@
         "active": true,
         "update": false,
         "module": "tidaldisruptions.tasks.general_data",
-        "function": "do_internal",
+        "function": "do_external",
         "repo": "input/tde-external",
         "priority": 1
     },
