@@ -73,7 +73,6 @@ def do_external(catalog):
                     if '*' in cite:
                         bibcode = urllib.parse.unquote(
                             cite.split('/')[-2].split("'")[0])
-                        print(name, bibcode)
                         source = catalog.entries[
                             name].add_source(bibcode=bibcode)
             elif row[0] == 'nhcorr':
@@ -89,7 +88,9 @@ def do_external(catalog):
 
         for row in tsvin:
             if row[0] == 'redshift':
-                catalog.entries[name].add_quantity('redshift', row[1], source)
+                for rs in [x.strip() for x in row[1].split(',')]:
+                    catalog.entries[name].add_quantity(
+                        'redshift', rs.strip(' *'), source)
             elif row[0] == 'host':
                 catalog.entries[name].add_quantity('host', row[1], source)
             elif row[0] == 'claimedtype':
