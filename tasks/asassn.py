@@ -25,14 +25,14 @@ def do_asassn(catalog):
         claimedtype = ''
         host = ''
         atellink = ''
-        if tri == 0:
+        if tri <= 1:
             continue
         tds = tr.findAll('td')
         for tdi, td in enumerate(tds):
             if tdi == 0:
                 name = td.text.strip()
             if tdi == 1:
-                alias = td.text
+                alias = td.text.strip()
             if tdi == 2:
                 atellink = td.find('a')
                 if atellink and td.text == 'ATEL':

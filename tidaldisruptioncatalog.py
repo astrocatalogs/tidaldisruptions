@@ -1,5 +1,7 @@
 """Tidal disruption-specific catalog class.
 """
+import codecs
+import json
 import os
 from collections import OrderedDict
 from subprocess import check_output
@@ -114,6 +116,16 @@ class TidalDisruptionCatalog(Catalog):
             self.PATHS.NON_SNE_PREFIXES)
         self.nonsnetypes = read_json_arr(self.PATHS.NON_SNE_TYPES)
         return
+
+    def save_caches(self):
+        jsonstring = json.dumps(self.bibauthor_dict, indent='\t',
+                                separators=(',', ':'), ensure_ascii=False)
+        with codecs.open(self.PATHS.BIBAUTHORS, 'w', encoding='utf8') as f:
+            f.write(jsonstring)
+        jsonstring = json.dumps(self.extinctions_dict, indent='\t',
+                                separators=(',', ':'), ensure_ascii=False)
+        with codecs.open(self.PATHS.EXTINCT, 'w', encoding='utf8') as f:
+            f.write(jsonstring)
 
     def clone_repos(self):
         # Load the local 'supernovae' repository names
