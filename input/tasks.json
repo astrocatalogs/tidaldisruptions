@@ -24,7 +24,26 @@
         "module": "tidaldisruptions.tasks.general_data",
         "function": "do_external",
         "repo": "input/tde-external",
-        "priority": 1
+        "priority": 2
+    },
+    "ogle": {
+        "nice_name": "%pre OGLE",
+        "active": true,
+        "update": true,
+        "archived": false,
+        "module": "tidaldisruptions.tasks.ogle",
+        "function": "do_ogle",
+        "repo": "input/tde-external",
+        "priority": 3
+    },
+    "asassn": {
+        "nice_name": "%pre ASASSN",
+        "active": true,
+        "update": true,
+        "module": "tidaldisruptions.tasks.asassn",
+        "function": "do_asassn",
+        "repo": "input/tde-external",
+        "priority": 4
     },
     "merge_duplicates": {
         "nice_name": "Merging duplicates",

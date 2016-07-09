@@ -92,7 +92,8 @@ def do_external(catalog):
                     catalog.entries[name].add_quantity(
                         'redshift', rs.strip(' *'), source)
             elif row[0] == 'host':
-                catalog.entries[name].add_quantity('host', row[1], source)
+                hostname = re.sub('<[^<]+?>', '', row[1])
+                catalog.entries[name].add_quantity('host', hostname, source)
             elif row[0] == 'claimedtype':
                 catalog.entries[name].add_quantity(
                     'claimedtype', row[1], source)

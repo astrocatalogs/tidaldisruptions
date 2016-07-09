@@ -20,7 +20,8 @@ def do_ogle(catalog):
         if catalog.args.update and not ogleupdate[b]:
             continue
 
-        filepath = os.path.join(catalog.get_current_task_repo(), 'OGLE-')
+        filepath = os.path.join(catalog.get_current_task_repo(), 'OGLE',
+                                'OGLE-')
         filepath += bn.replace('/', '-') + '-transients.html'
         htmltxt = catalog.load_cached_url(
             'http://ogle.astrouw.edu.pl/ogle4/' + bn +
@@ -59,8 +60,6 @@ def do_ogle(catalog):
                     continue
                 oglenames.append(name)
 
-                name = catalog.add_entry(name)
-
                 mySibling = sibling.nextSibling
                 atelref = ''
                 claimedtype = ''
@@ -77,9 +76,16 @@ def do_ogle(catalog):
                                 'astronomerstelegram' in atela['href']):
                             atelref = atela.contents[0].strip()
                             atelurl = atela['href']
+                            if 'TDE' in atela.contents[0]:
+                                claimedtype = 'TDE'
                     mySibling = mySibling.nextSibling
                     if mySibling is None:
                         break
+
+                if claimedtype != 'TDE':
+                    continue
+
+                name = catalog.add_entry(name)
 
                 # nextSibling = sibling.nextSibling
                 # if ((isinstance(nextSibling, Tag) and
