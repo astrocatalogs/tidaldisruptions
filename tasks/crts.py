@@ -96,9 +96,9 @@ def do_crts(catalog):
             for alias in validaliases:
                 catalog.entries[name].add_quantity('alias', alias, source)
             catalog.entries[name].add_quantity(
-                'ra', ra, source, unit='floatdegrees')
+                'ra', ra, source, u_value='floatdegrees')
             catalog.entries[name].add_quantity(
-                'dec', dec, source, unit='floatdegrees')
+                'dec', dec, source, u_value='floatdegrees')
 
             if hostmag:
                 # 1.0 magnitude error based on Drake 2009 assertion that SN are

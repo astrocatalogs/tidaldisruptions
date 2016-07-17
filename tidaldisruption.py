@@ -4,13 +4,14 @@ import warnings
 
 from astrocats.catalog.entry import ENTRY, Entry
 from astrocats.catalog.error import ERROR
+from astrocats.catalog.key import KEY_TYPES, Key
 from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.quantity import QUANTITY
 from astrocats.catalog.source import SOURCE
 from astrocats.catalog.spectrum import SPECTRUM
-from astrocats.catalog.utils import (entry_to_filename, get_sig_digits,
-                                     get_source_year, is_number, jd_to_mjd,
-                                     make_date_string, pretty_num, uniq_cdl)
+from astrocats.catalog.utils import (get_sig_digits, get_source_year,
+                                     is_number, jd_to_mjd, make_date_string,
+                                     pretty_num, uniq_cdl)
 from astrocats.tidaldisruptions.constants import (MAX_BANDS, PREF_KINDS,
                                                   REPR_BETTER_QUANTITY)
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
@@ -21,9 +22,9 @@ from cdecimal import Decimal
 
 
 class TIDALDISRUPTION(ENTRY):
-    CLAIMED_TYPE = 'clamedtype'
-    DISCOVERY_DATE = 'discoverdate'
-    ERRORS = 'errors'
+    CLAIMED_TYPE = Key('clamedtype', KEY_TYPES.STRING)
+    DISCOVERY_DATE = Key('discoverdate', KEY_TYPES.STRING)
+    ERRORS = Key('errors')
 
 
 class TidalDisruption(Entry):
@@ -44,10 +45,11 @@ class TidalDisruption(Entry):
         return
 
     def _append_additional_tags(self, name, sources, quantity):
-        # Should be called if two objects are found to be duplicates but are
-        # not bit-for-bit identical
+        """Append additional bits of data to an existing quantity when a newly
+        added quantity is found to be a duplicate
+        """
         svalue = quantity.get(QUANTITY.VALUE, '')
-        serror = quantity.get(QUANTITY.ERROR, '')
+        serror = quantity.get(QUANTITY.E_VALUE, '')
         sprob = quantity.get(QUANTITY.PROB, '')
         skind = quantity.get(QUANTITY.KIND, '')
 
@@ -60,21 +62,22 @@ class TidalDisruption(Entry):
                     if (source not in
                             self[name][ii][QUANTITY.SOURCE].split(',')):
                         self[name][ii][QUANTITY.SOURCE] += ',' + source
-                        if serror and QUANTITY.ERROR not in self[name][ii]:
-                            self[name][ii][QUANTITY.ERROR] = serror
+                        if serror and QUANTITY.E_VALUE not in self[name][ii]:
+                            self[name][ii][QUANTITY.E_VALUE] = serror
                         if sprob and QUANTITY.PROB not in self[name][ii]:
                             self[name][ii][QUANTITY.PROB] = sprob
                 return
 
     def _clean_quantity(self, quantity):
         value = quantity.get(QUANTITY.VALUE, '')
-        error = quantity.get(QUANTITY.ERROR, '')
-        unit = quantity.get(QUANTITY.UNIT, '')
+        error = quantity.get(QUANTITY.E_VALUE, '')
+        unit = quantity.get(QUANTITY.U_VALUE, '')
         kind = quantity.get(QUANTITY.KIND, '')
         key = quantity._key
 
-        if not quantity[QUANTITY.VALUE] or value == '--' or value == '-':
-            return
+        if not value:
+            return False
+
         if error and (not is_number(error) or float(error) < 0):
             raise ValueError(self.parent[self.parent._KEYS.NAME] +
                              "'s quanta " + key +
@@ -82,7 +85,7 @@ class TidalDisruption(Entry):
 
         # Set default units
         if not unit and key == self._KEYS.VELOCITY:
-            unit = 'KM/s'
+            unit = 'km/s'
         if not unit and key == self._KEYS.RA:
             unit = 'hours'
         if not unit and key == self._KEYS.DEC:
@@ -93,21 +96,17 @@ class TidalDisruption(Entry):
 
         # Handle certain name
         if key == self._KEYS.ALIAS:
-            value = name_clean(value)
+            value = self.clean_entry_name(value)
             for df in quantity.get(self._KEYS.DISTINCT_FROM, []):
                 if value == df[QUANTITY.VALUE]:
-                    return
+                    return False
 
-        if key in [self._KEYS.VELOCITY, self._KEYS.REDSHIFT, self._KEYS.EBV,
-                   self._KEYS.LUM_DIST, self._KEYS.COMOVING_DIST]:
-            if not is_number(value):
-                return
         if key == self._KEYS.HOST:
             if is_number(value):
-                return
+                return False
             if value.lower() in ['anonymous', 'anon.', 'anon',
                                  'intergalactic']:
-                return
+                return False
             value = host_clean(value)
             if ((not kind and ((value.lower().startswith('abell') and
                                 is_number(value[5:].strip())) or
@@ -117,7 +116,7 @@ class TidalDisruption(Entry):
             isq = False
             value = value.replace('young', '')
             if value.lower() in ['unknown', 'unk', '?', '-']:
-                return
+                return False
             if '?' in value:
                 isq = True
                 value = value.strip(' ?')
@@ -134,8 +133,9 @@ class TidalDisruption(Entry):
         elif key == self._KEYS.MAX_DATE or key == self._KEYS.DISCOVER_DATE:
             # Make sure month and day have leading zeroes
             sparts = value.split('/')
-            if len(sparts[0]) > 4 and int(sparts[0]) > 0:
-                raise ValueError('Date years limited to four digits.')
+            if len(sparts[0]) > 5:
+                self._log.warn("Date year {} greater than four "
+                               "digits.".format(sparts[0]))
             if len(sparts) >= 2:
                 value = sparts[0] + '/' + sparts[1].zfill(2)
             if len(sparts) == 3:
@@ -145,7 +145,7 @@ class TidalDisruption(Entry):
             #     # Only add dates if they have more information
             #     if len(ct[QUANTITY.VALUE].split('/')) >
             #            len(value.split('/')):
-            #         return
+            #         return False
 
         if is_number(value):
             value = '%g' % Decimal(value)
@@ -155,11 +155,13 @@ class TidalDisruption(Entry):
         if value:
             quantity[QUANTITY.VALUE] = value
         if error:
-            quantity[QUANTITY.ERROR] = error
+            quantity[QUANTITY.E_VALUE] = error
         if unit:
-            quantity[QUANTITY.UNIT] = unit
+            quantity[QUANTITY.U_VALUE] = unit
         if kind:
             quantity[QUANTITY.KIND] = kind
+
+        return True
 
     def add_quantity(self, quantity, value, source, forcereplacebetter=False,
                      **kwargs):
@@ -174,7 +176,7 @@ class TidalDisruption(Entry):
         if (forcereplacebetter or quantity in REPR_BETTER_QUANTITY) and \
                 len(my_quantity_list) > 1:
 
-            # The quantity that was added should be last in the list
+            # The quantity that was just added should be last in the list
             added_quantity = my_quantity_list.pop()
 
             newquantities = []
@@ -198,15 +200,15 @@ class TidalDisruption(Entry):
             else:
                 newsig = get_sig_digits(added_quantity[QUANTITY.VALUE])
                 for ct in my_quantity_list:
-                    if QUANTITY.ERROR in ct:
-                        if QUANTITY.ERROR in added_quantity:
-                            if (float(added_quantity[QUANTITY.ERROR]) <
-                                    float(ct[QUANTITY.ERROR])):
+                    if QUANTITY.E_VALUE in ct:
+                        if QUANTITY.E_VALUE in added_quantity:
+                            if (float(added_quantity[QUANTITY.E_VALUE]) <=
+                                    float(ct[QUANTITY.E_VALUE])):
                                 isworse = False
                                 continue
                         newquantities.append(ct)
                     else:
-                        if QUANTITY.ERROR in added_quantity:
+                        if QUANTITY.E_VALUE in added_quantity:
                             isworse = False
                             continue
                         oldsig = get_sig_digits(ct[QUANTITY.VALUE])
@@ -308,11 +310,11 @@ class TidalDisruption(Entry):
 
     def _get_save_path(self, bury=False):
         self._log.debug("_get_save_path(): {}".format(self.name()))
-        filename = entry_to_filename(self[self._KEYS.NAME])
+        filename = self.get_filename(self[self._KEYS.NAME])
 
-        # Put non-SNe in the boneyard
+        # Put non-TDEs in the boneyard
         if bury:
-            outdir = self.catalog.get_repo_boneyard()
+            outdir = self.catalog.PATHS.get_repo_boneyard()
 
         # Get normal repository save directory
         else:
@@ -444,12 +446,8 @@ class TidalDisruption(Entry):
         bibcodes = []
         # Remove 'names' when 'bibcodes' are given
         for ss, source in enumerate(data.get(self._KEYS.SOURCES, [])):
-            if self._KEYS.BIBCODE in source:
-                bibcodes.append(source[self._KEYS.BIBCODE])
-                # If there is a bibcode, remove the 'name'
-                #    auto construct it later instead
-                if self._KEYS.NAME in source:
-                    source.pop(self._KEYS.NAME)
+            if SOURCE.BIBCODE in source:
+                bibcodes.append(source[SOURCE.BIBCODE])
 
         # If there are no existing sources, add OSC as one
         if len(bibcodes) == 0:
@@ -483,8 +481,9 @@ class TidalDisruption(Entry):
         # Go through all remaining keys in 'dirty' event, and make sure
         # everything is a quantity with a source (OSC if no other)
         for key in data.keys():
-            if (key in [self._KEYS.NAME, self._KEYS.SCHEMA,
-                        self._KEYS.SOURCES, self._KEYS.ERRORS]):
+            # The following line should be used to replace the above once keys
+            # returns the superclass keys too
+            if self._KEYS.get_key_by_name(key).no_source:
                 pass
             elif key == self._KEYS.PHOTOMETRY:
                 for p, photo in enumerate(data[self._KEYS.PHOTOMETRY]):

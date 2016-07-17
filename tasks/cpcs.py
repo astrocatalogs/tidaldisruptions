@@ -53,9 +53,9 @@ def do_cpcs(catalog):
         catalog.entries[name].add_quantity('alias', oldname, sec_source)
         unit_deg = 'floatdegrees'
         catalog.entries[name].add_quantity(
-            'ra', str(alertindex[ii]['ra']), sec_source, unit=unit_deg)
+            'ra', str(alertindex[ii]['ra']), sec_source, u_value=unit_deg)
         catalog.entries[name].add_quantity('dec', str(
-            alertindex[ii]['dec']), sec_source, unit=unit_deg)
+            alertindex[ii]['dec']), sec_source, u_value=unit_deg)
 
         alerturl = ('http://gsaweb.ast.cam.ac.uk/'
                     'followup/get_alert_lc_data?alert_id=' +

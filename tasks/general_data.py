@@ -132,7 +132,7 @@ def do_external(catalog):
                     counts = row[4]
                     e_counts = row[5] if float(row[5]) != 0.0 else ''
                     catalog.entries[name].add_photometry(
-                        time=time, timeunit=timeunit, band=band, counts=counts,
+                        time=time, u_time=timeunit, band=band, counts=counts,
                         e_counts=e_counts,
                         upperlimit=upperlimit, restframe=lrestframe,
                         hostnhcorr=hostnhcorr, instrument=instrument,
@@ -141,7 +141,7 @@ def do_external(catalog):
                     magnitude = row[4]
                     e_magnitude = row[5] if float(row[5]) != 0.0 else ''
                     catalog.entries[name].add_photometry(
-                        time=time, timeunit=timeunit, band=band,
+                        time=time, u_time=timeunit, band=band,
                         magnitude=magnitude, e_magnitude=e_magnitude,
                         upperlimit=upperlimit, restframe=lrestframe,
                         hostnhcorr=hostnhcorr, instrument=instrument,

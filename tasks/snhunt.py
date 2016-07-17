@@ -46,9 +46,9 @@ def do_snhunt(catalog):
         host = re.sub('<[^<]+?>', '', cols[1]).strip().replace('_', ' ')
         catalog.entries[name].add_quantity('host', host, source)
         catalog.entries[name].add_quantity(
-            'ra', cols[2], source, unit='floatdegrees')
+            'ra', cols[2], source, u_value='floatdegrees')
         catalog.entries[name].add_quantity(
-            'dec', cols[3], source, unit='floatdegrees')
+            'dec', cols[3], source, u_value='floatdegrees')
         dd = cols[0]
         discoverdate = dd[:4] + '/' + dd[4:6] + '/' + dd[6:8]
         catalog.entries[name].add_quantity(

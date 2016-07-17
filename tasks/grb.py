@@ -28,9 +28,9 @@ def do_grb(catalog):
                                      srcname='Gamma-ray Bursts Catalog',
                                      url='http://grbcatalog.org')
         catalog.entries[name].add_quantity(
-            'ra', row[2], source, unit='floatdegrees')
+            'ra', row[2], source, u_value='floatdegrees')
         catalog.entries[name].add_quantity(
-            'dec', row[3], source, unit='floatdegrees')
+            'dec', row[3], source, u_value='floatdegrees')
         catalog.entries[name].add_quantity('redshift', row[8], source)
 
     catalog.journal_entries()

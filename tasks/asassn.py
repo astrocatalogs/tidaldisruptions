@@ -73,12 +73,12 @@ def do_asassn(catalog):
             catalog.entries[name].add_quantity('alias', alias, sources)
         catalog.entries[name].add_quantity('discoverdate', discdate, sources)
         catalog.entries[name].add_quantity('ra', ra, sources,
-                                           unit='floatdegrees')
+                                           u_value='floatdegrees')
         catalog.entries[name].add_quantity('dec', dec, sources,
-                                           unit='floatdegrees')
+                                           u_value='floatdegrees')
         catalog.entries[name].add_quantity('redshift', redshift, sources)
         catalog.entries[name].add_quantity(
-            'hostoffsetang', hostoff, sources, unit='arcseconds')
+            'hostoffsetang', hostoff, sources, u_value='arcseconds')
         for ct in claimedtype.split('/'):
             if ct != 'Unk':
                 catalog.entries[name].add_quantity('claimedtype', ct,

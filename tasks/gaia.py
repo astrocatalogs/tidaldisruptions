@@ -30,9 +30,9 @@ def do_gaia(catalog):
         year = '20' + re.findall(r'\d+', row[0])[0]
         catalog.entries[name].add_quantity('discoverdate', year, source)
         catalog.entries[name].add_quantity(
-            'ra', row[2], source, unit='floatdegrees')
+            'ra', row[2], source, u_value='floatdegrees')
         catalog.entries[name].add_quantity(
-            'dec', row[3], source, unit='floatdegrees')
+            'dec', row[3], source, u_value='floatdegrees')
         if row[7] and row[7] != 'unknown':
             type = row[7].replace('SNe', '').replace('SN', '').strip()
             catalog.entries[name].add_quantity('claimedtype', type, source)

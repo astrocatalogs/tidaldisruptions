@@ -191,8 +191,8 @@ def do_derivations(catalog):
                                str(catalog
                                    .extinctions_dict[name][0]),
                                sources,
-                               error=str(catalog
-                                         .extinctions_dict[name][1]),
+                               e_value=str(catalog
+                                           .extinctions_dict[name][1]),
                                derived=True))
         if (('host' in catalog.entries[name] and
              ('hostra' not in catalog.entries[name] or
@@ -363,7 +363,7 @@ def do_derivations(catalog):
                     hosa = pretty_num(hosa * Decimal(3600.))
                     catalog.entries[name].add_quantity(
                         'hostoffsetang', hosa, sources,
-                        derived=True, unit='arcseconds')
+                        derived=True, u_value='arcseconds')
                 if ('comovingdist' in catalog.entries[name] and
                         'redshift' in catalog.entries[name] and
                         'hostoffsetdist' not in catalog.entries[name]):

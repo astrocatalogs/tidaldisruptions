@@ -287,7 +287,7 @@ def do_ascii(catalog):
             catalog.entries[name].add_quantity('ra', row[1], source)
             catalog.entries[name].add_quantity('dec', row[2], source)
             catalog.entries[name].add_quantity('redshift', row[5].replace(
-                '?', ''), source, error=row[6], kind='host')
+                '?', ''), source, e_value=row[6], kind='host')
             catalog.entries[name].add_quantity(
                 'claimedtype', row[7].replace('SN', '').strip(':* '), source)
     catalog.journal_entries()
