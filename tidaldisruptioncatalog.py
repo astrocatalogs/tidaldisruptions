@@ -28,10 +28,10 @@ class TidalDisruptionCatalog(Catalog):
                 self.PATH_INPUT, 'source-synonyms.json')
             self.URL_REDIRECTS = os.path.join(
                 self.PATH_INPUT, 'url-redirects.json')
-            self.NON_SNE_TYPES = os.path.join(
-                self.PATH_INPUT, 'non-sne-types.json')
-            self.NON_SNE_PREFIXES = os.path.join(
-                self.PATH_INPUT, 'non-sne-prefixes.json')
+            self.NON_TDE_TYPES = os.path.join(
+                self.PATH_INPUT, 'non-tde-types.json')
+            self.NON_TDE_PREFIXES = os.path.join(
+                self.PATH_INPUT, 'non-tde-prefixes.json')
             self.BIBERRORS = os.path.join(self.PATH_INPUT, 'biberrors.json')
             self.ATELS = os.path.join(self.PATH_INPUT, 'atels.json')
             self.CBETS = os.path.join(self.PATH_INPUT, 'cbets.json')
@@ -56,7 +56,7 @@ class TidalDisruptionCatalog(Catalog):
                               '--',
                               'OSC-JSON-format.md'])
                 .decode('ascii').strip().strip('"').strip())
-        URL = ('https://github.com/astrocatalogs/sne/blob/' + HASH +
+        URL = ('https://github.com/astrocatalogs/astrocats/blob/' + HASH +
                '/OSC-JSON-format.md')
 
     def __init__(self, args, log):
@@ -75,9 +75,9 @@ class TidalDisruptionCatalog(Catalog):
         (bury_entry, save_entry) = super().should_bury(name)
 
         ct_val = None
-        if name.startswith(tuple(self.nonsneprefixes_dict)):
+        if name.startswith(tuple(self.nontdeprefixes_dict)):
             self.log.debug(
-                "Killing '{}', non-SNe prefix.".format(name))
+                "Killing '{}', non-TDE prefix.".format(name))
             save_entry = False
         else:
             if TIDALDISRUPTION.CLAIMED_TYPE in self.entries[name]:
@@ -87,7 +87,7 @@ class TidalDisruptionCatalog(Catalog):
                             up_val != 'CANDIDATE':
                         bury_entry = False
                         break
-                    if up_val in self.non_sne_types:
+                    if up_val in self.non_tde_types:
                         bury_entry = True
                         ct_val = ct['value']
 
@@ -112,9 +112,9 @@ class TidalDisruptionCatalog(Catalog):
         self.url_redirs = read_json_dict(self.PATHS.URL_REDIRECTS)
         self.type_syns = read_json_dict(self.PATHS.TYPE_SYNONYMS)
         # Create/Load auxiliary arrays
-        self.nonsneprefixes_dict = read_json_arr(
-            self.PATHS.NON_SNE_PREFIXES)
-        self.nonsnetypes = read_json_arr(self.PATHS.NON_SNE_TYPES)
+        self.nontdeprefixes_dict = read_json_arr(
+            self.PATHS.NON_TDE_PREFIXES)
+        self.nontdetypes = read_json_arr(self.PATHS.NON_TDE_TYPES)
         return
 
     def save_caches(self):
