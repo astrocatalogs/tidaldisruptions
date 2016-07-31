@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+  <url>
+    <loc>https://sne.space</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://sne.space/about</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/contribute</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/find-duplicates</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/find-conflicts</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/derivations</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/statistics</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/statistics/host-galaxies</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/statistics/sky-locations</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/download</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/bibliography</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/bibliography/errata</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sne.space/links</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/2MASX J0203</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/2MASX J0249</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/3XMM J152130.7+074916</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/ASASSN-14ae</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/ASASSN-14li</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/ASASSN-15lh</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/ASASSN-15oi</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/D1-9</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/D23H-1</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/D3-13</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/DES14C1kia</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/Dougie</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/GRB060218</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/HLX-1</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/IC 3599</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/IGR J12580</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/IGR J17361-4441</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/LEDA 095953</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 1097</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 2110</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 247</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 3599</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 5905</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 6021</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PGC 015259</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PGC 1127938</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PGC 1185375</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PGC 1190358</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PGC 133344</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PGC 170392</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/Pictor A</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PS1-10jh</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PS1-11af</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PTF-09axc</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PTF-09djl</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PTF-09ge</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PTF-10iam</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PTF-10iya</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PTF-10nuj</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/PTF-11glr</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/RBS 1032</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/RX J1242-11A</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/RX J1420+53</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/RX J1624+75</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J0159</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J0748</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J0938</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J0939</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J0952</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1011</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1055</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1201</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1241</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1311</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1323</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1342</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/SDSS J1350</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/Swift J1112-82</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/Swift J1644+57</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/Swift J2058+05</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/TDE1</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/TDE2</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/UGC 01791</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/UGC 03317</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/WINGS J1348</loc>
+  </url>
+</urlset>

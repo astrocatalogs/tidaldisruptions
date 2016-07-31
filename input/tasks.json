@@ -26,6 +26,15 @@
         "repo": "input/tde-external",
         "priority": 2
     },
+    "ascii": {
+        "nice_name": "%pre ASCII data",
+        "active": true,
+        "update": false,
+        "module": "tidaldisruptions.tasks.ascii",
+        "function": "do_ascii",
+        "repo": "input/tde-external",
+        "priority": 2
+    },
     "ogle": {
         "nice_name": "%pre OGLE",
         "active": true,
