@@ -84,7 +84,6 @@ def do_ogle(catalog):
                     if mySibling is None:
                         break
 
-                print(claimedtype)
                 if claimedtype != 'TDE':
                     continue
 

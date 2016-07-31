@@ -1583,6 +1583,58 @@
 	},
 	{
 		"check":null,
+		"name":"OGLE16aaa",
+		"alias":[
+			{
+				"value":"OGLE16aaa"
+			}
+		],
+		"discoverdate":[
+			{
+				"value":"2012/07/05",
+				"derived":true
+			}
+		],
+		"maxdate":[
+			{
+				"value":"2016/01/14",
+				"derived":true
+			}
+		],
+		"maxappmag":[
+			{
+				"value":"19.13",
+				"derived":true
+			}
+		],
+		"maxabsmag":null,
+		"host":null,
+		"ra":null,
+		"dec":null,
+		"hostra":null,
+		"hostdec":null,
+		"hostoffsetang":null,
+		"hostoffsetdist":null,
+		"instruments":"I",
+		"redshift":null,
+		"velocity":null,
+		"lumdist":null,
+		"claimedtype":[
+			{
+				"value":"TDE"
+			}
+		],
+		"ebv":null,
+		"photolink":"56,-1290,182",
+		"spectralink":null,
+		"radiolink":null,
+		"xraylink":null,
+		"references":null,
+		"download":"",
+		"responsive":null
+	},
+	{
+		"check":null,
 		"name":"PGC 015259",
 		"alias":[
 			{
