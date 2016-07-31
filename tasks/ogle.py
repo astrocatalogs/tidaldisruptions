@@ -65,11 +65,13 @@ def do_ogle(catalog):
                 claimedtype = ''
                 while 'Ra,Dec=' not in mySibling:
                     if isinstance(mySibling, NavigableString):
-                        if 'Phot.class=' in str(mySibling):
+                        if not claimedtype and 'class=' in str(mySibling):
                             claimedtype = re.sub(
                                 r'\([^)]*\)', '',
                                 str(mySibling).split('=')[-1])
                             claimedtype = claimedtype.replace('SN', '').strip()
+                            if claimedtype == '-':
+                                claimedtype = ''
                     if isinstance(mySibling, Tag):
                         atela = mySibling
                         if (atela and atela.has_attr('href') and
@@ -82,6 +84,7 @@ def do_ogle(catalog):
                     if mySibling is None:
                         break
 
+                print(claimedtype)
                 if claimedtype != 'TDE':
                     continue
 
