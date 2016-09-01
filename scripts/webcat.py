@@ -540,8 +540,11 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
             if any([y in x for y in ['fluxdensity', 'magnitude', 'flux']])
         ]
 
-        x_buffer = 0.1 * (
-            max(phototime) - min(phototime)) if len(phototime) > 1 else 1.0
+        max_photo_time = max(phototime)
+        min_photo_time = min(phototime)
+        x_buffer = (
+            0.1 * (max_photo_time - min_photo_time) if
+            max_photo_time != min_photo_time else 1.0)
 
         min_x_range = -0.5 * x_buffer + \
             min([x - y for x, y in list(zip(phototime, phototimeuppererrs))])
