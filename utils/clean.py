@@ -145,6 +145,8 @@ def name_clean(name):
         newname = newname.replace('PTF ', 'PTF', 1)
     if newname.startswith('iPTF '):
         newname = newname.replace('iPTF ', 'iPTF', 1)
+    if newname.startswith('PTF-'):
+        newname = newname.replace('PTF-', 'PTF', 1)
     if newname.startswith('PESSTOESO'):
         newname = newname.replace('PESSTOESO', 'PESSTO ESO ', 1)
     if newname.startswith('snf'):
