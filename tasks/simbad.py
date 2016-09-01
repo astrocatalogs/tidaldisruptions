@@ -60,7 +60,6 @@ def do_simbad(catalog):
             continue
 
         name = name_clean(name)
-        print(name)
         # SIMBAD doesn't have a TDE type, so we must skip most events
         if not catalog.entry_exists(name):
             continue
