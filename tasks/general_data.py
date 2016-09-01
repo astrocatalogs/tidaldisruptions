@@ -12,6 +12,7 @@ from astropy.time import Time as astrotime
 from astrocats.catalog.utils import pbar_strings
 from astrocats.tidaldisruptions.tidaldisruption import (TIDALDISRUPTION,
                                                         TidalDisruption)
+from astrocats.tidaldisruptions.utils import name_clean
 from cdecimal import Decimal
 
 
