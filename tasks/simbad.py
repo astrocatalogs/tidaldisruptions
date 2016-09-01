@@ -29,7 +29,7 @@ def do_simbad(catalog):
     for mirror in simbadmirrors:
         customSimbad.SIMBAD_URL = mirror
         try:
-            table = customSimbad.query_criteria('maintype="SN?"')
+            table = customSimbad.query_criteria('maintype=SN | maintype="SN?"')
         except:
             continue
         else:
@@ -59,6 +59,7 @@ def do_simbad(catalog):
             continue
 
         name = name_clean(name)
+        print(name)
         # SIMBAD doesn't have a TDE type, so we must skip most events
         if not catalog.entry_exists(name):
             continue
