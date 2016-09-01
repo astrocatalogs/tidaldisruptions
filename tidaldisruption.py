@@ -1,6 +1,9 @@
 """
 """
 import warnings
+from collections import OrderedDict
+
+from astropy.time import Time as astrotime
 
 from astrocats.catalog.entry import ENTRY, Entry
 from astrocats.catalog.error import ERROR
@@ -9,15 +12,13 @@ from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.quantity import QUANTITY
 from astrocats.catalog.source import SOURCE
 from astrocats.catalog.spectrum import SPECTRUM
-from astrocats.catalog.utils import (get_sig_digits, get_source_year,
-                                     is_number, jd_to_mjd, make_date_string,
-                                     pretty_num, uniq_cdl)
+from astrocats.catalog.utils import (bib_priority, get_sig_digits,
+                                     get_source_year, is_number, jd_to_mjd,
+                                     make_date_string, pretty_num, uniq_cdl)
 from astrocats.tidaldisruptions.constants import (MAX_BANDS, PREF_KINDS,
                                                   REPR_BETTER_QUANTITY)
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
                                               name_clean, radec_clean)
-from astropy.time import Time as astrotime
-
 from cdecimal import Decimal
 
 
@@ -79,8 +80,8 @@ class TidalDisruption(Entry):
             return False
 
         if error and (not is_number(error) or float(error) < 0):
-            raise ValueError(self.parent[self.parent._KEYS.NAME] +
-                             "'s quanta " + key +
+            raise ValueError(self.parent[
+                self.parent._KEYS.NAME] + "'s quanta " + key +
                              ' error value must be a number and positive.')
 
         # Set default units
@@ -90,8 +91,7 @@ class TidalDisruption(Entry):
             unit = 'hours'
         if not unit and key == self._KEYS.DEC:
             unit = 'degrees'
-        if not unit and key in [self._KEYS.LUM_DIST,
-                                self._KEYS.COMOVING_DIST]:
+        if not unit and key in [self._KEYS.LUM_DIST, self._KEYS.COMOVING_DIST]:
             unit = 'Mpc'
 
         # Handle certain name
@@ -104,8 +104,8 @@ class TidalDisruption(Entry):
         if key == self._KEYS.HOST:
             if is_number(value):
                 return False
-            if value.lower() in ['anonymous', 'anon.', 'anon',
-                                 'intergalactic']:
+            if value.lower() in ['anonymous', 'anon.', 'anon', 'intergalactic'
+                                 ]:
                 return False
             value = host_clean(value)
             if ((not kind and ((value.lower().startswith('abell') and
@@ -127,8 +127,8 @@ class TidalDisruption(Entry):
             if isq:
                 value = value + '?'
 
-        elif key in [self._KEYS.RA, self._KEYS.DEC,
-                     self._KEYS.HOST_RA, self._KEYS.HOST_DEC]:
+        elif key in [self._KEYS.RA, self._KEYS.DEC, self._KEYS.HOST_RA,
+                     self._KEYS.HOST_DEC]:
             (value, unit) = radec_clean(value, key, unit=unit)
         elif key == self._KEYS.MAX_DATE or key == self._KEYS.DISCOVER_DATE:
             # Make sure month and day have leading zeroes
@@ -163,7 +163,11 @@ class TidalDisruption(Entry):
 
         return True
 
-    def add_quantity(self, quantity, value, source, forcereplacebetter=False,
+    def add_quantity(self,
+                     quantity,
+                     value,
+                     source,
+                     forcereplacebetter=False,
                      **kwargs):
         quantity_added = super().add_quantity(quantity, value, source,
                                               **kwargs)
@@ -189,10 +193,10 @@ class TidalDisruption(Entry):
                         isworse = False
                         continue
                     elif len(ctsplit) < len(svsplit) and len(svsplit) == 3:
-                        val_one = max(2, get_sig_digits(
-                            ctsplit[-1].lstrip('0')))
-                        val_two = max(2, get_sig_digits(
-                            svsplit[-1].lstrip('0')))
+                        val_one = max(2,
+                                      get_sig_digits(ctsplit[-1].lstrip('0')))
+                        val_two = max(2,
+                                      get_sig_digits(svsplit[-1].lstrip('0')))
                         if val_one < val_two:
                             isworse = False
                             continue
@@ -226,9 +230,8 @@ class TidalDisruption(Entry):
         # Replace reference names and URLs using dictionaries.
         if (kwargs.get(SOURCE.BIBCODE, []) and
                 len(kwargs[SOURCE.BIBCODE]) != 19):
-            raise ValueError(
-                "Bibcode '{}' must be exactly 19 characters "
-                "long".format(kwargs[SOURCE.BIBCODE]))
+            raise ValueError("Bibcode '{}' must be exactly 19 characters "
+                             "long".format(kwargs[SOURCE.BIBCODE]))
 
         # if SOURCE.NAME not in kwargs:
         #     kwargs[SOURCE.NAME] = kwargs[SOURCE.BIBCODE]
@@ -236,12 +239,10 @@ class TidalDisruption(Entry):
         if SOURCE.NAME in kwargs:
             if (kwargs[SOURCE.NAME].upper().startswith('ATEL') and
                     SOURCE.BIBCODE not in kwargs):
-                kwargs[SOURCE.NAME] = (kwargs[SOURCE.NAME]
-                                       .replace('ATEL', 'ATel')
-                                       .replace('Atel', 'ATel')
-                                       .replace('ATel #', 'ATel ')
-                                       .replace('ATel#', 'ATel')
-                                       .replace('ATel', 'ATel '))
+                kwargs[SOURCE.NAME] = (
+                    kwargs[SOURCE.NAME].replace('ATEL', 'ATel')
+                    .replace('Atel', 'ATel').replace('ATel #', 'ATel ')
+                    .replace('ATel#', 'ATel').replace('ATel', 'ATel '))
                 kwargs[SOURCE.NAME] = ' '.join(kwargs[SOURCE.NAME].split())
                 atelnum = kwargs[SOURCE.NAME].split()[-1]
                 if is_number(atelnum) and atelnum in self.catalog.atels_dict:
@@ -282,7 +283,8 @@ class TidalDisruption(Entry):
         return self.add_source(
             bibcode=self.catalog.OSC_BIBCODE,
             name=self.catalog.OSC_NAME,
-            url=self.catalog.OSC_URL, secondary=True)
+            url=self.catalog.OSC_URL,
+            secondary=True)
 
     def is_erroneous(self, field, sources):
         if hasattr(self, self._KEYS.ERRORS):
@@ -290,15 +292,15 @@ class TidalDisruption(Entry):
             for alias in sources.split(','):
                 source = self.get_source_by_alias(alias)
                 bib_err_values = [err[QUANTITY.VALUE] for err in my_errors
-                                  if err[ERROR.KIND] == SOURCE.BIBCODE and
-                                  err[ERROR.EXTRA] == field]
-                if (SOURCE.BIBCODE in source and source[SOURCE.BIBCODE] in
-                        bib_err_values):
+                                  if err[ERROR.KIND] == SOURCE.BIBCODE and err[
+                                      ERROR.EXTRA] == field]
+                if (SOURCE.BIBCODE in source and
+                        source[SOURCE.BIBCODE] in bib_err_values):
                     return True
 
                 name_err_values = [err[QUANTITY.VALUE] for err in my_errors
-                                   if err[ERROR.KIND] == SOURCE.NAME and
-                                   err[ERROR.EXTRA] == field]
+                                   if err[ERROR.KIND] == SOURCE.NAME and err[
+                                       ERROR.EXTRA] == field]
                 if (SOURCE.NAME in source and
                         source[SOURCE.NAME] in name_err_values):
                     return True
@@ -324,8 +326,8 @@ class TidalDisruption(Entry):
 
             if self._KEYS.DISCOVERY_DATE in self.keys():
                 repo_years = self.catalog.PATHS.get_repo_years()
-                dyr = self[self._KEYS.DISCOVERY_DATE][0][
-                    QUANTITY.VALUE].split('/')[0]
+                dyr = self[self._KEYS.DISCOVERY_DATE][0][QUANTITY.VALUE].split(
+                    '/')[0]
                 for r, year in enumerate(repo_years):
                     if int(dyr) <= year:
                         outdir = repo_folders[r]
@@ -334,15 +336,16 @@ class TidalDisruption(Entry):
         return outdir, filename
 
     def sanitize(self):
+        super().sanitize()
+
         # Calculate some columns based on imported data, sanitize some fields
         name = self[self._KEYS.NAME]
         aliases = self.get_aliases()
 
         if ((name.startswith('SN') and is_number(name[2:6]) and
              self._KEYS.DISCOVER_DATE in self and
-             int(self[self._KEYS.DISCOVER_DATE][0][QUANTITY.VALUE].
-                 split('/')[0]) >= 2016 and
-             not any(['AT' in x for x in aliases]))):
+             int(self[self._KEYS.DISCOVER_DATE][0][QUANTITY.VALUE].split('/')[
+                 0]) >= 2016 and not any(['AT' in x for x in aliases]))):
             source = self.add_self_source()
             self.add_quantity(self._KEYS.ALIAS, 'AT' + name[2:], source)
 
@@ -351,11 +354,12 @@ class TidalDisruption(Entry):
             #      i.e. add it to `clean` or something??
             self[self._KEYS.CLAIMED_TYPE] = self.ct_list_prioritized()
         if self._KEYS.CLAIMED_TYPE in self:
-            self[self._KEYS.CLAIMED_TYPE][:] = [ct for ct in self[
-                self._KEYS.CLAIMED_TYPE] if (ct[QUANTITY.VALUE] != '?' and
-                                             ct[QUANTITY.VALUE] != '-')]
+            self[self._KEYS.CLAIMED_TYPE][:] = [
+                ct for ct in self[self._KEYS.CLAIMED_TYPE]
+                if (ct[QUANTITY.VALUE] != '?' and ct[QUANTITY.VALUE] != '-')
+            ]
             if not len(self[self._KEYS.CLAIMED_TYPE]):
-                del(self[self._KEYS.CLAIMED_TYPE])
+                del (self[self._KEYS.CLAIMED_TYPE])
         if self._KEYS.CLAIMED_TYPE not in self and name.startswith('AT'):
             source = self.add_self_source()
             self.add_quantity(self._KEYS.CLAIMED_TYPE, 'Candidate', source)
@@ -371,11 +375,13 @@ class TidalDisruption(Entry):
                                x else '',
                                float(x[PHOTOMETRY.MAGNITUDE]) if
                                PHOTOMETRY.MAGNITUDE in x else ''))
-        if (self._KEYS.SPECTRA in self and
-                list(filter(None, [SPECTRUM.TIME in x
-                                   for x in self[self._KEYS.SPECTRA]]))):
-            self[self._KEYS.SPECTRA].sort(key=lambda x: (
-                float(x[SPECTRUM.TIME]) if SPECTRUM.TIME in x else 0.0))
+
+        if (self._KEYS.SPECTRA in self and list(
+                filter(None, [SPECTRUM.TIME in x
+                              for x in self[self._KEYS.SPECTRA]]))):
+            self[self._KEYS.SPECTRA].sort(
+                key=lambda x: (float(x[SPECTRUM.TIME]) if SPECTRUM.TIME in x else 0.0, x[SPECTRUM.FILENAME] if SPECTRUM.FILENAME in x else ''))
+
         if self._KEYS.SOURCES in self:
             for source in self[self._KEYS.SOURCES]:
                 if SOURCE.BIBCODE in source:
@@ -384,8 +390,8 @@ class TidalDisruption(Entry):
                     # First sanitize the bibcode
                     if len(source[SOURCE.BIBCODE]) != 19:
                         source[SOURCE.BIBCODE] = urllib.parse.unquote(
-                            unescape(source[SOURCE.BIBCODE])).replace(
-                                'A.A.', 'A&A')
+                            unescape(source[SOURCE.BIBCODE])).replace('A.A.',
+                                                                      'A&A')
                     if source[SOURCE.BIBCODE] in self.catalog.biberror_dict:
                         source[SOURCE.BIBCODE] = \
                             self.catalog.biberror_dict[source[SOURCE.BIBCODE]]
@@ -414,25 +420,55 @@ class TidalDisruption(Entry):
 
             for source in self[self._KEYS.SOURCES]:
                 if (SOURCE.BIBCODE in source and
-                        source[SOURCE.BIBCODE] in
-                        self.catalog.bibauthor_dict and
+                        source[SOURCE.BIBCODE] in self.catalog.bibauthor_dict
+                        and
                         self.catalog.bibauthor_dict[source[SOURCE.BIBCODE]]):
                     source[SOURCE.REFERENCE] = self.catalog.bibauthor_dict[
                         source[SOURCE.BIBCODE]]
-                    if SOURCE.NAME not in source and source[SOURCE.BIBCODE]:
-                        source[SOURCE.NAME] = source[SOURCE.BIBCODE]
+                if (SOURCE.NAME not in source and SOURCE.BIBCODE in source and
+                        source[SOURCE.BIBCODE]):
+                    source[SOURCE.NAME] = source[SOURCE.BIBCODE]
+
         if self._KEYS.REDSHIFT in self:
             self[self._KEYS.REDSHIFT] = list(
-                sorted(self[self._KEYS.REDSHIFT], key=lambda key:
-                       frame_priority(key)))
+                sorted(
+                    self[self._KEYS.REDSHIFT],
+                    key=lambda key: frame_priority(key)))
+
         if self._KEYS.VELOCITY in self:
             self[self._KEYS.VELOCITY] = list(
-                sorted(self[self._KEYS.VELOCITY], key=lambda key:
-                       frame_priority(key)))
+                sorted(
+                    self[self._KEYS.VELOCITY],
+                    key=lambda key: frame_priority(key)))
+
         if self._KEYS.CLAIMED_TYPE in self:
             self[self._KEYS.CLAIMED_TYPE] = self.ct_list_prioritized()
 
-        super().sanitize()
+        # Renumber and reorder sources
+        if self._KEYS.SOURCES in self:
+            # Sort sources reverse-chronologically
+            self[self._KEYS.SOURCES] = sorted(
+                self[self._KEYS.SOURCES], key=lambda x: bib_priority(x))
+
+            # Assign new aliases to match new order
+            source_reps = OrderedDict(
+                [[x[SOURCE.ALIAS], str(i + 1)]
+                 for i, x in enumerate(self[self._KEYS.SOURCES])])
+            for i, source in enumerate(self[self._KEYS.SOURCES]):
+                self[self._KEYS.SOURCES][i][SOURCE.ALIAS] = source_reps[source[
+                    SOURCE.ALIAS]]
+
+            # Change sources to match new aliases
+            for key in self.keys():
+                if self._KEYS.get_key_by_name(key).no_source:
+                    continue
+                for item in self[key]:
+                    aliases = [str(y)
+                               for y in sorted(
+                                   int(source_reps[x])
+                                   for x in item[item._KEYS.SOURCE].split(','))
+                               ]
+                    item[item._KEYS.SOURCE] = ','.join(aliases)
 
     def clean_internal(self, data):
         """Clean input data from the 'Supernovae/input/internal' repository.
@@ -490,8 +526,7 @@ class TidalDisruption(Entry):
                     if photo[PHOTOMETRY.U_TIME] == 'JD':
                         data[self._KEYS.PHOTOMETRY][p][
                             PHOTOMETRY.U_TIME] = 'MJD'
-                        data[self._KEYS.PHOTOMETRY][p][
-                            PHOTOMETRY.TIME] = str(
+                        data[self._KEYS.PHOTOMETRY][p][PHOTOMETRY.TIME] = str(
                             jd_to_mjd(Decimal(photo['time'])))
                     if QUANTITY.SOURCE not in photo:
                         source = self.add_source(bibcode=bibcodes[0])
@@ -510,12 +545,11 @@ class TidalDisruption(Entry):
             return (None, None, None, None)
 
         # FIX: THIS
-        eventphoto = [(x['u_time'], x['time'],
-                       Decimal(x['magnitude']), x[
-            'band'] if 'band' in x else '',
-                       x['source']) for x in self[self._KEYS.PHOTOMETRY] if
-            ('magnitude' in x and 'time' in x and 'u_time' in x and
-             'upperlimit' not in x)]
+        eventphoto = [(x['u_time'], x['time'], Decimal(x['magnitude']),
+                       x['band'] if 'band' in x else '', x['source'])
+                      for x in self[self._KEYS.PHOTOMETRY]
+                      if ('magnitude' in x and 'time' in x and 'u_time' in x
+                          and 'upperlimit' not in x)]
         if not eventphoto:
             return None, None, None, None
 
@@ -547,10 +581,10 @@ class TidalDisruption(Entry):
 
         # FIX THIS
         eventphoto = [(Decimal(x['time']) if isinstance(x['time'], str) else
-                       Decimal(min(float(y) for y in x['time'])),
-                       x['source']) for x in self[self._KEYS.PHOTOMETRY] if
-                      'upperlimit' not in x and
-                      'time' in x and 'u_time' in x and x['u_time'] == 'MJD']
+                       Decimal(min(float(y) for y in x['time'])), x['source'])
+                      for x in self[self._KEYS.PHOTOMETRY]
+                      if 'upperlimit' not in x and 'time' in x and 'u_time' in
+                      x and x['u_time'] == 'MJD']
         if not eventphoto:
             return None, None
         flmjd = min([x[0] for x in eventphoto])
@@ -566,32 +600,35 @@ class TidalDisruption(Entry):
                 source = self.add_self_source()
                 max_date = make_date_string(mldt.year, mldt.month, mldt.day)
                 self.add_quantity(
-                    'maxdate', max_date,
+                    'maxdate',
+                    max_date,
                     uniq_cdl([source] + mlsource.split(',')),
                     derived=True)
             if mlmag:
                 source = self.add_self_source()
                 self.add_quantity(
-                    'maxappmag', pretty_num(mlmag),
+                    'maxappmag',
+                    pretty_num(mlmag),
                     uniq_cdl([source] + mlsource.split(',')),
                     derived=True)
             if mlband:
                 source = self.add_self_source()
-                (self
-                 .add_quantity('maxband',
-                               mlband,
-                               uniq_cdl([source] + mlsource.split(',')),
-                               derived=True))
+                (self.add_quantity(
+                    'maxband',
+                    mlband,
+                    uniq_cdl([source] + mlsource.split(',')),
+                    derived=True))
 
         if (self._KEYS.DISCOVER_DATE not in self or
-                max([len(x[QUANTITY.VALUE].split('/')) for x in
-                     self[self._KEYS.DISCOVER_DATE]]) < 3):
+                max([len(x[QUANTITY.VALUE].split('/'))
+                     for x in self[self._KEYS.DISCOVER_DATE]]) < 3):
             fldt, flsource = self._get_first_light()
             if fldt:
                 source = self.add_self_source()
                 disc_date = make_date_string(fldt.year, fldt.month, fldt.day)
                 self.add_quantity(
-                    self._KEYS.DISCOVER_DATE, disc_date,
+                    self._KEYS.DISCOVER_DATE,
+                    disc_date,
                     uniq_cdl([source] + flsource.split(',')),
                     derived=True)
 
@@ -615,7 +652,8 @@ class TidalDisruption(Entry):
                 source = self.add_self_source()
                 disc_date = make_date_string(fldt.year, fldt.month, fldt.day)
                 self.add_quantity(
-                    self._KEYS.DISCOVER_DATE, disc_date,
+                    self._KEYS.DISCOVER_DATE,
+                    disc_date,
                     uniq_cdl([source] + minspecsource.split(',')),
                     derived=True)
         return
@@ -635,9 +673,10 @@ class TidalDisruption(Entry):
         return bestz, bestkind, bestsig, bestsrc
 
     def ct_list_prioritized(self):
-        ct_list = list(sorted(
-            self[self._KEYS.CLAIMED_TYPE], key=lambda key:
-            self._ct_priority(key)))
+        ct_list = list(
+            sorted(
+                self[self._KEYS.CLAIMED_TYPE],
+                key=lambda key: self._ct_priority(key)))
         return ct_list
 
     def _ct_priority(self, attr):
