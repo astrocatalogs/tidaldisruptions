@@ -11,6 +11,7 @@ from astrocats.catalog.utils import (is_number, pbar, read_json_arr,
                                      read_json_dict)
 from astrocats.tidaldisruptions.tidaldisruption import (TIDALDISRUPTION,
                                                         TidalDisruption)
+from .utils import name_clean
 
 
 class TidalDisruptionCatalog(Catalog):
@@ -315,3 +316,6 @@ class TidalDisruptionCatalog(Catalog):
                 break
 
         return
+
+    def clean_entry_name(self, name):
+        return name_clean(name)
