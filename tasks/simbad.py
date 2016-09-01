@@ -4,8 +4,7 @@ import re
 
 from astroquery.simbad import Simbad
 
-from astrocats.catalog.utils import (is_number, name_clean, pbar,
-                                     single_spaces, uniq_cdl)
+from astrocats.catalog.utils import is_number, pbar, single_spaces, uniq_cdl
 from astrocats.tidaldisruptions.tidaldisruption import TIDALDISRUPTION
 from astrocats.tidaldisruptions.utils import name_clean
 
