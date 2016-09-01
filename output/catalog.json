@@ -385,70 +385,6 @@
 	},
 	{
 		"check":null,
-		"name":"ASASSN-15lh",
-		"alias":[
-			{
-				"value":"ASASSN-15lh"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"2015/06/14"
-			}
-		],
-		"maxdate":null,
-		"maxappmag":null,
-		"maxabsmag":null,
-		"host":null,
-		"ra":[
-			{
-				"value":"22:2:15.49"
-			}
-		],
-		"dec":[
-			{
-				"value":"-61:39:33.6"
-			}
-		],
-		"hostra":null,
-		"hostdec":null,
-		"hostoffsetang":null,
-		"hostoffsetdist":null,
-		"instruments":null,
-		"redshift":[
-			{
-				"value":"0.2326"
-			}
-		],
-		"velocity":[
-			{
-				"value":"61800"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"1198",
-				"derived":true
-			}
-		],
-		"claimedtype":null,
-		"ebv":[
-			{
-				"value":"0.0305",
-				"derived":true,
-				"e_value":"0.0011"
-			}
-		],
-		"photolink":null,
-		"spectralink":null,
-		"radiolink":null,
-		"xraylink":null,
-		"references":"2015ATel.7642....1N,2015arXiv150201589P,2011ApJ...737..103S",
-		"download":"e",
-		"responsive":null
-	},
-	{
-		"check":null,
 		"name":"ASASSN-15oi",
 		"alias":[
 			{
@@ -1205,6 +1141,74 @@
 	},
 	{
 		"check":null,
+		"name":"iPTF16fnl",
+		"alias":[
+			{
+				"value":"iPTF16fnl"
+			}
+		],
+		"discoverdate":[
+			{
+				"value":"2016/08/26"
+			}
+		],
+		"maxdate":null,
+		"maxappmag":null,
+		"maxabsmag":null,
+		"host":[
+			{
+				"value":"MRK 950"
+			}
+		],
+		"ra":[
+			{
+				"value":"00:29:57.04"
+			}
+		],
+		"dec":[
+			{
+				"value":"+32:53:37.5"
+			}
+		],
+		"hostra":null,
+		"hostdec":null,
+		"hostoffsetang":null,
+		"hostoffsetdist":null,
+		"instruments":null,
+		"redshift":[
+			{
+				"value":"0.0163"
+			}
+		],
+		"velocity":[
+			{
+				"value":"4850"
+			}
+		],
+		"lumdist":[
+			{
+				"value":"73",
+				"derived":true
+			}
+		],
+		"claimedtype":null,
+		"ebv":[
+			{
+				"value":"0.0713",
+				"derived":true,
+				"e_value":"0.0016"
+			}
+		],
+		"photolink":null,
+		"spectralink":null,
+		"radiolink":null,
+		"xraylink":null,
+		"references":"2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e",
+		"responsive":null
+	},
+	{
+		"check":null,
 		"name":"LEDA 095953",
 		"alias":[
 			{
@@ -1625,7 +1629,7 @@
 			}
 		],
 		"ebv":null,
-		"photolink":"56,-1290,182",
+		"photolink":"61,-1290,224",
 		"spectralink":null,
 		"radiolink":null,
 		"xraylink":null,
@@ -2084,7 +2088,7 @@
 		],
 		"hostoffsetang":null,
 		"hostoffsetdist":null,
-		"instruments":"Chandra (r), GALEX (NUV), Pan-STARRS1 (g, r), XMM (NUV), HN",
+		"instruments":"Chandra (z), GALEX (NUV), Pan-STARRS1 (g, r, i, z), XMM (NUV), HN",
 		"redshift":[
 			{
 				"value":"0.1696"
@@ -2107,7 +2111,7 @@
 			}
 		],
 		"ebv":null,
-		"photolink":"37,-48.8,1850",
+		"photolink":"112,-48.8,1850",
 		"spectralink":null,
 		"radiolink":null,
 		"xraylink":"1",
