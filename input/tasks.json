@@ -54,6 +54,15 @@
         "repo": "input/tde-external",
         "priority": 4
     },
+    "simbad": {
+        "nice_name": "%pre SIMBAD",
+        "active": true,
+        "update": false,
+        "module": "tidaldisruptions.tasks.simbad",
+        "function": "do_simbad",
+        "groups": ["meta"],
+        "priority": -200
+    },
     "merge_duplicates": {
         "nice_name": "Merging duplicates",
         "active": true,

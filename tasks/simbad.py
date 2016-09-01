@@ -4,7 +4,8 @@ import re
 
 from astroquery.simbad import Simbad
 
-from astrocats.catalog.utils import is_number, pbar, single_spaces, uniq_cdl
+from astrocats.catalog.utils import (is_number, name_clean, pbar,
+                                     single_spaces, uniq_cdl)
 from astrocats.tidaldisruptions.tidaldisruption import TIDALDISRUPTION
 from astrocats.tidaldisruptions.utils import name_clean
 
@@ -29,7 +30,7 @@ def do_simbad(catalog):
     for mirror in simbadmirrors:
         customSimbad.SIMBAD_URL = mirror
         try:
-            table = customSimbad.query_criteria('maintype=SN | maintype="SN?"')
+            table = customSimbad.query_criteria('maintype="SN?"')
         except:
             continue
         else:
@@ -40,14 +41,13 @@ def do_simbad(catalog):
 
     # 2000A&AS..143....9W
     for brow in pbar(table, task_str):
-        row = {x: re.sub(r'b\'(.*)\'', r'\1',
-                         str(brow[x])) for x in brow.colnames}
+        row = {x: re.sub(r'b\'(.*)\'', r'\1', str(brow[x]))
+               for x in brow.colnames}
         # Skip items with no bibliographic info aside from SIMBAD, too
         # error-prone
         if row['OTYPE'] == 'Candidate_SN*' and not row['SP_TYPE']:
             continue
-        if (not row['COO_BIBCODE'] and not row['SP_BIBCODE'] and
-                not row['SP_BIBCODE_2']):
+        if not row['COO_BIBCODE']:
             continue
         if any([x in row['MAIN_ID'] for x in simbadbannedcats]):
             continue
@@ -58,12 +58,18 @@ def do_simbad(catalog):
             continue
         if is_number(name):
             continue
+
+        name = name_clean(name)
+        # SIMBAD doesn't have a TDE type, so we must skip most events
+        if not catalog.entry_exists(name):
+            continue
+
         name = catalog.add_entry(name)
-        source = (catalog.entries[name]
-                  .add_source(name='SIMBAD astronomical database',
-                              bibcode="2000A&AS..143....9W",
-                              url="http://simbad.u-strasbg.fr/",
-                              secondary=True))
+        source = (catalog.entries[name].add_source(
+            name='SIMBAD astronomical database',
+            bibcode="2000A&AS..143....9W",
+            url="http://simbad.u-strasbg.fr/",
+            secondary=True))
         aliases = row['ID'].split(',')
         for alias in aliases:
             if any([x in alias for x in simbadbannedcats]):
@@ -72,29 +78,14 @@ def do_simbad(catalog):
             if is_number(ali):
                 continue
             ali = name_clean(ali)
-            catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS,
-                                               ali, source)
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS, ali,
+                                               source)
         if row['COO_BIBCODE'] and row['COO_BIBCODE'] not in simbadbadcoordbib:
-            csources = ','.join(
-                [source, catalog.entries[name].add_source(
-                    bibcode=row['COO_BIBCODE'])])
-            catalog.entries[name].add_quantity(TIDALDISRUPTION.RA,
-                                               row['RA'], csources)
-            catalog.entries[name].add_quantity(TIDALDISRUPTION.DEC,
-                                               row['DEC'], csources)
-        if row['SP_BIBCODE']:
-            ssources = uniq_cdl([source,
-                                 catalog.entries[name]
-                                 .add_source(bibcode=row['SP_BIBCODE'])] +
-                                ([catalog.entries[name]
-                                  .add_source(bibcode=row['SP_BIBCODE_2'])] if
-                                 row['SP_BIBCODE_2'] else []))
-            catalog.entries[name].add_quantity(
-                TIDALDISRUPTION.CLAIMED_TYPE,
-                (row['SP_TYPE']
-                 .replace('SN.', '')
-                 .replace('SN', '')
-                 .replace('(~)', '')
-                 .strip(': ')), ssources)
+            csources = ','.join([source, catalog.entries[name].add_source(
+                bibcode=row['COO_BIBCODE'])])
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.RA, row['RA'],
+                                               csources)
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.DEC, row['DEC'],
+                                               csources)
     catalog.journal_entries()
     return
