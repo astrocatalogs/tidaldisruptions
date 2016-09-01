@@ -29,7 +29,8 @@ def do_simbad(catalog):
     for mirror in simbadmirrors:
         customSimbad.SIMBAD_URL = mirror
         try:
-            table = customSimbad.query_criteria('maintype=SN | maintype="SN?"')
+            table = customSimbad.query_criteria(
+                'maintype=SN* | maintype=SN | maintype="SN?"')
         except:
             continue
         else:
