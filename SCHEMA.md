@@ -1,6 +1,6 @@
-This document describes the standard Open Supernova Catalog (OSC) JSON format. For JSON files in this repository, which are mostly entered by hand (often via the edit icon on the main table page) or via direct data donations, our format requirements are less strict than usual, for instance if you forget to set a supernova's name field, our import script is smart enough to do this for you. As JSON is a sparse format, object names that don't follow our default name choices will simply be ignored by the script. In most cases, this is not desirable as you will want your data to be readable by the catalog import script, but it can be useful for adding new objects that may be unique to your dataset, which in the future could be parsed by the catalog. But so long as you are only adding standard data to a supernova, it is best to follow the guidelines set in this document as closely as possible to avoid potential issues.
+This document describes the standard Open TDE Catalog (OTC) JSON format. For JSON files in this repository, which are mostly entered by hand (often via the edit icon on the main table page) or via direct data donations, our format requirements are less strict than usual, for instance if you forget to set a TDE's name field, our import script is smart enough to do this for you. As JSON is a sparse format, object names that don't follow our default name choices will simply be ignored by the script. In most cases, this is not desirable as you will want your data to be readable by the catalog import script, but it can be useful for adding new objects that may be unique to your dataset, which in the future could be parsed by the catalog. But so long as you are only adding standard data to a TDE, it is best to follow the guidelines set in this document as closely as possible to avoid potential issues.
 
-Each supernova is contained with a single JSON file that contains a single object bearing the supernova's primary name, which when empty represents the minimum readable entry file:
+Each tidal disruption is contained with a single JSON file that contains a single object bearing the TDE's primary name, which when empty represents the minimum readable entry file:
 
 ```JSON
 {
@@ -13,7 +13,7 @@ To comply with the standard, the object should contain a `schema` key, where `sc
 ```JSON
 {
 	"SN1987A":{
-		"schema":"https://github.com/astrocatalogs/sne/blob/commithash/OSC-JSON-format.md",
+		"schema":"https://github.com/astrocatalogs/tidaldisruptions/blob/commithash/SCHEMA.md",
 		"name":"SN1987A"
 	}
 }
@@ -21,7 +21,7 @@ To comply with the standard, the object should contain a `schema` key, where `sc
 
 As JSON is a serialized format, *field order does not matter*, but the OSC's import scripts will automatically organize the data in the output JSON files to make them more readable (for instance we sort photometry and spectra within each file by date, the data quantity fields by name, etc.).
 
-Sources are extremely important in the OSC, and every single piece of data added to an event JSON file **must have a source attribution**, with the sole exception of the supernova name, aliases, and the sources themselves. Published data sources are preferred over secondary sources (the OSC falls into a secondary source category), but if the data was collected by a secondary source intermediate to being added to the OSC, these sources should also be attributed in the source list.
+Sources are extremely important in the OSC, and every single piece of data added to an event JSON file **must have a source attribution**, with the sole exception of the TDE name, aliases, and the sources themselves. Published data sources are preferred over secondary sources (the OSC falls into a secondary source category), but if the data was collected by a secondary source intermediate to being added to the OSC, these sources should also be attributed in the source list.
 
 Sources of data contain five fields, three of which are optional:
 
@@ -71,7 +71,7 @@ The OSC stores many different pieces of metadata for each event. Data quantities
 ]
 ```
 
-where in this example we have two different redshift values quoted from three different sources, where two of the sources agree with one another, and the third source actually refers to the redshift of the host galaxy rather than the supernova. Note that all the numerical quantities are stored as strings instead of as numbers, the OSC's policy is to store the data with exactly the same number of significant digits as the sources that provide them, and storing the importing the data as floating point numbers can often introduce small floating-point errors that we wish to avoid.
+where in this example we have two different redshift values quoted from three different sources, where two of the sources agree with one another, and the third source actually refers to the redshift of the host galaxy rather than the TDE. Note that all the numerical quantities are stored as strings instead of as numbers, the OSC's policy is to store the data with exactly the same number of significant digits as the sources that provide them, and storing the importing the data as floating point numbers can often introduce small floating-point errors that we wish to avoid.
 
 Data quantities have five standard fields:
 
@@ -89,25 +89,25 @@ Currently, the OSC explicitly tracks the following quantities for each event, if
 
 | Quantity | Description | Kinds
 | :--- | :--- | :---
-| `alias` | Other names this supernova goes by |
-| `distinctfrom` | Names of events SN is *not* associated with, usually very nearby supernovae that may be confused with the given supernova |
+| `alias` | Other names this TDE goes by |
+| `distinctfrom` | Names of events SN is *not* associated with, usually very nearby TDEs that may be confused with the given TDE |
 | `error` | Known errors in sources of data that are ignored on import |
-| `ra` | Right ascension of supernova in hours (`hh:mm:ss`) |
-| `dec` | Declination of supernova in degrees |
-| `discoverdate` | Date that the supernova was first observed |
-| `maxdate` | Date of the supernova's maximum light |
-| `redshift` | Redshift of supernova or its host in various frames | `heliocentric`, `cmb`, `host`
-| `lumdist` | Luminosity distance to the supernova |
-| `comovingdist` | Comoving distance to the supernova |
-| `velocity` | Recessional velocity of supernova | `heliocentric`, `cmb`, `host`
-| `claimedtype` | Claimed type of the supernova |
-| `discoverer` | Person(s) who discovered the supernova |
+| `ra` | Right ascension of TDE in hours (`hh:mm:ss`) |
+| `dec` | Declination of TDE in degrees |
+| `discoverdate` | Date that the TDE was first observed |
+| `maxdate` | Date of the TDE's maximum light |
+| `redshift` | Redshift of TDE or its host in various frames | `heliocentric`, `cmb`, `host`
+| `lumdist` | Luminosity distance to the TDE |
+| `comovingdist` | Comoving distance to the TDE |
+| `velocity` | Recessional velocity of TDE | `heliocentric`, `cmb`, `host`
+| `claimedtype` | Claimed type of the TDE |
+| `discoverer` | Person(s) who discovered the TDE |
 | `ebv` | Reddening originating from the Milky Way |
-| `host` | Host galaxy of the supernova |
+| `host` | Host galaxy of the TDE |
 | `hostra` | Right ascension of the host galaxy in hours (`hh:mm:ss`) |
 | `hostdec` | Declination of the host galaxy in degrees |
-| `hostoffsetang` | Offset angle between host and supernova |
-| `hostoffsetdist` | Offset angular diameter distance between host and supernova |
+| `hostoffsetang` | Offset angle between host and TDE |
+| `hostoffsetdist` | Offset angular diameter distance between host and TDE |
 | `maxappmag` | Maximum apparent magnitude |
 | `maxband` | Band that maximum was determined from |
 | `maxabsmag` | Maximum absolute magnitude |
