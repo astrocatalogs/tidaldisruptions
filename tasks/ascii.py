@@ -16,6 +16,28 @@ def do_ascii(catalog):
     """
     task_str = catalog.get_current_task_str()
 
+    # 2016arXiv160201088H
+    file_path = os.path.join(catalog.get_current_task_repo(),
+                             '2016arXiv160201088H.txt')
+    with open(file_path, 'r') as f:
+        name, source = catalog.new_entry('ASASSN-15oi',
+                                         bibcode='2016arXiv160201088H')
+        data = list(
+            csv.reader(
+                f, delimiter=' ', quotechar='"', skipinitialspace=True))
+        for r, row in enumerate(pbar(data, task_str)):
+            if row[0][0] == '#':
+                continue
+            photodict = {
+                PHOTOMETRY.TIME: row[0],
+                PHOTOMETRY.BAND: row[1],
+                PHOTOMETRY.MAGNITUDE: row[2],
+                PHOTOMETRY.E_MAGNITUDE: row[3],
+                PHOTOMETRY.TELESCOPE: row[4],
+                PHOTOMETRY.SOURCE: source
+            }
+            catalog.entries[name].add_photometry(**photodict)
+
     # 2011ApJ...741...73V
     file_path = os.path.join(catalog.get_current_task_repo(),
                              '2011ApJ...741...73V.txt')
