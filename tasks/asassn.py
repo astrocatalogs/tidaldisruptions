@@ -2,8 +2,10 @@
 """
 import os
 
-from astrocats.catalog.utils import pbar
 from bs4 import BeautifulSoup
+
+from astrocats.catalog.utils import pbar
+from astrocats.tidaldisruptions.tidaldisruption import TIDALDISRUPTION
 
 
 def do_asassn(catalog):
@@ -41,8 +43,20 @@ def do_asassn(catalog):
                     atellink = ''
             if tdi == 3:
                 ra = td.text
+                rasplit = ra.split(':')
+                rasecs = rasplit[2].split('.')
+                ra = ':'.join([rasplit[0], rasplit[1].zfill(2),
+                               rasecs[0].zfill(2) + (
+                                   ('.' + rasecs[1])
+                                   if len(rasecs) > 1 else '')])
             if tdi == 4:
                 dec = td.text
+                decsplit = dec.split(':')
+                decsecs = decsplit[2].split('.')
+                dec = ':'.join([decsplit[0], decsplit[1].zfill(2),
+                                decsecs[0].zfill(2) + (
+                                    ('.' + decsecs[1])
+                                    if len(decsecs) > 1 else '')])
             if tdi == 5:
                 discdate = td.text.replace('-', '/')
             if tdi == 11:
@@ -50,7 +64,7 @@ def do_asassn(catalog):
                 if 'TDE' in tdt:
                     claimedtype = 'TDE'
                 if 'z=' in tdt:
-                    redshift = (tdt[tdt.find('z=')+2:]
+                    redshift = (tdt[tdt.find('z=') + 2:]
                                 .split(',')[0].split(';')[0].strip())
 
         if claimedtype != 'TDE' and name not in catalog.entries:
@@ -62,29 +76,35 @@ def do_asassn(catalog):
             url=asn_url, name='ASAS-SN Supernovae')]
         typesources = sources[:]
         if atellink:
-            sources.append(
-                (catalog.entries[name]
-                 .add_source(name='ATel ' +
-                             atellink.split('=')[-1], url=atellink)))
+            sources.append((catalog.entries[name].add_source(
+                name='ATel ' + atellink.split('=')[-1], url=atellink)))
         sources = ','.join(sources)
         typesources = ','.join(typesources)
-        catalog.entries[name].add_quantity('alias', name, sources)
+        catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS, name,
+                                           sources)
         if alias != '---':
-            catalog.entries[name].add_quantity('alias', alias, sources)
-        catalog.entries[name].add_quantity('discoverdate', discdate, sources)
-        catalog.entries[name].add_quantity('ra', ra, sources,
-                                           u_value='floatdegrees')
-        catalog.entries[name].add_quantity('dec', dec, sources,
-                                           u_value='floatdegrees')
-        catalog.entries[name].add_quantity('redshift', redshift, sources)
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS, alias,
+                                               sources)
+        catalog.entries[name].add_quantity(TIDALDISRUPTION.DISCOVER_DATE,
+                                           discdate, sources)
         catalog.entries[name].add_quantity(
-            'hostoffsetang', hostoff, sources, u_value='arcseconds')
+            TIDALDISRUPTION.RA, ra, sources, u_value='floatdegrees')
+        catalog.entries[name].add_quantity(
+            TIDALDISRUPTION.DEC, dec, sources, u_value='floatdegrees')
+        catalog.entries[name].add_quantity(TIDALDISRUPTION.REDSHIFT, redshift,
+                                           sources)
+        catalog.entries[name].add_quantity(
+            TIDALDISRUPTION.HOST_OFFSET_ANG,
+            hostoff,
+            sources,
+            u_value='arcseconds')
         for ct in claimedtype.split('/'):
             if ct != 'Unk':
-                catalog.entries[name].add_quantity('claimedtype', ct,
-                                                   typesources)
+                catalog.entries[name].add_quantity(
+                    TIDALDISRUPTION.CLAIMED_TYPE, ct, typesources)
         if host != 'Uncatalogued':
-            catalog.entries[name].add_quantity('host', host, sources)
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.HOST, host,
+                                               sources)
 
     catalog.journal_entries()
     return
