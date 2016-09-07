@@ -33,7 +33,7 @@
         "module": "tidaldisruptions.tasks.ascii",
         "function": "do_ascii",
         "repo": "input/tde-external",
-        "priority": 2
+        "priority": 3
     },
     "ogle": {
         "nice_name": "%pre OGLE",
@@ -43,7 +43,7 @@
         "module": "tidaldisruptions.tasks.ogle",
         "function": "do_ogle",
         "repo": "input/tde-external",
-        "priority": 3
+        "priority": 4
     },
     "asassn": {
         "nice_name": "%pre ASASSN",
@@ -52,7 +52,7 @@
         "module": "tidaldisruptions.tasks.asassn",
         "function": "do_asassn",
         "repo": "input/tde-external",
-        "priority": 4
+        "priority": -300
     },
     "simbad": {
         "nice_name": "%pre SIMBAD",
