@@ -85,11 +85,11 @@ class TidalDisruptionCatalog(Catalog):
             if TIDALDISRUPTION.CLAIMED_TYPE in self.entries[name]:
                 for ct in self.entries[name][TIDALDISRUPTION.CLAIMED_TYPE]:
                     up_val = ct['value'].upper()
-                    if up_val not in self.NON_TDE_TYPES and \
+                    if up_val not in self.PATHS.NON_TDE_TYPES and \
                             up_val != 'CANDIDATE':
                         bury_entry = False
                         break
-                    if up_val in self.NON_TDE_TYPES:
+                    if up_val in self.PATHS.NON_TDE_TYPES:
                         bury_entry = True
                         ct_val = ct['value']
 
