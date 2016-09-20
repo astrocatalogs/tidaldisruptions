@@ -45,6 +45,17 @@
         "repo": "input/tde-external",
         "priority": 4
     },
+    "wiserep_spectra": {
+        "nice_name": "%pre WISeREP spectra",
+        "active": true,
+        "update": false,
+        "module": "tidaldisruptions.tasks.wiserep",
+        "function": "do_wiserep_spectra",
+        "groups": ["spectra"],
+        "repo": "input/tde-external-WISEREP",
+        "always_journal": true,
+        "priority": 201
+    },
     "asassn": {
         "nice_name": "%pre ASASSN",
         "active": true,
