@@ -45,6 +45,15 @@
         "repo": "input/tde-external",
         "priority": 4
     },
+    "donations": {
+        "nice_name": "%pre donations",
+        "active": true,
+        "update": false,
+        "module": "tidaldisruptions.tasks.donations",
+        "function": "do_donations",
+        "repo": "input/tde-external",
+        "priority": 5
+    },
     "wiserep_spectra": {
         "nice_name": "%pre WISeREP spectra",
         "active": true,
