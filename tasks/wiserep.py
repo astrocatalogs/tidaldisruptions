@@ -17,7 +17,8 @@ from ..tidaldisruption import TIDALDISRUPTION
 def do_wiserep_spectra(catalog):
     if not catalog.args.travis:
         from ..input.WISeWEBSpider.wisewebspider import spider
-        spider(update=True, daysago=7, path="/../../tde-external-WISEREP/")
+        spider(update=True, daysago=7, include_type=["TDE"],
+               path="/../../tde-external-WISEREP/")
 
     task_str = catalog.get_current_task_str()
     secondaryreference = 'WISeREP'
