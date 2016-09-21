@@ -33,14 +33,21 @@ def do_donations(catalog):
                 PHOTOMETRY.U_ENERGY: 'keV',
                 PHOTOMETRY.FLUX: row[21],
                 PHOTOMETRY.U_FLUX: 'ergs/cm^2/s',
+                PHOTOMETRY.PHOTON_INDEX: row[17],
+                PHOTOMETRY.LUMINOSITY: row[24],
                 PHOTOMETRY.SOURCE: source
             }
             if row[11] == 'D':
                 photodict[PHOTOMETRY.E_COUNTS] = row[13]
                 photodict[PHOTOMETRY.E_LOWER_FLUX] = row[22]
                 photodict[PHOTOMETRY.E_UPPER_FLUX] = row[23]
+                photodict[PHOTOMETRY.E_LOWER_LUMINOSITY] = row[25]
+                photodict[PHOTOMETRY.E_UPPER_LUMINOSITY] = row[26]
             else:
                 photodict[PHOTOMETRY.UPPER_LIMIT] = True
+            # Need to ask about nh that includes both MW and host
+            if not row[15]:
+                photodict[PHOTOMETRY.NHMW] = row[14]
             catalog.entries[name].add_photometry(**photodict)
 
     catalog.journal_entries()
