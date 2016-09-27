@@ -1491,8 +1491,18 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                        radiosigma * float(x['e_flux']),
                        sig=get_sig_digits(x['e_flux']))
                    for x in catalog[entry]['photometry'] if 'flux' in x]
-        photoflerrs = [(float(x['e_flux']) if 'e_flux' in x else 0.)
-                       for x in catalog[entry]['photometry'] if 'flux' in x]
+        photofllowererrs = [float(x['e_lower_flux'])
+                            if ('e_lower_flux' in x) else
+                            (float(x['e_flux'])
+                             if 'e_flux' in x else 0.)
+                            for x in catalog[entry]['photometry']
+                            if 'flux' in x]
+        photofluppererrs = [float(x['e_upper_flux'])
+                            if ('e_upper_flux' in x) else
+                            (float(x['e_flux'])
+                             if 'e_flux' in x else 0.)
+                            for x in catalog[entry]['photometry']
+                            if 'flux' in x]
         photoufl = [(x['u_flux'] if 'flux' in x else '')
                     for x in catalog[entry]['photometry'] if 'flux' in x]
         photoener = [((' - '.join([y.rstrip('.') for y in x['energy']])
@@ -1511,8 +1521,7 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                        for x, y in enumerate(catalog[entry]['photometry'])
                        if 'flux' in y]
         phototype = [
-            (True if 'upperlimit' in x or
-             radiosigma * float(x['e_flux']) >= float(x['flux']) else False)
+            (True if 'upperlimit' in x else False)
             for x in catalog[entry]['photometry'] if 'flux' in x
         ]
 
@@ -1527,8 +1536,9 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
 
         hastimeerrs = (len(list(filter(None, phototimelowererrs))) and
                        len(list(filter(None, phototimeuppererrs))))
+        hasflerrs = (len(list(filter(None, photofllowererrs))) and
+                     len(list(filter(None, photofluppererrs))))
         hasfl = len(list(filter(None, photofl)))
-        hasflerrs = len(list(filter(None, photoflerrs)))
         yaxis = 'Flux'
         if not hasfl:
             yaxis = 'Counts'
@@ -1539,12 +1549,12 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                            radiosigma * float(x['e_counts']),
                            sig=get_sig_digits(x['e_counts']))
                        for x in catalog[entry]['photometry'] if 'counts' in x]
-            photoflerrs = [(float(x['e_counts']) if 'e_counts' in x else 0.)
+            photofluppererrs = [(float(x['e_counts']) if 'e_counts' in x else 0.)
                            for x in catalog[entry]['photometry']
                            if 'counts' in x]
             photoufl = ['' for x in photofl]
             hasfl = len(list(filter(None, photofl)))
-            hasflerrs = len(list(filter(None, photoflerrs)))
+            hasflerrs = len(list(filter(None, photofluppererrs)))
         tt = [
             ("Source ID(s)", "@src"),
             ("Epoch (" + photoutime + ")",
@@ -1552,9 +1562,10 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                            if hastimeerrs else ""))
         ]
         if hasfl:
+            # Need to show upper and lower errors here
             tt += [(yaxis + " (" + photoufl[0].replace("ergs/s/cm^2",
                                                        "ergs s⁻¹ cm⁻²") + ")",
-                    "@y" + ("&nbsp;±&nbsp;@err" if hasflerrs else ""))]
+                    "@y" + ("&nbsp;±&nbsp;@uerr" if hasflerrs else ""))]
             if 'maxabsmag' in catalog[entry] and 'maxappmag' in catalog[entry]:
                 tt += [("Iso. Lum. (ergs s⁻¹)",
                         "@yabs" + ("&nbsp;±&nbsp;@abserr"
@@ -1569,8 +1580,14 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
             x_range = p1.x_range
         else:
             x_range = (min_x_range, max_x_range)
-        min_y_range = min([x - y for x, y in list(zip(photofl, photoflerrs))])
-        max_y_range = max([x + y for x, y in list(zip(photofl, photoflerrs))])
+        min_y_range = min([
+            (x - y) if not z else x
+            for x, y, z in list(zip(photofl, photofluppererrs, phototype))
+        ])
+        max_y_range = max([
+            (x + y) if not z else x
+            for x, y, z in list(zip(photofl, photofllowererrs, phototype))
+        ])
         [min_y_range, max_y_range] = [
             min_y_range - 0.1 * (max_y_range - min_y_range),
             max_y_range + 0.1 * (max_y_range - min_y_range)
@@ -1634,9 +1651,9 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
 
         if distancemod:
             min_y_absmag = min([(x - y) * areacorr
-                                for x, y in list(zip(photofl, photoflerrs))])
+                                for x, y in list(zip(photofl, photofllowererrs))])
             max_y_absmag = max([(x + y) * areacorr
-                                for x, y in list(zip(photofl, photoflerrs))])
+                                for x, y in list(zip(photofl, photofluppererrs))])
             [min_y_absmag, max_y_absmag] = [
                 min_y_absmag - 0.1 * (max_y_absmag - min_y_absmag),
                 max_y_absmag + 0.1 * (max_y_absmag - min_y_absmag)
@@ -1660,13 +1677,14 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
         err_xs = []
         err_ys = []
 
-        for x, y, xlowerr, xupperr, yerr in list(
+        for x, y, xlowerr, xupperr, ylowerr, yupperr in list(
                 zip(phototime, photofl, phototimelowererrs, phototimeuppererrs,
-                    photoflerrs)):
+                    photofllowererrs, photofluppererrs)):
             xs.append(x)
             ys.append(y)
             err_xs.append((x - xlowerr, x + xupperr))
-            err_ys.append((y - yerr, y + yerr))
+            err_ys.append((y - ylowerr, y + yupperr))
+
 
         enerset = set(photoener)
         enerunit = photouener[0] if photouener else ''
@@ -1677,8 +1695,8 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
             # Should always have upper error if have lower error.
             indnex = [i for i, j in enumerate(phototimelowererrs) if j == 0.]
             indyex = [i for i, j in enumerate(phototimelowererrs) if j > 0.]
-            indney = [i for i, j in enumerate(photoflerrs) if j == 0.]
-            indyey = [i for i, j in enumerate(photoflerrs) if j > 0.]
+            indney = [i for i, j in enumerate(photofluppererrs) if j == 0.]
+            indyey = [i for i, j in enumerate(photofluppererrs) if j > 0.]
             indne = set(indb).intersection(indt).intersection(
                 indney).intersection(indnex)
             indye = set(indb).intersection(indt).intersection(
@@ -1692,7 +1710,8 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
             data = dict(
                 x=[phototime[i] for i in indne],
                 y=[photofl[i] for i in indne],
-                err=[photoflerrs[i] for i in indne],
+                lerr=[photofllowererrs[i] for i in indne],
+                uerr=[photofluppererrs[i] for i in indne],
                 desc=[photoener[i] for i in indne],
                 instr=[photoinstru[i] for i in indne],
                 src=[photosource[i] for i in indne])
@@ -1701,9 +1720,10 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                     str(round_sig(
                         photofl[i] * areacorr, sig=3)) for i in indne
                 ]
+                # Need to do labserr and uabserr
                 data['abserr'] = [
                     str(round_sig(
-                        photoflerrs[i] * areacorr, sig=3)) for i in indne
+                        photofluppererrs[i] * areacorr, sig=3)) for i in indne
                 ]
             if hastimeerrs:
                 data['xle'] = [phototimelowererrs[i] for i in indne]
@@ -1724,7 +1744,8 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
             data = dict(
                 x=[phototime[i] for i in indye],
                 y=[photofl[i] for i in indye],
-                err=[photoflerrs[i] for i in indye],
+                lerr=[photofllowererrs[i] for i in indye],
+                uerr=[photofluppererrs[i] for i in indye],
                 desc=[photoener[i] for i in indye],
                 instr=[photoinstru[i] for i in indye],
                 src=[photosource[i] for i in indye])
@@ -1735,7 +1756,7 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                 ]
                 data['abserr'] = [
                     str(round_sig(
-                        photoflerrs[i] * areacorr, sig=3)) for i in indye
+                        photofluppererrs[i] * areacorr, sig=3)) for i in indye
                 ]
             if hastimeerrs:
                 data['xle'] = [phototimelowererrs[i] for i in indye]
@@ -1764,7 +1785,8 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
             data = dict(
                 x=[phototime[i] for i in ind],
                 y=[photofl[i] for i in ind],
-                err=[photoflerrs[i] for i in ind],
+                lerr=[photofllowererrs[i] for i in ind],
+                uerr=[photofluppererrs[i] for i in ind],
                 desc=[photoener[i] for i in ind],
                 instr=[photoinstru[i] for i in ind],
                 src=[photosource[i] for i in ind])
@@ -1775,7 +1797,7 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                 ]
                 data['abserr'] = [
                     str(round_sig(
-                        photoflerrs[i] * areacorr, sig=3)) for i in ind
+                        photofluppererrs[i] * areacorr, sig=3)) for i in ind
                 ]
             if hastimeerrs:
                 data['xle'] = [phototimelowererrs[i] for i in ind]
@@ -2026,7 +2048,7 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                             for s, source in enumerate(sources):
                                 sourcehtml = sourcehtml + \
                                     (', ' if s > 0 else '') + r'<a href="#source' + \
-                                    source + r'">' + source + r'</a>'
+                                    source + r'" target="_self">' + source + r'</a>'
                             keyhtml = keyhtml + (r'<br>' if r > 0 else '')
                             keyhtml = keyhtml + "<div class='singletooltip'>"
                             if 'derived' in row and row['derived']:
