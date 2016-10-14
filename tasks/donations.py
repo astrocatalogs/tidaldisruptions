@@ -2,6 +2,7 @@
 """
 import csv
 import os
+from datetime import datetime
 
 from astropy.io.ascii import read
 from astropy.time import Time as astrotime
@@ -94,12 +95,9 @@ def do_donations(catalog):
         start = Decimal(
             astrotime(row['Date']
                       if row['Date'] != '1990' else '1990-01-01').mjd)
-        end = str(start + Decimal(row['Exp time$^{b}$'])/Decimal('86400'))
+        end = str(start + Decimal(row['Exp time$^{b}$']) / Decimal('86400'))
         start = str(start)
-        photodictbase = {
-            PHOTOMETRY.U_TIME: 'MJD',
-            PHOTOMETRY.SOURCE: source
-        }
+        photodictbase = {PHOTOMETRY.U_TIME: 'MJD', PHOTOMETRY.SOURCE: source}
         photodictx = photodictbase.copy()
         photodictx[PHOTOMETRY.TELESCOPE] = row['Mission$^{a}$']
         photodictx[PHOTOMETRY.TIME] = [start, end]
@@ -138,5 +136,26 @@ def do_donations(catalog):
             photodictu[PHOTOMETRY.E_MAGNITUDE] = emag
             photodictu[PHOTOMETRY.SYSTEM] = 'Vega'
             catalog.entries[name].add_photometry(**photodictu)
+
+    # 2016arXiv161003861A
+    datafile = os.path.join(catalog.get_current_task_repo(), 'Donations',
+                            '2016arXiv161003861A.tex')
+
+    data = read(datafile, format='latex')
+    name, source = catalog.new_entry(
+        'XMMSL1 J0740-85', bibcode='2016arXiv161003861A')
+    for row in data[1:]:
+        time = str(
+            astrotime(datetime.strptime(row['UT Date'], '%Y %b %d')).mjd)
+        fd, efd = row['$F_\\nu$'].split(' $\pm$ ')
+        photodict = {
+            PHOTOMETRY.TIME: time,
+            PHOTOMETRY.FREQUENCY: str(row['$\\nu$']),
+            PHOTOMETRY.FLUX_DENSITY: fd,
+            PHOTOMETRY.E_FLUX_DENSITY: efd,
+            PHOTOMETRY.U_FLUX_DENSITY: 'mJy',
+            PHOTOMETRY.SOURCE: source
+        }
+        catalog.entries[name].add_photometry(**photodict)
 
     return
