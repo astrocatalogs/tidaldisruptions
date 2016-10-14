@@ -2,7 +2,6 @@
 """
 import csv
 import os
-from datetime import datetime
 
 from astropy.io.ascii import read
 from astropy.time import Time as astrotime
