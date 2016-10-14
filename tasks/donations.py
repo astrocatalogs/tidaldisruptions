@@ -116,7 +116,7 @@ def do_donations(catalog):
             photodictx[PHOTOMETRY.FLUX] = str(
                 Decimal(flux) * Decimal('1.0e-12'))
             ferr = fstr.split('\pm')[-1]
-            photodictx[PHOTOMETRY.FLUX] = str(
+            photodictx[PHOTOMETRY.E_FLUX] = str(
                 Decimal(ferr) * Decimal('1.0e-12'))
 
         catalog.entries[name].add_photometry(**photodictx)
