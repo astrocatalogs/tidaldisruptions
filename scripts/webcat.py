@@ -362,7 +362,7 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
     radioavail = 'photometry' in catalog[entry] and any(
         ['fluxdensity' in x for x in catalog[entry]['photometry']])
     xrayavail = 'photometry' in catalog[entry] and any(
-        ['counts' in x and 'magnitude' not in x
+        [('counts' in x or 'flux' in x) and 'magnitude' not in x
          for x in catalog[entry]['photometry']])
     spectraavail = 'spectra' in catalog[entry]
 
@@ -539,17 +539,43 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
             for x in catalog[entry]['photometry']
             if any([y in x for y in ['fluxdensity', 'magnitude', 'flux']])
         ]
+        mmphototime = [
+            (mean([float(y) for y in x['time']])
+             if isinstance(x['time'], list) else float(x['time']))
+            for x in catalog[entry]['photometry']
+            if (any([y in x for y in ['fluxdensity', 'magnitude', 'flux']]) and
+                'upperlimit' not in x)
+        ]
+        mmphototimelowererrs = [
+            float(x['e_lower_time'])
+            if ('e_lower_time' in x and 'e_upper_time' in x) else
+            (float(x['e_time']) if 'e_time' in x else 0.)
+            for x in catalog[entry]['photometry']
+            if any([y in x for y in ['fluxdensity', 'magnitude', 'flux']])
+        ]
+        mmphototimeuppererrs = [
+            float(x['e_upper_time'])
+            if ('e_lower_time' in x and 'e_upper_time' in x) in x else
+            (float(x['e_time']) if 'e_time' in x else 0.)
+            for x in catalog[entry]['photometry']
+            if any([y in x for y in ['fluxdensity', 'magnitude', 'flux']])
+        ]
 
-        max_photo_time = max(phototime)
-        min_photo_time = min(phototime)
+        if not len(mmphototime):
+            mmphototime = phototime
+            mmphototimelowererrs = phototimelowererrs
+            mmphototimeuppererrs = phototimeuppererrs
+
+        max_photo_time = max(mmphototime)
+        min_photo_time = min(mmphototime)
         x_buffer = (
             0.1 * (max_photo_time - min_photo_time) if
             max_photo_time != min_photo_time else 1.0)
 
         min_x_range = -0.5 * x_buffer + \
-            min([x - y for x, y in list(zip(phototime, phototimeuppererrs))])
+            min([x - y for x, y in list(zip(mmphototime, mmphototimeuppererrs))])
         max_x_range = 2.0 * x_buffer + \
-            max([x + y for x, y in list(zip(phototime, phototimelowererrs))])
+            max([x + y for x, y in list(zip(mmphototime, mmphototimelowererrs))])
 
     if photoavail and dohtml and args.writehtml:
         phototime = [float(x['time']) for x in catalog[entry]['photometry']
@@ -2074,6 +2100,9 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                                         if 'bibcode' in source:
                                             sourceids.append(source['bibcode'])
                                             idtypes.append('bibcode')
+                                        elif 'arxivid' in source:
+                                            sourceids.append(source['arxivid'])
+                                            idtypes.append('arxivid')
                                         else:
                                             sourceids.append(source['name'])
                                             idtypes.append('name')
@@ -2121,7 +2150,7 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                     refurl = source['url']
 
                 sourcename = source['name'] if 'name' in source else source[
-                    'bibcode']
+                    'bibcode'] if 'bibcode' in source else source['arxivid']
                 if not first_secondary and source.get('secondary', False):
                     first_secondary = True
                     newhtml += r'<tr><th colspan="2" class="event-cell">Secondary Sources</th></tr>\n'
