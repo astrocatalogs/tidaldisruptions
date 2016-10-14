@@ -3,6 +3,9 @@
 import csv
 import os
 
+from astropy.io.ascii import read
+from astropy.time import Time as astrotime
+
 from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import pbar
 from astrocats.tidaldisruptions.tidaldisruption import TIDALDISRUPTION
@@ -79,4 +82,61 @@ def do_donations(catalog):
                 TIDALDISRUPTION.DEC, row[5].strip(), source=source)
             catalog.entries[name].add_quantity(
                 TIDALDISRUPTION.REDSHIFT, row[6].strip(), source=source)
+
+    # 2016arXiv161001788S
+    datafile = os.path.join(catalog.get_current_task_repo(), 'Donations',
+                            '2016arXiv161001788S.tex')
+
+    data = read(datafile, format='latex')
+    name, source = catalog.new_entry(
+        'XMMSL1 J0740-85', bibcode='2016arXiv161001788S')
+    for row in data[1:]:
+        start = Decimal(
+            astrotime(row['Date']
+                      if row['Date'] != '1990' else '1990-01-01').mjd)
+        end = str(start + Decimal(row['Exp time$^{b}$'])/Decimal('86400'))
+        start = str(start)
+        photodictbase = {
+            PHOTOMETRY.U_TIME: 'MJD',
+            PHOTOMETRY.SOURCE: source
+        }
+        photodictx = photodictbase.copy()
+        photodictx[PHOTOMETRY.TELESCOPE] = row['Mission$^{a}$']
+        photodictx[PHOTOMETRY.TIME] = [start, end]
+        photodictx[PHOTOMETRY.ENERGY] = ['0.2', '2.0']
+        photodictx[PHOTOMETRY.U_ENERGY] = 'keV'
+        photodictx[PHOTOMETRY.U_FLUX] = 'ergs s^-1 cm^-2'
+        fstr = row['Flux$^{c}$'].replace('$', '').replace('{', '').replace('}',
+                                                                           '')
+        if '<' in fstr:
+            flux = fstr.replace('<', '')
+            photodictx[PHOTOMETRY.FLUX] = str(
+                Decimal(flux) * Decimal('1.0e-12'))
+            photodictx[PHOTOMETRY.UPPER_LIMIT] = True
+        else:
+            flux = fstr.split('\pm')[0]
+            photodictx[PHOTOMETRY.FLUX] = str(
+                Decimal(flux) * Decimal('1.0e-12'))
+            ferr = fstr.split('\pm')[-1]
+            photodictx[PHOTOMETRY.FLUX] = str(
+                Decimal(ferr) * Decimal('1.0e-12'))
+
+        catalog.entries[name].add_photometry(**photodictx)
+
+        for col in row.columns[4:]:
+            val = str(row[col])
+            if val == '--':
+                continue
+            mag, emag = str(row[col]).replace('$', '').replace(
+                '{', '').replace('}', '').split('\pm')
+            photodictu = photodictbase.copy()
+            photodictu[PHOTOMETRY.TELESCOPE] = 'Swift'
+            photodictu[PHOTOMETRY.INSTRUMENT] = 'UVOT'
+            photodictu[PHOTOMETRY.TIME] = start
+            photodictu[PHOTOMETRY.BAND] = col
+            photodictu[PHOTOMETRY.MAGNITUDE] = mag
+            photodictu[PHOTOMETRY.E_MAGNITUDE] = emag
+            photodictu[PHOTOMETRY.SYSTEM] = 'Vega'
+            catalog.entries[name].add_photometry(**photodictu)
+
     return
