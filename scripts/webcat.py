@@ -382,7 +382,7 @@ for fcnt, eventfile in enumerate(tq(sorted(files, key=lambda s: s.lower()))):
                     ]) if photoavail else 0
     numxray = len(
         [x for x in catalog[entry]['photometry']
-         if 'upperlimit' not in x and 'counts' in x and
+         if 'upperlimit' not in x and ('counts' in x or 'flux' in x) and
          (not hostmag or 'includeshost' not in x or float(x['magnitude']) <= (
              hostmag - 2.0 * hosterr))]) if photoavail else 0
     numspectra = len(catalog[entry]['spectra']) if spectraavail else 0
