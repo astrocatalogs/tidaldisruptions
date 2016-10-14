@@ -568,7 +568,7 @@
 		],
 		"photolink":"243,0.0304,103",
 		"xraylink":"2",
-		"references":"2016arXiv160201088H,2015ATel.7910....1B,2016ApJ...818L..21F,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv160201088H,2015ATel.7910....1B,2015arXiv150201589P,2016ApJ...818L..21F,2011ApJ...737..103S"
 	},
 	{
 		"name":"D1-9",
@@ -2515,7 +2515,7 @@
 		],
 		"photolink":"74,-21.3,89.9",
 		"xraylink":"0",
-		"references":"2013arXiv1309.3009C,2015arXiv150201589P,2014ApJ...780...44C,2011ApJ...737..103S"
+		"references":"2013arXiv1309.3009C,2014ApJ...780...44C,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF09axc",
@@ -2611,7 +2611,7 @@
 		"photolink":"11,-29.8,154",
 		"spectralink":"2,-1.35,1240",
 		"xraylink":"1",
-		"references":"2014ApJ...793...38A,2015arXiv150201589P,2010ApJ...721..777A,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2010ApJ...721..777A,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF09djl",
@@ -2707,7 +2707,7 @@
 		"photolink":"11,-132,17.7",
 		"spectralink":"3,-105,-54.5",
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2015arXiv150201589P,2010ApJ...721..777A,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2010ApJ...721..777A,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF09ge",
@@ -2806,7 +2806,7 @@
 		"photolink":"132,-23.8,207",
 		"spectralink":"1",
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2015arXiv150201589P,2009PASP..121.1395L,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2009PASP..121.1395L,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF10iam",
@@ -4711,7 +4711,7 @@
 		],
 		"photolink":"42,-16.2,499",
 		"radiolink":"16",
-		"xraylink":"0",
+		"xraylink":"17",
 		"references":"2016arXiv161001788S,2016arXiv161003861A,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	}
