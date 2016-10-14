@@ -139,21 +139,20 @@ def do_donations(catalog):
 
     # 2016arXiv161003861A
     datafile = os.path.join(catalog.get_current_task_repo(), 'Donations',
-                            '2016arXiv161003861A.tex')
+                            '2016arXiv161003861A.cds')
 
-    data = read(datafile, format='latex')
+    data = read(datafile, format='cds')
     name, source = catalog.new_entry(
         'XMMSL1 J0740-85', bibcode='2016arXiv161003861A')
-    for row in data[1:]:
-        time = str(
-            astrotime(datetime.strptime(row['UT Date'], '%Y %b %d')).mjd)
-        fd, efd = row['$F_\\nu$'].split(' $\pm$ ')
+    for row in data:
         photodict = {
-            PHOTOMETRY.TIME: time,
-            PHOTOMETRY.FREQUENCY: str(row['$\\nu$']),
+            PHOTOMETRY.TIME: [row['tstart'], row['tstop']],
+            PHOTOMETRY.FREQUENCY: str(Decimal(row['freq']) / Decimal('1.0e9')),
             PHOTOMETRY.U_FREQUENCY: 'GHz',
-            PHOTOMETRY.FLUX_DENSITY: str(Decimal(fd) * Decimal('1.0e3')),
-            PHOTOMETRY.E_FLUX_DENSITY: str(Decimal(efd) * Decimal('1.0e3')),
+            PHOTOMETRY.FLUX_DENSITY:
+            str(Decimal(str(row['flux'])) * Decimal('1.0e3')),
+            PHOTOMETRY.E_FLUX_DENSITY:
+            str(Decimal(str(row['unc'])) * Decimal('1.0e3')),
             PHOTOMETRY.U_FLUX_DENSITY: 'μJy',
             PHOTOMETRY.SOURCE: source
         }
