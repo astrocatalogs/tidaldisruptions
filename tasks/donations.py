@@ -151,6 +151,7 @@ def do_donations(catalog):
         photodict = {
             PHOTOMETRY.TIME: time,
             PHOTOMETRY.FREQUENCY: str(row['$\\nu$']),
+            PHOTOMETRY.U_FREQUENCY: 'GHz',
             PHOTOMETRY.FLUX_DENSITY: fd,
             PHOTOMETRY.E_FLUX_DENSITY: efd,
             PHOTOMETRY.U_FLUX_DENSITY: 'mJy',
