@@ -466,7 +466,7 @@
 		],
 		"spectralink":"30",
 		"xraylink":"0",
-		"references":"2016arXiv160902927L,2015arXiv150703010D,2015ATel.7642....1N,2016Sci...351..257D,2015arXiv150201589P",
+		"references":"2016arXiv160902927L,2015arXiv150703010D,2015ATel.7642....1N,2015arXiv150201589P,2016Sci...351..257D",
 		"download":"e"
 	},
 	{
@@ -849,7 +849,7 @@
 		],
 		"photolink":"62,-47.8,814",
 		"xraylink":"1",
-		"references":"2006ApJ...653L..25G,2015arXiv150201589P,2008ApJ...676..944G,2011ApJ...737..103S",
+		"references":"2006ApJ...653L..25G,2008ApJ...676..944G,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -4660,12 +4660,12 @@
 		],
 		"ra":[
 			{
-				"value":"07:40:08.43"
+				"value":"07:40:08.19"
 			}
 		],
 		"dec":[
 			{
-				"value":"+85:39:31.4"
+				"value":"+85:39:31.25"
 			}
 		],
 		"hostra":[
@@ -4680,12 +4680,12 @@
 		],
 		"hostoffsetang":[
 			{
-				"value":"5.591"
+				"value":"4.253"
 			}
 		],
 		"hostoffsetdist":[
 			{
-				"value":"2.033"
+				"value":"1.546"
 			}
 		],
 		"instruments":"UVOT (W2, W1, M2, U, B)",
