@@ -83,6 +83,17 @@
         "repo": "input/tde-external",
         "priority": -300
     },
+    "swift": {
+        "nice_name": "Coordinates from Swift TOO",
+        "active": true,
+        "update": false,
+        "module": "tidaldisruptions.tasks.swift",
+        "function": "do_swift",
+        "groups": ["meta"],
+        "repo": "input/tde-external",
+        "always_journal": true,
+        "priority": -250
+    },
     "simbad": {
         "nice_name": "%pre SIMBAD",
         "active": true,
