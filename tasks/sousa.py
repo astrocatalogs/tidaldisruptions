@@ -30,8 +30,7 @@ def do_sousa(catalog):
             catalog.load_url(
                 ulink,
                 os.path.join(catalog.get_current_task_repo(),
-                             'SOUSA/') + ulink.split('/')[-1],
-                archived_mode=True)
+                             'SOUSA/') + ulink.split('/')[-1])
 
     files = glob(os.path.join(catalog.get_current_task_repo(), 'SOUSA'))
     tde_whitelist = ['ASASSN-15lh']
