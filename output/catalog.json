@@ -44,11 +44,6 @@
 				"value":"285"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2007A&A...462L..49E,2015arXiv150201589P"
 	},
@@ -95,11 +90,6 @@
 		"lumdist":[
 			{
 				"value":"83.5"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -163,11 +153,6 @@
 		"lumdist":[
 			{
 				"value":"894.21"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -268,11 +253,6 @@
 				"value":"199.65"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0155"
@@ -368,11 +348,6 @@
 				"value":"92.6"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0217"
@@ -393,6 +368,21 @@
 		"discoverdate":[
 			{
 				"value":"2015/06/14"
+			}
+		],
+		"maxdate":[
+			{
+				"value":"2015/06/24"
+			}
+		],
+		"maxappmag":[
+			{
+				"value":"16.83"
+			}
+		],
+		"maxabsmag":[
+			{
+				"value":"-23.56"
 			}
 		],
 		"host":[
@@ -436,6 +426,7 @@
 				"value":"3.444"
 			}
 		],
+		"instruments":"UVOT (W2, W1, M2, U, B, V)",
 		"redshift":[
 			{
 				"value":"0.2326"
@@ -464,9 +455,10 @@
 				"value":"0.0305"
 			}
 		],
-		"spectralink":"30",
+		"photolink":"472,-0.329,255",
+		"spectralink":"30,-2.84,240",
 		"xraylink":"0",
-		"references":"2016arXiv160902927L,2015arXiv150703010D,2015ATel.7642....1N,2015arXiv150201589P,2016Sci...351..257D",
+		"references":"2014Ap&SS.354...89B,2016arXiv160902927L,2015arXiv150703010D,2015ATel.7642....1N,2015arXiv150201589P",
 		"download":"e"
 	},
 	{
@@ -556,11 +548,6 @@
 				"value":"90"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.059"
@@ -568,7 +555,7 @@
 		],
 		"photolink":"243,0.0304,103",
 		"xraylink":"2",
-		"references":"2016arXiv160201088H,2015ATel.7910....1B,2015arXiv150201589P,2016ApJ...818L..21F,2011ApJ...737..103S"
+		"references":"2016arXiv160201088H,2015ATel.7910....1B,2016ApJ...818L..21F,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"D1-9",
@@ -649,11 +636,6 @@
 		"lumdist":[
 			{
 				"value":"1760"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -744,11 +726,6 @@
 				"value":"930.2"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0308"
@@ -837,11 +814,6 @@
 				"value":"2042"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0067"
@@ -912,11 +884,6 @@
 		"lumdist":[
 			{
 				"value":"801"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -1009,11 +976,6 @@
 		"lumdist":[
 			{
 				"value":"961"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -1170,11 +1132,12 @@
 		],
 		"claimedtype":[
 			{
-				"value":"TDE"
+				"value":"AGN"
 			}
 		],
 		"xraylink":"0",
-		"references":"1995MNRAS.273L..47B,2015arXiv150201589P"
+		"references":"1995MNRAS.273L..47B,2015arXiv150201589P",
+		"download":"e"
 	},
 	{
 		"name":"IGR J12580",
@@ -1480,11 +1443,6 @@
 				"value":"166"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0469"
@@ -1685,11 +1643,6 @@
 				"value":"11.97"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2007A&A...462L..49E,2015arXiv150201589P"
 	},
@@ -1733,11 +1686,6 @@
 		"lumdist":[
 			{
 				"value":"50.17"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -1798,11 +1746,6 @@
 		"lumdist":[
 			{
 				"value":"69.894"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -1916,11 +1859,6 @@
 				"value":"65.629"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0437"
@@ -1983,11 +1921,6 @@
 		"lumdist":[
 			{
 				"value":"90"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -2055,11 +1988,6 @@
 				"value":"23.2"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0461"
@@ -2123,11 +2051,6 @@
 		"lumdist":[
 			{
 				"value":"34.1"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -2195,11 +2118,6 @@
 				"value":"106.6"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0419"
@@ -2264,11 +2182,6 @@
 				"value":"72.791"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0295"
@@ -2316,11 +2229,6 @@
 		"lumdist":[
 			{
 				"value":"150"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -2518,6 +2426,62 @@
 		"references":"2013arXiv1309.3009C,2014ApJ...780...44C,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
+		"name":"PS1-12yp",
+		"alias":[
+			{
+				"value":"PS1-12yp"
+			},
+			{
+				"value":"CSS120301:133156+235405"
+			},
+			{
+				"value":"J133155"
+			}
+		],
+		"discoverdate":[
+			{
+				"value":"2012/03/01"
+			}
+		],
+		"host":[
+			{
+				"value":"SDSS J133155.90+235405.8"
+			}
+		],
+		"ra":[
+			{
+				"value":"13:31:55.91"
+			}
+		],
+		"dec":[
+			{
+				"value":"+23:54:05.7"
+			}
+		],
+		"hostra":[
+			{
+				"value":"13:31:55.90"
+			}
+		],
+		"hostdec":[
+			{
+				"value":"+23:54:05.8"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"0.1803"
+			}
+		],
+		"ebv":[
+			{
+				"value":"0.0132"
+			}
+		],
+		"references":"2016MNRAS.463..296L,2011ApJ...737..103S",
+		"download":"e"
+	},
+	{
 		"name":"PTF09axc",
 		"alias":[
 			{
@@ -2596,11 +2560,6 @@
 		"lumdist":[
 			{
 				"value":"550"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -2692,11 +2651,6 @@
 		"lumdist":[
 			{
 				"value":"922"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -2793,11 +2747,6 @@
 				"value":"300"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0146"
@@ -2873,11 +2822,6 @@
 				"value":"521"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0089"
@@ -2949,11 +2893,6 @@
 		"lumdist":[
 			{
 				"value":"1148.6"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -3029,11 +2968,6 @@
 				"value":"641"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0055"
@@ -3107,11 +3041,6 @@
 				"value":"1050"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0219"
@@ -3160,11 +3089,6 @@
 		"lumdist":[
 			{
 				"value":"120"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -3230,11 +3154,6 @@
 		"lumdist":[
 			{
 				"value":"200"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -3307,11 +3226,6 @@
 				"value":"720"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.009"
@@ -3382,11 +3296,6 @@
 				"value":"295"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0312"
@@ -3437,11 +3346,6 @@
 				"value":"1673.4"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2015MNRAS.452...69M,2015arXiv150201589P"
 	},
@@ -3482,11 +3386,6 @@
 				"value":"285"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2012ApJ...749..115W,2015arXiv150201589P"
 	},
@@ -3525,11 +3424,6 @@
 		"lumdist":[
 			{
 				"value":"478.4"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -3577,11 +3471,6 @@
 				"value":"932.36"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2007A&A...462L..49E,2015arXiv150201589P"
 	},
@@ -3625,11 +3514,6 @@
 		"lumdist":[
 			{
 				"value":"370"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -3722,11 +3606,6 @@
 				"value":"347"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2012ApJ...749..115W,2015arXiv150201589P"
 	},
@@ -3772,11 +3651,6 @@
 				"value":"715"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2012A&A...541A.106S,2015arXiv150201589P"
 	},
@@ -3820,11 +3694,6 @@
 		"lumdist":[
 			{
 				"value":"191"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -3892,11 +3761,6 @@
 				"value":"900"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0503"
@@ -3947,11 +3811,6 @@
 				"value":"412.7"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2007A&A...462L..49E,2015arXiv150201589P"
 	},
@@ -3997,11 +3856,6 @@
 				"value":"166"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2012ApJ...749..115W,2015arXiv150201589P"
 	},
@@ -4040,11 +3894,6 @@
 		"lumdist":[
 			{
 				"value":"364"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"xraylink":"0",
@@ -4110,11 +3959,6 @@
 		"lumdist":[
 			{
 				"value":"5900"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -4217,11 +4061,6 @@
 				"value":"8376.4"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"xraylink":"0",
 		"references":"2012ApJ...753...77C,2015arXiv150201589P"
 	},
@@ -4301,11 +4140,6 @@
 		"lumdist":[
 			{
 				"value":"662"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -4395,11 +4229,6 @@
 				"value":"1309"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0245"
@@ -4467,11 +4296,6 @@
 				"value":"71.136"
 			}
 		],
-		"claimedtype":[
-			{
-				"value":"TDE"
-			}
-		],
 		"ebv":[
 			{
 				"value":"0.0825"
@@ -4534,11 +4358,6 @@
 		"lumdist":[
 			{
 				"value":"18.36"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -4608,11 +4427,6 @@
 		"lumdist":[
 			{
 				"value":"290"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"TDE"
 			}
 		],
 		"ebv":[
