@@ -32,7 +32,7 @@ def do_sousa(catalog):
                 os.path.join(catalog.get_current_task_repo(),
                              'SOUSA/') + ulink.split('/')[-1])
 
-    files = glob(os.path.join(catalog.get_current_task_repo(), 'SOUSA'))
+    files = glob(os.path.join(catalog.get_current_task_repo(), 'SOUSA/*.dat'))
     tde_whitelist = ['ASASSN-15lh']
     for fi in pbar(files, task_str):
         name = os.path.basename(fi).split('_')[0]
@@ -63,7 +63,6 @@ def do_sousa(catalog):
                     PHOTOMETRY.TIME: mjd,
                     PHOTOMETRY.U_TIME: 'MJD',
                     PHOTOMETRY.MAGNITUDE: mag,
-                    PHOTOMETRY.E_MAGNITUDE: e_mag,
                     PHOTOMETRY.UPPER_LIMIT: upp,
                     PHOTOMETRY.BAND: band,
                     PHOTOMETRY.SOURCE: source,
@@ -71,6 +70,8 @@ def do_sousa(catalog):
                     PHOTOMETRY.INSTRUMENT: 'UVOT',
                     PHOTOMETRY.SYSTEM: 'Vega'
                 }
+                if e_mag:
+                    photodict[PHOTOMETRY.E_MAGNITUDE] = e_mag
                 catalog.entries[name].add_photometry(**photodict)
     catalog.journal_entries()
 
