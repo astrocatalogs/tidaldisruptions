@@ -134,7 +134,7 @@ def do_external(catalog):
             elif row[0] == 'host':
                 hostname = re.sub('<[^<]+?>', '', row[1])
                 catalog.entries[name].add_quantity('host', hostname, source)
-            elif row[0] == 'claimedtype':
+            elif row[0] == 'claimedtype' and row[1] != 'TDE':
                 catalog.entries[name].add_quantity('claimedtype', row[1],
                                                    source)
             elif row[0] == 'citations':
