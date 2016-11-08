@@ -104,8 +104,9 @@ class TidalDisruption(Entry):
         if key == self._KEYS.HOST:
             if is_number(value):
                 return False
-            if value.lower() in ['anonymous', 'anon.', 'anon', 'intergalactic'
-                                 ]:
+            if value.lower() in [
+                    'anonymous', 'anon.', 'anon', 'intergalactic'
+            ]:
                 return False
             value = host_clean(value)
             if ((not kind and ((value.lower().startswith('abell') and
@@ -127,8 +128,10 @@ class TidalDisruption(Entry):
             if isq:
                 value = value + '?'
 
-        elif key in [self._KEYS.RA, self._KEYS.DEC, self._KEYS.HOST_RA,
-                     self._KEYS.HOST_DEC]:
+        elif key in [
+                self._KEYS.RA, self._KEYS.DEC, self._KEYS.HOST_RA,
+                self._KEYS.HOST_DEC
+        ]:
             (value, unit) = radec_clean(value, key, unit=unit)
         elif key == self._KEYS.MAX_DATE or key == self._KEYS.DISCOVER_DATE:
             # Make sure month and day have leading zeroes
@@ -291,16 +294,20 @@ class TidalDisruption(Entry):
             my_errors = self[self._KEYS.ERRORS]
             for alias in sources.split(','):
                 source = self.get_source_by_alias(alias)
-                bib_err_values = [err[QUANTITY.VALUE] for err in my_errors
-                                  if err[ERROR.KIND] == SOURCE.BIBCODE and err[
-                                      ERROR.EXTRA] == field]
+                bib_err_values = [
+                    err[QUANTITY.VALUE] for err in my_errors
+                    if (err[ERROR.KIND] == SOURCE.BIBCODE and err[ERROR.EXTRA]
+                        == field)
+                ]
                 if (SOURCE.BIBCODE in source and
                         source[SOURCE.BIBCODE] in bib_err_values):
                     return True
 
-                name_err_values = [err[QUANTITY.VALUE] for err in my_errors
-                                   if err[ERROR.KIND] == SOURCE.NAME and err[
-                                       ERROR.EXTRA] == field]
+                name_err_values = [
+                    err[QUANTITY.VALUE] for err in my_errors
+                    if err[ERROR.KIND] == SOURCE.NAME and err[ERROR.EXTRA] ==
+                    field
+                ]
                 if (SOURCE.NAME in source and
                         source[SOURCE.NAME] in name_err_values):
                     return True
@@ -377,10 +384,12 @@ class TidalDisruption(Entry):
                                PHOTOMETRY.MAGNITUDE in x else ''))
 
         if (self._KEYS.SPECTRA in self and list(
-                filter(None, [SPECTRUM.TIME in x
-                              for x in self[self._KEYS.SPECTRA]]))):
+                filter(None, [
+                    SPECTRUM.TIME in x for x in self[self._KEYS.SPECTRA]
+                ]))):
             self[self._KEYS.SPECTRA].sort(
-                key=lambda x: (float(x[SPECTRUM.TIME]) if SPECTRUM.TIME in x else 0.0, x[SPECTRUM.FILENAME] if SPECTRUM.FILENAME in x else ''))
+                key=lambda x: (float(x[SPECTRUM.TIME]) if SPECTRUM.TIME in x else 0.0, x[SPECTRUM.FILENAME] if SPECTRUM.FILENAME in x else '')
+            )
 
         if self._KEYS.SOURCES in self:
             for source in self[self._KEYS.SOURCES]:
@@ -416,9 +425,8 @@ class TidalDisruption(Entry):
                             bibcodeauthor = ''
 
                         if not bibcodeauthor:
-                            warnings.warn(
-                                "Bibcode didn't return authors, not converting"
-                                "this bibcode.")
+                            warnings.warn("Bibcode didn't return authors, not "
+                                          "converting this bibcode.")
 
                         self.catalog.bibauthor_dict[bibcode] = unescape(
                             bibcodeauthor).strip()
@@ -468,11 +476,12 @@ class TidalDisruption(Entry):
                 if self._KEYS.get_key_by_name(key).no_source:
                     continue
                 for item in self[key]:
-                    aliases = [str(y)
-                               for y in sorted(
-                                   int(source_reps[x])
-                                   for x in item[item._KEYS.SOURCE].split(','))
-                               ]
+                    aliases = [
+                        str(y)
+                        for y in sorted(
+                            int(source_reps[x])
+                            for x in item[item._KEYS.SOURCE].split(','))
+                    ]
                     item[item._KEYS.SOURCE] = ','.join(aliases)
 
     def clean_internal(self, data):
@@ -491,7 +500,7 @@ class TidalDisruption(Entry):
             def_source_dict = sources[0]
             allow_alias = False
             if SOURCE.ALIAS in def_source_dict:
-                del(def_source_dict[SOURCE.ALIAS])
+                del (def_source_dict[SOURCE.ALIAS])
         else:
             # If there are no existing sources, add OSC as one
             self.add_self_source()
@@ -541,8 +550,8 @@ class TidalDisruption(Entry):
                         if not def_source_dict:
                             raise ValueError("No sources found, can't add "
                                              "photometry.")
-                        source = self.add_source(allow_alias=allow_alias,
-                                                 **def_source_dict)
+                        source = self.add_source(
+                            allow_alias=allow_alias, **def_source_dict)
                         data[self._KEYS.PHOTOMETRY][p][
                             QUANTITY.SOURCE] = source
             else:
@@ -551,8 +560,8 @@ class TidalDisruption(Entry):
                         if not def_source_dict:
                             raise ValueError("No sources found, can't add "
                                              "quantity.")
-                        source = self.add_source(allow_alias=allow_alias,
-                                                 **def_source_dict)
+                        source = self.add_source(
+                            allow_alias=allow_alias, **def_source_dict)
                         data[key][qi][QUANTITY.SOURCE] = source
 
         return data
@@ -636,9 +645,10 @@ class TidalDisruption(Entry):
                     uniq_cdl([source] + mlsource.split(',')),
                     derived=True))
 
-        if (self._KEYS.DISCOVER_DATE not in self or
-                max([len(x[QUANTITY.VALUE].split('/'))
-                     for x in self[self._KEYS.DISCOVER_DATE]]) < 3):
+        if (self._KEYS.DISCOVER_DATE not in self or max([
+                len(x[QUANTITY.VALUE].split('/'))
+                for x in self[self._KEYS.DISCOVER_DATE]
+        ]) < 3):
             fldt, flsource = self._get_first_light()
             if fldt:
                 source = self.add_self_source()
