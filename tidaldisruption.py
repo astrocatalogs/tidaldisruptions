@@ -23,7 +23,7 @@ from cdecimal import Decimal
 
 
 class TIDALDISRUPTION(ENTRY):
-    CLAIMED_TYPE = Key('clamedtype', KEY_TYPES.STRING)
+    CLAIMED_TYPE = Key('claimedtype', KEY_TYPES.STRING)
     DISCOVERY_DATE = Key('discoverdate', KEY_TYPES.STRING)
     ERRORS = Key('errors')
 
