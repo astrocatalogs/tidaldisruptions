@@ -1,4 +1,4 @@
-"""Import tasks for data directly donated to the Open Supernova Catalog.
+"""Import tasks for data directly donated to the Open TDE Catalog.
 """
 import csv
 import os
@@ -25,7 +25,7 @@ def do_donations(catalog):
             if ri <= 3 or not row or not row[0]:
                 continue
             (name, source) = catalog.new_entry(
-                row[0], srcname='Open TDE Catalog')
+                row[0], bibcode='2016arXiv161102291A')
             smjd = Decimal(row[3])
             emjd = str(smjd + Decimal(row[4]) / Decimal(86400))[:9]
             mjd = [str(smjd), str(emjd)]
@@ -41,7 +41,7 @@ def do_donations(catalog):
                 PHOTOMETRY.LUMINOSITY: row[24],
                 PHOTOMETRY.SOURCE: source
             }
-            if row[11] == 'D':
+            if row[11] == 'D' and row[21] != row[22]:
                 photodict[PHOTOMETRY.E_COUNTS] = row[13]
                 photodict[PHOTOMETRY.E_LOWER_FLUX] = row[22]
                 photodict[PHOTOMETRY.E_UPPER_FLUX] = row[23]
@@ -65,7 +65,7 @@ def do_donations(catalog):
             if ri <= 2 or not row or not row[0]:
                 continue
             (name, source) = catalog.new_entry(
-                row[0].strip(), srcname='Open TDE Catalog')
+                row[0].strip(), bibcode='2016arXiv161102291A')
             sources = [source]
             for new_src in [x.strip() for x in row[7].split(',')]:
                 sources.append(catalog.entries[name].add_source(

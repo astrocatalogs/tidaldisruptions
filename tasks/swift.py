@@ -43,8 +43,8 @@ def do_swift(catalog):
         for record in pbar(records, task_str):
             if len(record) > 1 and record[0] != '':
                 oldname = name_clean(record[0])
-                radeg = record[1]
-                decdeg = record[2]
+                radeg = record[1].strip()
+                decdeg = record[2].strip()
 
                 if not catalog.entry_exists(oldname):
                     continue

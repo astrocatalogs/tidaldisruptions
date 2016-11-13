@@ -1,53 +1,5 @@
 [
 	{
-		"name":"2MASX J0203",
-		"alias":[
-			{
-				"value":"2MASX J0203"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"2004/01/14"
-			}
-		],
-		"host":[
-			{
-				"value":"2MASX J02030314&#8209;0741514"
-			},
-			{
-				"value":"2MASX J02030314-0741514"
-			}
-		],
-		"hostra":[
-			{
-				"value":"02:03:03.14"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"-07:41:51.41"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.0615"
-			}
-		],
-		"velocity":[
-			{
-				"value":"17900"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"285"
-			}
-		],
-		"xraylink":"0",
-		"references":"2007A&A...462L..49E,2015arXiv150201589P"
-	},
-	{
 		"name":"2MASX J0249",
 		"alias":[
 			{
@@ -93,81 +45,16 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2007A&A...462L..49E,2015arXiv150201589P"
-	},
-	{
-		"name":"3XMM J152130.7+074916",
-		"alias":[
-			{
-				"value":"3XMM J152130.7+074916"
-			}
-		],
-		"host":[
-			{
-				"value":"SDSS J152130.72+074916.5"
-			},
-			{
-				"value":"3XMM J152130.7+074916"
-			}
-		],
-		"ra":[
-			{
-				"value":"15:21:30.75"
-			}
-		],
-		"dec":[
-			{
-				"value":"+07:49:16.70"
-			}
-		],
-		"hostra":[
-			{
-				"value":"15:21:30.73"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+07:49:16.52"
-			}
-		],
-		"hostoffsetang":[
-			{
-				"value":"0.3499"
-			}
-		],
-		"hostoffsetdist":[
-			{
-				"value":"1.091"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.17901"
-			}
-		],
-		"velocity":[
-			{
-				"value":"48927"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"894.21"
-			}
-		],
-		"ebv":[
-			{
-				"value":"0.0294"
-			}
-		],
-		"xraylink":"0",
-		"references":"2015ApJ...811...43L,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2007A&A...462L..49E,2015arXiv150201589P"
 	},
 	{
 		"name":"ASASSN-14ae",
 		"alias":[
 			{
 				"value":"ASASSN-14ae"
+			},
+			{
+				"value":"iPTF14aiv"
 			}
 		],
 		"discoverdate":[
@@ -253,15 +140,20 @@
 				"value":"199.65"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0155"
 			}
 		],
 		"photolink":"228,-2.39,82.3",
-		"spectralink":"19,26.3,474",
+		"spectralink":"21,26.3,474",
 		"xraylink":"0",
-		"references":"2014MNRAS.445.3263H,2014ATel.5831....1P,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2014MNRAS.445.3263H,2014ApJ...793...38A,2016arXiv161102291A,2014ATel.5831....1P,2015arXiv150201589P",
 		"download":"e"
 	},
 	{
@@ -348,6 +240,14 @@
 				"value":"92.6"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"MS + SMBH"
+			},
+			{
+				"value":"TDE"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0217"
@@ -355,8 +255,9 @@
 		],
 		"photolink":"308,-43,318",
 		"spectralink":"33,-23,110",
-		"xraylink":"137",
-		"references":"2015arXiv150701598H,2016MNRAS.455.2918H,2016arXiv160103331C,2014ATel.6777....1J,2015arXiv150201589P"
+		"xraylink":"136",
+		"references":"2015arXiv150701598H,2016MNRAS.455.2918H,2016arXiv161102291A,2016arXiv160103331C,2014ATel.6777....1J",
+		"download":"e"
 	},
 	{
 		"name":"ASASSN-15lh",
@@ -458,7 +359,7 @@
 		"photolink":"472,-0.329,255",
 		"spectralink":"30,-2.84,240",
 		"xraylink":"0",
-		"references":"2014Ap&SS.354...89B,2016arXiv160902927L,2015arXiv150703010D,2015ATel.7642....1N,2015arXiv150201589P",
+		"references":"2014Ap&SS.354...89B,2016arXiv160902927L,2015arXiv150703010D,2016arXiv161102291A,2015ATel.7642....1N",
 		"download":"e"
 	},
 	{
@@ -548,6 +449,14 @@
 				"value":"90"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE?"
+			},
+			{
+				"value":"TDE"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.059"
@@ -555,7 +464,8 @@
 		],
 		"photolink":"243,0.0304,103",
 		"xraylink":"2",
-		"references":"2016arXiv160201088H,2015ATel.7910....1B,2016ApJ...818L..21F,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv160201088H,2016arXiv161102291A,2015ATel.7910....1B,2016ApJ...818L..21F,2015arXiv150201589P",
+		"download":"e"
 	},
 	{
 		"name":"D1-9",
@@ -645,7 +555,7 @@
 		],
 		"photolink":"58,-2.61,623",
 		"xraylink":"0",
-		"references":"2008ApJ...676..944G,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2008ApJ...676..944G,2016arXiv161102291A,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -733,7 +643,7 @@
 		],
 		"photolink":"14,-35,322",
 		"xraylink":"0",
-		"references":"2009ApJ...698.1367G,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2009ApJ...698.1367G,2016arXiv161102291A,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -814,6 +724,11 @@
 				"value":"2042"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE?"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0067"
@@ -821,7 +736,7 @@
 		],
 		"photolink":"62,-47.8,814",
 		"xraylink":"1",
-		"references":"2006ApJ...653L..25G,2008ApJ...676..944G,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2006ApJ...653L..25G,2016arXiv161102291A,2015arXiv150201589P,2008ApJ...676..944G,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -843,10 +758,16 @@
 		],
 		"ra":[
 			{
+				"value":"03:34:47.52"
+			},
+			{
 				"value":"03:34:47.49"
 			}
 		],
 		"dec":[
+			{
+				"value":"-26:19:33.6"
+			},
 			{
 				"value":"-26:19:35.0"
 			}
@@ -863,12 +784,12 @@
 		],
 		"hostoffsetang":[
 			{
-				"value":"0"
+				"value":"1.471"
 			}
 		],
 		"hostoffsetdist":[
 			{
-				"value":"0"
+				"value":"4.229"
 			}
 		],
 		"redshift":[
@@ -892,7 +813,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2015ATel.6877....1F,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015ATel.6877....1F,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"Dougie",
@@ -985,7 +906,7 @@
 		],
 		"photolink":"59,-11.9,45.2",
 		"xraylink":"0",
-		"references":"2014arXiv1410.6014V,2015ApJ...798...12V,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2014arXiv1410.6014V,2016arXiv161102291A,2015ApJ...798...12V,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -993,6 +914,12 @@
 		"alias":[
 			{
 				"value":"GRB 060218A"
+			},
+			{
+				"value":"SN2006aj"
+			},
+			{
+				"value":"XRF 060218"
 			}
 		],
 		"discoverdate":[
@@ -1005,6 +932,22 @@
 				"value":"SDSS J032139.69+165201.7"
 			}
 		],
+		"ra":[
+			{
+				"value":"03:21:39.71"
+			},
+			{
+				"value":"03:21:39.670"
+			}
+		],
+		"dec":[
+			{
+				"value":"+16:52:02.6"
+			},
+			{
+				"value":"+16:52:02.27"
+			}
+		],
 		"hostra":[
 			{
 				"value":"03:21:39.69"
@@ -1013,6 +956,16 @@
 		"hostdec":[
 			{
 				"value":"+16:52:01.74"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"0.9108"
+			}
+		],
+		"hostoffsetdist":[
+			{
+				"value":"0.6281"
 			}
 		],
 		"redshift":[
@@ -1033,10 +986,19 @@
 		"claimedtype":[
 			{
 				"value":"WD + IMBH"
+			},
+			{
+				"value":"GRB"
+			}
+		],
+		"ebv":[
+			{
+				"value":"0.1275"
 			}
 		],
 		"xraylink":"0",
-		"references":"2006Natur.442.1008C,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2006Natur.442.1008C,2006IAUC.8674....2S,2015arXiv150201589P,2009ApJ...690..163R",
+		"download":"e"
 	},
 	{
 		"name":"HLX-1",
@@ -1082,61 +1044,17 @@
 		],
 		"claimedtype":[
 			{
-				"value":"Giant + IMBH,Star wind + IMBH"
+				"value":"LMXB"
+			},
+			{
+				"value":"Giant + IMBH, Wind-fed IMBH"
+			},
+			{
+				"value":"MS + IMBH"
 			}
 		],
 		"xraylink":"0",
-		"references":"2012sf2a.conf..631W,2015arXiv150201589P"
-	},
-	{
-		"name":"IC 3599",
-		"alias":[
-			{
-				"value":"IC 3599"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"1990/11/26"
-			}
-		],
-		"host":[
-			{
-				"value":"IC 3599"
-			}
-		],
-		"hostra":[
-			{
-				"value":"12:37:41.18"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+26:42:27.24"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.021245"
-			}
-		],
-		"velocity":[
-			{
-				"value":"6301.5"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"95.545"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"AGN"
-			}
-		],
-		"xraylink":"0",
-		"references":"1995MNRAS.273L..47B,2015arXiv150201589P",
+		"references":"2016arXiv161102291A,2012sf2a.conf..631W,2015ApJ...811...23Y,2015arXiv150201589P,2011ApJ...735...89L",
 		"download":"e"
 	},
 	{
@@ -1212,7 +1130,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2013A&A...552A..75N,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2013A&A...552A..75N,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"IGR J17361-4441",
@@ -1287,37 +1205,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2014arXiv1407.5081D,2015arXiv150201589P,2011ApJ...737..103S"
-	},
-	{
-		"name":"iPTF14aiv",
-		"alias":[
-			{
-				"value":"iPTF14aiv"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"2014/02/01"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.0436"
-			}
-		],
-		"velocity":[
-			{
-				"value":"12800"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"199"
-			}
-		],
-		"spectralink":"2",
-		"references":"2014ApJ...793...38A,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2014arXiv1407.5081D,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"iPTF16fnl",
@@ -1443,13 +1331,19 @@
 				"value":"166"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE?"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0469"
 			}
 		],
 		"xraylink":"0",
-		"references":"2009A&A...495L...9C,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2009A&A...495L...9C,2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"NGC 1097",
@@ -1468,6 +1362,16 @@
 				"value":"NGC 1097"
 			}
 		],
+		"ra":[
+			{
+				"value":"02:46:18.96"
+			}
+		],
+		"dec":[
+			{
+				"value":"-30:16:30"
+			}
+		],
 		"hostra":[
 			{
 				"value":"02:46:19.06"
@@ -1476,6 +1380,16 @@
 		"hostdec":[
 			{
 				"value":"-30:16:29.68"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"1.534"
+			}
+		],
+		"hostoffsetdist":[
+			{
+				"value":"0.1407"
 			}
 		],
 		"redshift":[
@@ -1496,10 +1410,19 @@
 		"claimedtype":[
 			{
 				"value":"Giant + SMBH"
+			},
+			{
+				"value":"AGN"
+			}
+		],
+		"ebv":[
+			{
+				"value":"0.0229"
 			}
 		],
 		"xraylink":"0",
-		"references":"1995ApJ...443..617S,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,1995ApJ...443..617S,2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"NGC 2110",
@@ -1518,6 +1441,16 @@
 				"value":"NGC 2110"
 			}
 		],
+		"ra":[
+			{
+				"value":"05:52:11.28"
+			}
+		],
+		"dec":[
+			{
+				"value":"-07:27:21.6"
+			}
+		],
 		"hostra":[
 			{
 				"value":"05:52:11.41"
@@ -1526,6 +1459,16 @@
 		"hostdec":[
 			{
 				"value":"-07:27:22.23"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"2.049"
+			}
+		],
+		"hostoffsetdist":[
+			{
+				"value":"0.3301"
 			}
 		],
 		"redshift":[
@@ -1546,10 +1489,19 @@
 		"claimedtype":[
 			{
 				"value":"No claim"
+			},
+			{
+				"value":"AGN"
+			}
+		],
+		"ebv":[
+			{
+				"value":"0.3197"
 			}
 		],
 		"xraylink":"0",
-		"references":"2007ApJ...668L..31M,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2007ApJ...668L..31M,2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"NGC 247",
@@ -1568,6 +1520,16 @@
 				"value":"NGC 247"
 			}
 		],
+		"ra":[
+			{
+				"value":"00:47:08.64"
+			}
+		],
+		"dec":[
+			{
+				"value":"-20:45:36"
+			}
+		],
 		"hostra":[
 			{
 				"value":"00:47:08.55"
@@ -1576,6 +1538,16 @@
 		"hostdec":[
 			{
 				"value":"-20:45:37.44"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"1.974"
+			}
+		],
+		"hostoffsetdist":[
+			{
+				"value":"0.02248"
 			}
 		],
 		"redshift":[
@@ -1598,98 +1570,13 @@
 				"value":"Low-mass TDE"
 			}
 		],
-		"xraylink":"0",
-		"references":"2015ApJ...807..185F,2015arXiv150201589P"
-	},
-	{
-		"name":"NGC 3599",
-		"alias":[
+		"ebv":[
 			{
-				"value":"NGC 3599"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"2002/05/27"
-			}
-		],
-		"host":[
-			{
-				"value":"NGC 3599"
-			}
-		],
-		"hostra":[
-			{
-				"value":"11:15:26.95"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+18:06:37.33"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.002699"
-			}
-		],
-		"velocity":[
-			{
-				"value":"808"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"11.97"
+				"value":"0.0155"
 			}
 		],
 		"xraylink":"0",
-		"references":"2007A&A...462L..49E,2015arXiv150201589P"
-	},
-	{
-		"name":"NGC 5905",
-		"alias":[
-			{
-				"value":"NGC 5905"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"1990/07/11"
-			}
-		],
-		"host":[
-			{
-				"value":"NGC 5905"
-			}
-		],
-		"hostra":[
-			{
-				"value":"15:15:23.32"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+55:31:01.59"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.01124"
-			}
-		],
-		"velocity":[
-			{
-				"value":"3351"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"50.17"
-			}
-		],
-		"xraylink":"0",
-		"references":"1996A&A...309L..35B,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2015ApJ...807..185F,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"NGC 6021",
@@ -1753,7 +1640,7 @@
 				"value":"0.0334"
 			}
 		],
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"OGLE16aaa",
@@ -1777,6 +1664,11 @@
 				"value":"19.13"
 			}
 		],
+		"maxabsmag":[
+			{
+				"value":"-20.44"
+			}
+		],
 		"ra":[
 			{
 				"value":"1:07:20.88"
@@ -1788,6 +1680,21 @@
 			}
 		],
 		"instruments":"I",
+		"redshift":[
+			{
+				"value":"0.1655"
+			}
+		],
+		"velocity":[
+			{
+				"value":"45560"
+			}
+		],
+		"lumdist":[
+			{
+				"value":"820"
+			}
+		],
 		"claimedtype":[
 			{
 				"value":"TDE"
@@ -1798,8 +1705,8 @@
 				"value":"0.0179"
 			}
 		],
-		"photolink":"63,-1290,271",
-		"references":"2016arXiv160603125W,2011ApJ...737..103S",
+		"photolink":"64,-1110,258",
+		"references":"2016arXiv160603125W,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -1864,7 +1771,7 @@
 				"value":"0.0437"
 			}
 		],
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PGC 1127938",
@@ -1929,7 +1836,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PGC 1185375",
@@ -1994,7 +1901,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PGC 1190358",
@@ -2059,7 +1966,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PGC 133344",
@@ -2123,7 +2030,7 @@
 				"value":"0.0419"
 			}
 		],
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PGC 170392",
@@ -2187,52 +2094,7 @@
 				"value":"0.0295"
 			}
 		],
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
-	},
-	{
-		"name":"Pictor A",
-		"alias":[
-			{
-				"value":"Pictor A"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"1991/02/19"
-			}
-		],
-		"host":[
-			{
-				"value":"Pictor A"
-			}
-		],
-		"hostra":[
-			{
-				"value":"05:19:49.72"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"-45:46:43.85"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.034"
-			}
-		],
-		"velocity":[
-			{
-				"value":"10000"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"150"
-			}
-		],
-		"xraylink":"0",
-		"references":"1995ApJ...438L...1S,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PS1-10jh",
@@ -2327,7 +2189,7 @@
 		],
 		"photolink":"112,-48.8,1850",
 		"xraylink":"2",
-		"references":"2012Natur.485..217G,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2012Natur.485..217G,2016arXiv161102291A,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -2423,7 +2285,7 @@
 		],
 		"photolink":"74,-21.3,89.9",
 		"xraylink":"0",
-		"references":"2013arXiv1309.3009C,2014ApJ...780...44C,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2013arXiv1309.3009C,2016arXiv161102291A,2015arXiv150201589P,2014ApJ...780...44C,2011ApJ...737..103S"
 	},
 	{
 		"name":"PS1-12yp",
@@ -2435,7 +2297,7 @@
 				"value":"CSS120301:133156+235405"
 			},
 			{
-				"value":"J133155"
+				"value":"SDSSJ133155"
 			}
 		],
 		"discoverdate":[
@@ -2562,6 +2424,14 @@
 				"value":"550"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE"
+			},
+			{
+				"value":"AGN"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0309"
@@ -2570,7 +2440,8 @@
 		"photolink":"11,-29.8,154",
 		"spectralink":"2,-1.35,1240",
 		"xraylink":"1",
-		"references":"2014ApJ...793...38A,2010ApJ...721..777A,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2016arXiv161102291A,2015arXiv150201589P,2010ApJ...721..777A,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"PTF09djl",
@@ -2653,6 +2524,11 @@
 				"value":"922"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0156"
@@ -2661,7 +2537,7 @@
 		"photolink":"11,-132,17.7",
 		"spectralink":"3,-105,-54.5",
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2010ApJ...721..777A,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2016arXiv161102291A,2015arXiv150201589P,2010ApJ...721..777A,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF09ge",
@@ -2747,6 +2623,11 @@
 				"value":"300"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0146"
@@ -2755,7 +2636,7 @@
 		"photolink":"132,-23.8,207",
 		"spectralink":"1",
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2009PASP..121.1395L,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2016arXiv161102291A,2015arXiv150201589P,2009PASP..121.1395L,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF10iam",
@@ -2828,7 +2709,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2014ApJ...793...38A,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF10iya",
@@ -2901,7 +2782,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2012MNRAS.420.2684C,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2012MNRAS.420.2684C,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF10nuj",
@@ -2974,7 +2855,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2014ApJ...793...38A,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF11glr",
@@ -3047,7 +2928,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2014ApJ...793...38A,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"RBS 1032",
@@ -3092,7 +2973,8 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2014ApJ...792L..29M,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2014ApJ...792L..29M,2015arXiv150201589P",
+		"download":"e"
 	},
 	{
 		"name":"RX J1242-11A",
@@ -3156,13 +3038,19 @@
 				"value":"200"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE?"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0442"
 			}
 		],
 		"xraylink":"0",
-		"references":"1999A&A...349L..45K,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,1999A&A...349L..45K,2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"RX J1420+53",
@@ -3226,13 +3114,19 @@
 				"value":"720"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE?"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.009"
 			}
 		],
 		"xraylink":"0",
-		"references":"2000A&A...362L..25G,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2000A&A...362L..25G,2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"RX J1624+75",
@@ -3302,7 +3196,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"1999A&A...350L..31G,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,1999A&A...350L..31G,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"SDSSJ0159",
@@ -3347,7 +3241,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2015MNRAS.452...69M,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2015MNRAS.452...69M,2015arXiv150201589P"
 	},
 	{
 		"name":"SDSSJ0748",
@@ -3387,7 +3281,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2012ApJ...749..115W,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2012ApJ...749..115W,2015arXiv150201589P"
 	},
 	{
 		"name":"SDSSJ0938",
@@ -3426,53 +3320,14 @@
 				"value":"478.4"
 			}
 		],
-		"xraylink":"0",
-		"references":"2012ApJ...749..115W,2015arXiv150201589P"
-	},
-	{
-		"name":"SDSSJ0939",
-		"alias":[
+		"claimedtype":[
 			{
-				"value":"SDSSJ0939"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"2006/11/01"
-			}
-		],
-		"host":[
-			{
-				"value":"SDSS J093922.90+370944.0"
-			}
-		],
-		"hostra":[
-			{
-				"value":"09:39:22.89"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+37:09:43.90"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.18589"
-			}
-		],
-		"velocity":[
-			{
-				"value":"50623"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"932.36"
+				"value":"AGN?"
 			}
 		],
 		"xraylink":"0",
-		"references":"2007A&A...462L..49E,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2012ApJ...749..115W,2015arXiv150201589P",
+		"download":"e"
 	},
 	{
 		"name":"SDSSJ0952",
@@ -3517,97 +3372,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2008ApJ...678L..13K,2015arXiv150201589P"
-	},
-	{
-		"name":"SDSSJ1011",
-		"alias":[
-			{
-				"value":"SDSSJ1011"
-			}
-		],
-		"host":[
-			{
-				"value":"SDSS J101152.98+544206.4"
-			}
-		],
-		"hostra":[
-			{
-				"value":"10:11:52.99"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+54:42:06.50"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.24608"
-			}
-		],
-		"velocity":[
-			{
-				"value":"64911"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"1277"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"AGN variability"
-			}
-		],
-		"xraylink":"0",
-		"references":"2016MNRAS.455.1691R,2015arXiv150201589P"
-	},
-	{
-		"name":"SDSSJ1055",
-		"alias":[
-			{
-				"value":"SDSSJ1055"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"1991/05/20"
-			}
-		],
-		"host":[
-			{
-				"value":"SDSS J105526.41+563713.1"
-			}
-		],
-		"hostra":[
-			{
-				"value":"10:55:26.42"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+56:37:13.09"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.0743"
-			}
-		],
-		"velocity":[
-			{
-				"value":"21400"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"347"
-			}
-		],
-		"xraylink":"0",
-		"references":"2012ApJ...749..115W,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2008ApJ...678L..13K,2015arXiv150201589P"
 	},
 	{
 		"name":"SDSSJ1201",
@@ -3652,52 +3417,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2012A&A...541A.106S,2015arXiv150201589P"
-	},
-	{
-		"name":"SDSSJ1241",
-		"alias":[
-			{
-				"value":"SDSSJ1241"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"2008/05/17"
-			}
-		],
-		"host":[
-			{
-				"value":"SDSS J124134.25+442639.2"
-			}
-		],
-		"hostra":[
-			{
-				"value":"12:41:34.26"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+44:26:39.23"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.0419"
-			}
-		],
-		"velocity":[
-			{
-				"value":"12300"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"191"
-			}
-		],
-		"xraylink":"0",
-		"references":"2012ApJ...749..115W,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2012A&A...541A.106S,2015arXiv150201589P"
 	},
 	{
 		"name":"SDSSJ1311",
@@ -3767,7 +3487,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2010ApJ...722.1035M,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2010ApJ...722.1035M,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"SDSSJ1323",
@@ -3811,8 +3531,14 @@
 				"value":"412.7"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"TDE?"
+			}
+		],
 		"xraylink":"0",
-		"references":"2007A&A...462L..49E,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2007A&A...462L..49E,2015arXiv150201589P",
+		"download":"e"
 	},
 	{
 		"name":"SDSSJ1342",
@@ -3857,7 +3583,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2012ApJ...749..115W,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2012ApJ...749..115W,2015arXiv150201589P"
 	},
 	{
 		"name":"SDSSJ1350",
@@ -3897,7 +3623,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2012ApJ...749..115W,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2012ApJ...749..115W,2015arXiv150201589P"
 	},
 	{
 		"name":"Swift J1112-82",
@@ -3967,13 +3693,19 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2015arXiv150703582B,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150703582B,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"Swift J1644+57",
 		"alias":[
 			{
 				"value":"Swift J1644+57"
+			},
+			{
+				"value":"Swift J164449.3+573451"
+			},
+			{
+				"value":"GRB 110328A"
 			}
 		],
 		"discoverdate":[
@@ -3986,6 +3718,16 @@
 				"value":"Swift J164449.3+573451"
 			}
 		],
+		"ra":[
+			{
+				"value":"16:44:49.92"
+			}
+		],
+		"dec":[
+			{
+				"value":"+57:34:58.8"
+			}
+		],
 		"hostra":[
 			{
 				"value":"16:44:49.30"
@@ -3994,6 +3736,16 @@
 		"hostdec":[
 			{
 				"value":"+57:34:51.00"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"12.14"
+			}
+		],
+		"hostoffsetdist":[
+			{
+				"value":"62.32"
 			}
 		],
 		"redshift":[
@@ -4016,8 +3768,14 @@
 				"value":"MS + SMBH"
 			}
 		],
+		"ebv":[
+			{
+				"value":"0.0165"
+			}
+		],
 		"xraylink":"0",
-		"references":"2011Sci...333..203B,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2011Sci...333..203B,2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"Swift J2058+05",
@@ -4062,7 +3820,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2012ApJ...753...77C,2015arXiv150201589P"
+		"references":"2016arXiv161102291A,2012ApJ...753...77C,2015arXiv150201589P"
 	},
 	{
 		"name":"TDE1",
@@ -4148,7 +3906,7 @@
 			}
 		],
 		"photolink":"69,-261,57",
-		"references":"2011ApJ...741...73V,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2011ApJ...741...73V,2016arXiv161102291A,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -4236,7 +3994,7 @@
 		],
 		"photolink":"53,-238,51.7",
 		"xraylink":"0",
-		"references":"2011ApJ...741...73V,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2011ApJ...741...73V,2016arXiv161102291A,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -4301,7 +4059,7 @@
 				"value":"0.0825"
 			}
 		],
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"UGC 03317",
@@ -4365,7 +4123,7 @@
 				"value":"0.1308"
 			}
 		],
-		"references":"2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2015arXiv150506612H,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"WINGS J1348",
@@ -4429,13 +4187,19 @@
 				"value":"290"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"AGN?"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0416"
 			}
 		],
 		"xraylink":"0",
-		"references":"2013MNRAS.435.1904M,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2013MNRAS.435.1904M,2015arXiv150201589P,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"XMMSL1 J0740-85",

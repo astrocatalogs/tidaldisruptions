@@ -54,13 +54,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tde.space/tde/2MASX J0203</loc>
-  </url>
-  <url>
     <loc>https://tde.space/tde/2MASX J0249</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/3XMM J152130.7+074916</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/ASASSN-14ae</loc>
@@ -96,16 +90,10 @@
     <loc>https://tde.space/tde/HLX-1</loc>
   </url>
   <url>
-    <loc>https://tde.space/tde/IC 3599</loc>
-  </url>
-  <url>
     <loc>https://tde.space/tde/IGR J12580</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/IGR J17361-4441</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/iPTF14aiv</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/iPTF16fnl</loc>
@@ -121,12 +109,6 @@
   </url>
   <url>
     <loc>https://tde.space/tde/NGC 247</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/NGC 3599</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/NGC 5905</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/NGC 6021</loc>
@@ -151,9 +133,6 @@
   </url>
   <url>
     <loc>https://tde.space/tde/PGC 170392</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/Pictor A</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/PS1-10jh</loc>
@@ -207,22 +186,10 @@
     <loc>https://tde.space/tde/SDSSJ0938</loc>
   </url>
   <url>
-    <loc>https://tde.space/tde/SDSSJ0939</loc>
-  </url>
-  <url>
     <loc>https://tde.space/tde/SDSSJ0952</loc>
   </url>
   <url>
-    <loc>https://tde.space/tde/SDSSJ1011</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/SDSSJ1055</loc>
-  </url>
-  <url>
     <loc>https://tde.space/tde/SDSSJ1201</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/SDSSJ1241</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/SDSSJ1311</loc>

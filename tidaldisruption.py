@@ -411,22 +411,20 @@ class TidalDisruption(Entry):
                         adsquery = (self.catalog.ADS_BIB_URL +
                                     urllib.parse.quote(bibcode) +
                                     '&data_type=Custom&format=%253m%20%25(y)')
-
+                        bibcodeauthor = ''
                         try:
                             response = urllib.request.urlopen(adsquery)
                             html = response.read().decode('utf-8')
                             hsplit = html.split("\n")
+                            if len(hsplit) > 5:
+                                bibcodeauthor = hsplit[5]
                         except:
-                            hsplit = ''
-
-                        if len(hsplit) > 5:
-                            bibcodeauthor = hsplit[5]
-                        else:
-                            bibcodeauthor = ''
+                            pass
 
                         if not bibcodeauthor:
-                            warnings.warn("Bibcode didn't return authors, not "
-                                          "converting this bibcode.")
+                            warnings.warn(
+                                "Bibcode didn't return authors, not converting "
+                                "this bibcode.")
 
                         self.catalog.bibauthor_dict[bibcode] = unescape(
                             bibcodeauthor).strip()
