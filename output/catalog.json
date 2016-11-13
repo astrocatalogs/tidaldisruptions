@@ -1705,7 +1705,7 @@
 				"value":"0.0179"
 			}
 		],
-		"photolink":"64,-1110,258",
+		"photolink":"65,-1110,260",
 		"references":"2016arXiv160603125W,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
@@ -2703,13 +2703,22 @@
 				"value":"521"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"II"
+			},
+			{
+				"value":"Ia Pec"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0089"
 			}
 		],
 		"xraylink":"0",
-		"references":"2016arXiv161102291A,2014ApJ...793...38A,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2016arXiv161102291A,2014ApJ...793...38A,2015arXiv150201589P,2016ApJ...819...35A,2011ApJ...737..103S",
+		"download":"e"
 	},
 	{
 		"name":"PTF10iya",
