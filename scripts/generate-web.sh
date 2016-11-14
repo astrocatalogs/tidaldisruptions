@@ -9,22 +9,22 @@ python3.5 -m astrocats.scripts.webcat -c tde &
 pids[0]=$!
 python3.5 -m astrocats.scripts.webcat -c tde -by &
 pids[1]=$!
-#python3.5 -m astrocats.tidaldisurptions.scripts.dupecat &
+#python3.5 -m astrocats.tidaldisruptions.scripts.dupecat &
 #$pids[2]=$!
-#python3.5 -m astrocats.tidaldisurptions.scripts.conflictcat &
+#python3.5 -m astrocats.tidaldisruptions.scripts.conflictcat &
 #$pids[3]=$!
-#python3.5 -m astrocats.tidaldisurptions.scripts.bibliocat &
+#python3.5 -m astrocats.tidaldisruptions.scripts.bibliocat &
 #$pids[4]=$!
-#python3.5 -m astrocats.tidaldisurptions.scripts.erratacat &
+#python3.5 -m astrocats.tidaldisruptions.scripts.erratacat &
 #$pids[5]=$!
-#python3.5 -m astrocats.tidaldisurptions.scripts.hostcat &
-#$pids[6]=$!
-#python3.5 -m astrocats.tidaldisurptions.scripts.hammertime &
-#$pids[7]=$!
-#python3.5 -m astrocats.tidaldisurptions.scripts.histograms &
-#$pids[8]=$!
-python3.5 -m astrocats.tidaldisurptions.scripts.atelscbetsiaucs &
+python3.5 -m astrocats.scripts.hostcat -c tde &
 pids[2]=$!
+python3.5 -m astrocats.scripts.hammertime -c tde &
+pids[3]=$!
+#python3.5 -m astrocats.tidaldisruptions.scripts.histograms &
+#$pids[8]=$!
+python3.5 -m astrocats.tidaldisruptions.scripts.atelscbetsiaucs &
+pids[4]=$!
 for pid in ${pids[*]}; do
 	wait $pid
 done

@@ -464,7 +464,7 @@
 		],
 		"photolink":"243,0.0304,103",
 		"xraylink":"2",
-		"references":"2016arXiv160201088H,2016arXiv161102291A,2015ATel.7910....1B,2016ApJ...818L..21F,2015arXiv150201589P",
+		"references":"2016arXiv160201088H,2016arXiv161102291A,2015ATel.7910....1B,2015arXiv150201589P,2016ApJ...818L..21F",
 		"download":"e"
 	},
 	{
@@ -736,7 +736,7 @@
 		],
 		"photolink":"62,-47.8,814",
 		"xraylink":"1",
-		"references":"2006ApJ...653L..25G,2016arXiv161102291A,2015arXiv150201589P,2008ApJ...676..944G,2011ApJ...737..103S",
+		"references":"2006ApJ...653L..25G,2016arXiv161102291A,2008ApJ...676..944G,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -985,10 +985,10 @@
 		],
 		"claimedtype":[
 			{
-				"value":"WD + IMBH"
+				"value":"GRB"
 			},
 			{
-				"value":"GRB"
+				"value":"WD + IMBH"
 			}
 		],
 		"ebv":[
@@ -1047,14 +1047,17 @@
 				"value":"LMXB"
 			},
 			{
-				"value":"Giant + IMBH, Wind-fed IMBH"
+				"value":"Giant + IMBH"
+			},
+			{
+				"value":"Wind-fed IMBH"
 			},
 			{
 				"value":"MS + IMBH"
 			}
 		],
 		"xraylink":"0",
-		"references":"2016arXiv161102291A,2012sf2a.conf..631W,2015ApJ...811...23Y,2015arXiv150201589P,2011ApJ...735...89L",
+		"references":"2016arXiv161102291A,2012sf2a.conf..631W,2015arXiv150201589P,2015ApJ...811...23Y,2011ApJ...735...89L",
 		"download":"e"
 	},
 	{
@@ -1196,7 +1199,10 @@
 		],
 		"claimedtype":[
 			{
-				"value":"Planet + WD, MS + SMBH"
+				"value":"Planet + WD"
+			},
+			{
+				"value":"MS + SMBH"
 			}
 		],
 		"ebv":[
@@ -1247,6 +1253,26 @@
 		"dec":[
 			{
 				"value":"+32:53:37.5"
+			}
+		],
+		"hostra":[
+			{
+				"value":"00:29:57.010"
+			}
+		],
+		"hostdec":[
+			{
+				"value":"+32:53:37.24"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"0.5197"
+			}
+		],
+		"hostoffsetdist":[
+			{
+				"value":"0.1783"
 			}
 		],
 		"instruments":"g, r",
@@ -1409,10 +1435,10 @@
 		],
 		"claimedtype":[
 			{
-				"value":"Giant + SMBH"
+				"value":"AGN"
 			},
 			{
-				"value":"AGN"
+				"value":"Giant + SMBH"
 			}
 		],
 		"ebv":[
@@ -1488,10 +1514,10 @@
 		],
 		"claimedtype":[
 			{
-				"value":"No claim"
+				"value":"AGN"
 			},
 			{
-				"value":"AGN"
+				"value":"No claim"
 			}
 		],
 		"ebv":[
@@ -2179,7 +2205,10 @@
 		],
 		"claimedtype":[
 			{
-				"value":"He + SMBH, MS + SMBH"
+				"value":"MS + SMBH"
+			},
+			{
+				"value":"He + SMBH"
 			}
 		],
 		"ebv":[
@@ -2285,7 +2314,7 @@
 		],
 		"photolink":"74,-21.3,89.9",
 		"xraylink":"0",
-		"references":"2013arXiv1309.3009C,2016arXiv161102291A,2015arXiv150201589P,2014ApJ...780...44C,2011ApJ...737..103S"
+		"references":"2013arXiv1309.3009C,2016arXiv161102291A,2014ApJ...780...44C,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PS1-12yp",
@@ -2426,10 +2455,10 @@
 		],
 		"claimedtype":[
 			{
-				"value":"TDE"
+				"value":"AGN"
 			},
 			{
-				"value":"AGN"
+				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -2637,88 +2666,6 @@
 		"spectralink":"1",
 		"xraylink":"0",
 		"references":"2014ApJ...793...38A,2016arXiv161102291A,2015arXiv150201589P,2009PASP..121.1395L,2011ApJ...737..103S"
-	},
-	{
-		"name":"PTF10iam",
-		"alias":[
-			{
-				"value":"PTF10iam"
-			}
-		],
-		"discoverdate":[
-			{
-				"value":"2010"
-			}
-		],
-		"host":[
-			{
-				"value":"SDSS J154530.83+540231.9"
-			}
-		],
-		"ra":[
-			{
-				"value":"15:45:30.85"
-			}
-		],
-		"dec":[
-			{
-				"value":"+54:02:33.00"
-			},
-			{
-				"value":"+54:02:33.0"
-			}
-		],
-		"hostra":[
-			{
-				"value":"15:45:30.83"
-			}
-		],
-		"hostdec":[
-			{
-				"value":"+54:02:31.91"
-			}
-		],
-		"hostoffsetang":[
-			{
-				"value":"1.131"
-			}
-		],
-		"hostoffsetdist":[
-			{
-				"value":"2.324"
-			}
-		],
-		"redshift":[
-			{
-				"value":"0.109"
-			}
-		],
-		"velocity":[
-			{
-				"value":"30900"
-			}
-		],
-		"lumdist":[
-			{
-				"value":"521"
-			}
-		],
-		"claimedtype":[
-			{
-				"value":"II"
-			},
-			{
-				"value":"Ia Pec"
-			}
-		],
-		"ebv":[
-			{
-				"value":"0.0089"
-			}
-		],
-		"xraylink":"0",
-		"references":"2016arXiv161102291A,2014ApJ...793...38A,2015arXiv150201589P,2016ApJ...819...35A,2011ApJ...737..103S",
-		"download":"e"
 	},
 	{
 		"name":"PTF10iya",
