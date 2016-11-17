@@ -23,7 +23,7 @@ python3.5 -m astrocats.scripts.hammertime -c tde &
 pids[3]=$!
 #python3.5 -m astrocats.tidaldisruptions.scripts.histograms &
 #$pids[8]=$!
-python3.5 -m astrocats.tidaldisruptions.scripts.atelscbetsiaucs &
+python3.5 -m astrocats.scripts.atelscbetsiaucs -c tde &
 pids[4]=$!
 for pid in ${pids[*]}; do
 	wait $pid

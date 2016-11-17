@@ -345,10 +345,13 @@
 		],
 		"claimedtype":[
 			{
-				"value":"TDE"
+				"value":"MS + SMBH"
 			},
 			{
 				"value":"SLSN"
+			},
+			{
+				"value":"TDE"
 			}
 		],
 		"ebv":[
@@ -736,7 +739,7 @@
 		],
 		"photolink":"62,-47.8,814",
 		"xraylink":"1",
-		"references":"2006ApJ...653L..25G,2016arXiv161102291A,2008ApJ...676..944G,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2006ApJ...653L..25G,2016arXiv161102291A,2015arXiv150201589P,2008ApJ...676..944G,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -899,6 +902,11 @@
 				"value":"961"
 			}
 		],
+		"claimedtype":[
+			{
+				"value":"MS + SMBH"
+			}
+		],
 		"ebv":[
 			{
 				"value":"0.0117"
@@ -1057,7 +1065,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2016arXiv161102291A,2012sf2a.conf..631W,2015arXiv150201589P,2015ApJ...811...23Y,2011ApJ...735...89L",
+		"references":"2016arXiv161102291A,2012sf2a.conf..631W,2015ApJ...811...23Y,2011ApJ...735...89L,2015arXiv150201589P",
 		"download":"e"
 	},
 	{
@@ -1695,6 +1703,11 @@
 				"value":"-20.44"
 			}
 		],
+		"host":[
+			{
+				"value":"GALEX J010720.81-641621.4"
+			}
+		],
 		"ra":[
 			{
 				"value":"1:07:20.88"
@@ -1703,6 +1716,26 @@
 		"dec":[
 			{
 				"value":"-64:16:20.7"
+			}
+		],
+		"hostra":[
+			{
+				"value":"01:07:20.81"
+			}
+		],
+		"hostdec":[
+			{
+				"value":"-64:16:21.4"
+			}
+		],
+		"hostoffsetang":[
+			{
+				"value":"1.262"
+			}
+		],
+		"hostoffsetdist":[
+			{
+				"value":"3.694"
 			}
 		],
 		"instruments":"I",
@@ -1722,6 +1755,9 @@
 			}
 		],
 		"claimedtype":[
+			{
+				"value":"MS + SMBH"
+			},
 			{
 				"value":"TDE"
 			}
@@ -2314,7 +2350,7 @@
 		],
 		"photolink":"74,-21.3,89.9",
 		"xraylink":"0",
-		"references":"2013arXiv1309.3009C,2016arXiv161102291A,2014ApJ...780...44C,2015arXiv150201589P,2011ApJ...737..103S"
+		"references":"2013arXiv1309.3009C,2016arXiv161102291A,2015arXiv150201589P,2014ApJ...780...44C,2011ApJ...737..103S"
 	},
 	{
 		"name":"PS1-12yp",
@@ -3812,12 +3848,12 @@
 		],
 		"ra":[
 			{
-				"value":"23:23:48.72"
+				"value":"23:42:01.44"
 			}
 		],
 		"dec":[
 			{
-				"value":"-01:08:10.284"
+				"value":"+01:06:29.268"
 			}
 		],
 		"hostra":[
@@ -3832,12 +3868,12 @@
 		],
 		"hostoffsetang":[
 			{
-				"value":"18270"
+				"value":"0.4511"
 			}
 		],
 		"hostoffsetdist":[
 			{
-				"value":"45380"
+				"value":"1.12"
 			}
 		],
 		"instruments":"U, R, I",
@@ -3899,12 +3935,12 @@
 		],
 		"ra":[
 			{
-				"value":"23:42:01.44"
+				"value":"23:23:48.72"
 			}
 		],
 		"dec":[
 			{
-				"value":"+01:06:29.268"
+				"value":"-01:08:10.284"
 			}
 		],
 		"hostra":[
@@ -3919,12 +3955,12 @@
 		],
 		"hostoffsetang":[
 			{
-				"value":"18280"
+				"value":"1.501"
 			}
 		],
 		"hostoffsetdist":[
 			{
-				"value":"74070"
+				"value":"6.082"
 			}
 		],
 		"instruments":"U, R, I",
