@@ -53,7 +53,7 @@ class TidalDisruptionCatalog(Catalog):
             return repo_years
 
     class SCHEMA:
-        HASH = (check_output(['git', '-C', 'astrocats/supernovae',
+        HASH = (check_output(['git', '-C', 'astrocats/tidaldisruptions',
                               'log', '-n', '1', '--format="%h"',
                               '--', 'SCHEMA.md'])
                 .decode('ascii').strip().strip('"').strip())
