@@ -3,7 +3,7 @@
 Donated datasets:
 * None to add at this time.
 
-Multiple SN datasets on VizieR:
+Multiple TDE datasets on VizieR:
 * No missing multiple TDE datasets known at this time.
 
 Single TDE datasets on VizieR:
