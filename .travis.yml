@@ -1,0 +1,56 @@
+language: python
+python:
+    - "3.4"
+    - "3.5"
+notifications:
+    email:
+        on_failure: change
+        on_success: change
+    slack: astrochats:tV2KNwL9jXSGSv5KhulGNVro
+git:
+    depth: 3
+
+# Setup anaconda
+before_install:
+# Install packages
+    - if [[ "$TRAVIS_PYTHON_VERSION" == "3.3" ]]; then
+          wget https://repo.continuum.io/miniconda/Miniconda3-4.0.5-Linux-x86_64.sh -O miniconda.sh;
+      else
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+      fi
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
+    - if [[ "$TRAVIS_PYTHON_VERSION" != "3.3" ]];
+      then conda update -q conda;
+      fi
+install:
+    - conda install --yes python=$TRAVIS_PYTHON_VERSION matplotlib scipy
+    - conda install -c anaconda pyqt=4.11.4
+    - pip install -r requirements.txt
+    - pip install coveralls
+
+# Run test
+script:
+    - cd ..
+    - git clone --depth=1 https://github.com/astrocatalogs/astrocats.git
+    - cd astrocats
+    - mv ../tidaldisruptions astrocats/.
+    - python -m astrocats setup
+
+    - echo "travis_fold:start:IMPORT Importing data"
+    - coverage run --source astrocats/tidaldisruptions -a -m astrocats tidaldisruptions import --clone-depth 0 --travis
+    - echo "travis_fold:end:IMPORT Importing data done"
+
+    - echo "travis_fold:start:COUNT Counting data"
+    - python -m astrocats tidaldisruptions analyze -v --count
+    - echo "travis_fold:end:COUNT Counting data done"
+
+    - echo "travis_fold:start:WEBCAT Creating web catalog"
+    - coverage run --source astrocats/tidaldisruptions -a -m astrocats.scripts.webcat -c tde --travis
+    - echo "travis_fold:end:WEBCAT Web catalog created"
+
+# Run coveralls
+after_success:
+    coveralls
