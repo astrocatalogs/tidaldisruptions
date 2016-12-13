@@ -467,7 +467,7 @@
 		],
 		"photolink":"243,0.0304,103",
 		"xraylink":"2",
-		"references":"2016arXiv160201088H,2016arXiv161102291A,2015ATel.7910....1B,2015arXiv150201589P,2016ApJ...818L..21F",
+		"references":"2016arXiv160201088H,2016arXiv161102291A,2015ATel.7910....1B,2016ApJ...818L..21F,2015arXiv150201589P",
 		"download":"e"
 	},
 	{
@@ -1065,7 +1065,7 @@
 			}
 		],
 		"xraylink":"0",
-		"references":"2016arXiv161102291A,2012sf2a.conf..631W,2015ApJ...811...23Y,2011ApJ...735...89L,2015arXiv150201589P",
+		"references":"2016arXiv161102291A,2012sf2a.conf..631W,2011ApJ...735...89L,2015ApJ...811...23Y,2015arXiv150201589P",
 		"download":"e"
 	},
 	{
@@ -1711,6 +1711,9 @@
 		"ra":[
 			{
 				"value":"1:07:20.88"
+			},
+			{
+				"value":"01:07:20.88"
 			}
 		],
 		"dec":[
@@ -1768,7 +1771,7 @@
 			}
 		],
 		"photolink":"65,-1110,260",
-		"references":"2016arXiv160603125W,2015arXiv150201589P,2011ApJ...737..103S",
+		"references":"2016arXiv160603125W,2016ATel.8559....1F,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -2505,7 +2508,7 @@
 		"photolink":"11,-29.8,154",
 		"spectralink":"2,-1.35,1240",
 		"xraylink":"1",
-		"references":"2014ApJ...793...38A,2016arXiv161102291A,2015arXiv150201589P,2010ApJ...721..777A,2011ApJ...737..103S",
+		"references":"2014ApJ...793...38A,2016arXiv161102291A,2010ApJ...721..777A,2015arXiv150201589P,2011ApJ...737..103S",
 		"download":"e"
 	},
 	{
@@ -2602,7 +2605,7 @@
 		"photolink":"11,-132,17.7",
 		"spectralink":"3,-105,-54.5",
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2016arXiv161102291A,2015arXiv150201589P,2010ApJ...721..777A,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2016arXiv161102291A,2010ApJ...721..777A,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF09ge",
@@ -2701,7 +2704,7 @@
 		"photolink":"132,-23.8,207",
 		"spectralink":"1",
 		"xraylink":"0",
-		"references":"2014ApJ...793...38A,2016arXiv161102291A,2015arXiv150201589P,2009PASP..121.1395L,2011ApJ...737..103S"
+		"references":"2014ApJ...793...38A,2016arXiv161102291A,2009PASP..121.1395L,2015arXiv150201589P,2011ApJ...737..103S"
 	},
 	{
 		"name":"PTF10iya",
