@@ -16,8 +16,47 @@ def do_ascii(catalog):
     """
     task_str = catalog.get_current_task_str()
 
+    # 2011ApJ...735..106D
+    file_path = os.path.join(catalog.get_current_task_repo(), 'ASCII',
+                             '2011ApJ...735..106D.tsv')
+    with open(file_path, 'r') as f:
+        name, source = catalog.new_entry('CSS100217:102913+404220',
+                                         bibcode='2011ApJ...735..106D')
+        data = list(
+            csv.reader(
+                f, delimiter='\t', quotechar='"', skipinitialspace=True))
+        telescope = ''
+        instrument = ''
+        for r, row in enumerate(pbar(data, task_str)):
+            if row[0][0] == '#' and len(row[0]) > 1:
+                infosplit = row[0][1:].split(',')
+                telescope = infosplit[0]
+                instrument = ''
+                if len(infosplit) > 1:
+                    instrument = infosplit[1]
+                bands = row[2:]
+            if row[0][0] == '#':
+                continue
+            mjd = row[0]
+            for ci, col in enumerate(row[2:]):
+                csplit = col.split('+or-')
+                if len(csplit) <= 1:
+                    continue
+                mag, emag = (x.strip() for x in csplit)
+                photodict = {
+                    PHOTOMETRY.TIME: mjd,
+                    PHOTOMETRY.BAND: bands[ci],
+                    PHOTOMETRY.MAGNITUDE: mag,
+                    PHOTOMETRY.E_MAGNITUDE: emag,
+                    PHOTOMETRY.TELESCOPE: telescope,
+                    PHOTOMETRY.SOURCE: source
+                }
+                if instrument:
+                    photodict[PHOTOMETRY.INSTRUMENT] = instrument
+                catalog.entries[name].add_photometry(**photodict)
+
     # 2016arXiv160201088H
-    file_path = os.path.join(catalog.get_current_task_repo(),
+    file_path = os.path.join(catalog.get_current_task_repo(), 'ASCII',
                              '2016arXiv160201088H.txt')
     with open(file_path, 'r') as f:
         name, source = catalog.new_entry('ASASSN-15oi',
@@ -39,7 +78,7 @@ def do_ascii(catalog):
             catalog.entries[name].add_photometry(**photodict)
 
     # 2011ApJ...741...73V
-    file_path = os.path.join(catalog.get_current_task_repo(),
+    file_path = os.path.join(catalog.get_current_task_repo(), 'ASCII',
                              '2011ApJ...741...73V.txt')
     with open(file_path, 'r') as f:
         data = list(
