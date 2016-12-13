@@ -110,9 +110,12 @@ def do_crts(catalog):
                 catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS,
                                                    alias, source)
             catalog.entries[name].add_quantity(
-                TIDALDISRUPTION.RA, ra, source, u_value='floatdegrees')
+                TIDALDISRUPTION.RA, ra.strip(), source, u_value='floatdegrees')
             catalog.entries[name].add_quantity(
-                TIDALDISRUPTION.DEC, dec, source, u_value='floatdegrees')
+                TIDALDISRUPTION.DEC,
+                dec.strip(),
+                source,
+                u_value='floatdegrees')
 
             if hostmag:
                 # 1.0 magnitude error based on Drake 2009 assertion that SN are
