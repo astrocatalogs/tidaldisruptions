@@ -53,6 +53,10 @@ def do_ascii(catalog):
                 }
                 if instrument:
                     photodict[PHOTOMETRY.INSTRUMENT] = instrument
+                if telescope == 'SDSS':
+                    photodict[PHOTOMETRY.HOST] = True
+                if telescope == 'Swift':
+                    photodict[PHOTOMETRY.INCLUDES_HOST] = True
                 catalog.entries[name].add_photometry(**photodict)
 
     # 2016arXiv160201088H

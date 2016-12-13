@@ -2,23 +2,28 @@
 """
 import os
 import re
-import urllib
 
 from bs4 import BeautifulSoup
 
+from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import is_number, pbar
 from cdecimal import Decimal
+
+from ..tidaldisruption import TIDALDISRUPTION
 
 
 def do_crts(catalog):
     crtsnameerrors = ['2011ax']
     task_str = catalog.get_current_task_str()
-    folders = ['catalina', 'MLS', 'SSS']
-    for fold in pbar(folders, task_str):
-        html = catalog.load_cached_url(
-            'http://nesssi.cacr.caltech.edu/' + fold + '/AllSN.html',
-            os.path.join(catalog.get_current_task_repo(), 'CRTS', fold +
-                         '.html'))
+    folders = ['catalina', 'MLS', 'MLS', 'SSS']
+    files = ['AllSN.html', 'AllSN.arch.html', 'CRTSII_SN.html', 'AllSN.html']
+    for fi, fold in enumerate(pbar(folders, task_str)):
+        html = catalog.load_url(
+            'http://nesssi.cacr.caltech.edu/' + fold + '/' + files[fi],
+            os.path.join(catalog.get_current_task_repo(), 'CRTS',
+                         fold + '-' + files[fi]),
+            archived_mode=('arch' in files[fi]))
+        html = html.replace('<ahref=', '<a href=')
         if not html:
             continue
         bs = BeautifulSoup(html, 'html5lib')
@@ -42,14 +47,20 @@ def do_crts(catalog):
                     ra = td.contents[0]
                 elif tdi == 2:
                     dec = td.contents[0]
-                elif tdi == 11:
+                elif tdi == (8 if files[fi] == 'CRTSII_SN.html' else 11):
                     lclink = td.find('a')['onclick']
                     lclink = lclink.split("'")[1]
-                elif tdi == 13:
-                    aliases = re.sub('[()]', '', re.sub(
-                        '<[^<]+?>', '', td.contents[-1].strip()))
-                    aliases = [xx.strip('; ') for xx in list(
-                        filter(None, aliases.split(' ')))]
+                elif tdi == (10 if files[fi] == 'CRTSII_SN.html' else 13):
+                    aliases = re.sub('[()]', '',
+                                     re.sub('<[^<]+?>', '',
+                                            td.contents[-1].strip()))
+                    aliases = [
+                        xx.strip('; ')
+                        for xx in list(filter(None, aliases.split(' ')))
+                    ]
+
+            if not catalog.entry_exists(crtsname):
+                continue
 
             name = ''
             hostmag = ''
@@ -65,8 +76,9 @@ def do_crts(catalog):
                         ind = ai + 1
                         if aliases[ai + 1] in ['SDSS']:
                             ind = ai + 2
-                        elif aliases[ai + 1] in ['gal', 'obj', 'object',
-                                                 'source']:
+                        elif aliases[ai + 1] in [
+                                'gal', 'obj', 'object', 'source'
+                        ]:
                             ind = ai - 1
                         if '>' in aliases[ind]:
                             hostupper = True
@@ -80,8 +92,7 @@ def do_crts(catalog):
                      ('ptf' in alias and len(alias) > 3) or
                      ('ps1' in alias and len(alias) > 3) or
                      'snhunt' in alias or
-                     ('mls' in alias and len(alias) > 3) or
-                     'gaia' in alias or
+                     ('mls' in alias and len(alias) > 3) or 'gaia' in alias or
                      ('lsq' in alias and len(alias) > 3))):
                     alias = alias.replace('SNHunt', 'SNhunt')
                     validaliases.append(alias)
@@ -90,41 +101,41 @@ def do_crts(catalog):
                 name = crtsname
             name = catalog.add_entry(name)
             source = catalog.entries[name].add_source(
-                name='Catalina Sky Survey', bibcode='2009ApJ...696..870D',
+                name='Catalina Sky Survey',
+                bibcode='2009ApJ...696..870D',
                 url='http://nesssi.cacr.caltech.edu/catalina/AllSN.html')
-            catalog.entries[name].add_quantity('alias', name, source)
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS, name,
+                                               source)
             for alias in validaliases:
-                catalog.entries[name].add_quantity('alias', alias, source)
+                catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS,
+                                                   alias, source)
             catalog.entries[name].add_quantity(
-                'ra', ra, source, u_value='floatdegrees')
+                TIDALDISRUPTION.RA, ra, source, u_value='floatdegrees')
             catalog.entries[name].add_quantity(
-                'dec', dec, source, u_value='floatdegrees')
+                TIDALDISRUPTION.DEC, dec, source, u_value='floatdegrees')
 
             if hostmag:
                 # 1.0 magnitude error based on Drake 2009 assertion that SN are
                 # only considered
                 #    real if they are 2 mags brighter than host.
-                (catalog.entries[name]
-                 .add_photometry(band='C', magnitude=hostmag,
-                                 e_magnitude=1.0, source=source,
-                                 host=True, telescope='Catalina Schmidt',
-                                 upperlimit=hostupper))
+                photodict = {
+                    PHOTOMETRY.BAND: 'C',
+                    PHOTOMETRY.MAGNITUDE: hostmag,
+                    PHOTOMETRY.E_MAGNITUDE: '1.0',
+                    PHOTOMETRY.SOURCE: source,
+                    PHOTOMETRY.HOST: True,
+                    PHOTOMETRY.TELESCOPE: 'Catalina Schmidt',
+                    PHOTOMETRY.UPPER_LIMIT: hostupper
+                }
+                catalog.entries[name].add_photometry(**photodict)
 
-            fname2 = (catalog.get_current_task_repo() + '/' + fold + '/' +
-                      lclink.split('.')[-2].rstrip('p').split('/')[-1] +
-                      '.html')
-            if (catalog.current_task.load_archive(catalog.args) and
-                    os.path.isfile(fname2)):
-                with open(fname2, 'r') as ff:
-                    html2 = ff.read()
-            else:
-                try:
-                    with open(fname2, 'w') as ff:
-                        response2 = urllib.request.urlopen(lclink)
-                        html2 = response2.read().decode('utf-8')
-                        ff.write(html2)
-                except:
-                    continue
+            fname2 = (
+                catalog.get_current_task_repo() + '/' + fold + '/' +
+                lclink.split('.')[-2].rstrip('p').split('/')[-1] + '.html')
+
+            html2 = catalog.load_url(lclink, fname2)
+            if not html2:
+                continue
 
             lines = html2.splitlines()
             teles = 'Catalina Schmidt'
@@ -139,24 +150,34 @@ def do_crts(catalog):
                     mjd = str(Decimal(mjdstr) + Decimal(53249.0))
                 else:
                     continue
+                mag = ''
+                err = ''
                 if 'javascript:showy' in line:
                     mag = re.search("showy\('(.*?)'\)", line).group(1)
                 if 'javascript:showz' in line:
                     err = re.search("showz\('(.*?)'\)", line).group(1)
                 if not is_number(mag) or (err and not is_number(err)):
                     continue
-                e_mag = err if float(err) > 0.0 else ''
-                upl = (float(err) == 0.0)
-                (catalog.entries[name]
-                 .add_photometry(time=mjd, band='C', magnitude=mag,
-                                 source=source,
-                                 includeshost=True, telescope=teles,
-                                 e_magnitude=e_mag, upperlimit=upl))
+                photodict = {
+                    PHOTOMETRY.TIME: mjd,
+                    PHOTOMETRY.U_TIME: 'MJD',
+                    PHOTOMETRY.E_TIME: '0.125',  # 3 hr error
+                    PHOTOMETRY.BAND: 'C',
+                    PHOTOMETRY.MAGNITUDE: mag,
+                    PHOTOMETRY.SOURCE: source,
+                    PHOTOMETRY.INCLUDES_HOST: True,
+                    PHOTOMETRY.TELESCOPE: teles
+                }
+                if float(err) > 0.0:
+                    photodict[PHOTOMETRY.E_MAGNITUDE] = err
+                if float(err) == 0.0:
+                    photodict[PHOTOMETRY.UPPER_LIMIT] = True
+                catalog.entries[name].add_photometry(**photodict)
             if catalog.args.update:
                 catalog.journal_entries()
 
-        if catalog.args.travis and tri > catalog.TRAVIS_QUERY_LIMIT:
-            break
+            if catalog.args.travis and tri > catalog.TRAVIS_QUERY_LIMIT:
+                break
 
     catalog.journal_entries()
     return
