@@ -10,8 +10,7 @@
 *.sw*
 *-needsbib.txt
 tde-internal
-tde-external
-tde-external-WISEREP
+tde-external*
 tde-1980-2025
 tde-boneyard
 *.log

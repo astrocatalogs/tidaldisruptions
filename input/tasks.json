@@ -54,14 +54,25 @@
         "repo": "input/tde-external",
         "priority": 5
     },
-    "donations": {
-        "nice_name": "%pre donations",
+    "donated_photo": {
+        "nice_name": "%pre donated photometry",
         "active": true,
         "update": false,
         "module": "tidaldisruptions.tasks.donations",
-        "function": "do_donations",
+        "function": "do_donated_photo",
         "repo": "input/tde-external",
-        "priority": 5
+        "priority": 6
+    },
+    "donated_spectra": {
+        "nice_name": "%pre Donated spectra",
+        "active": true,
+        "update": true,
+        "module": "tidaldisruptions.tasks.donations",
+        "function": "do_donated_spectra",
+        "groups": ["spectra"],
+        "repo": "input/tde-external-spectra",
+        "always_journal": true,
+        "priority": 100
     },
     "wiserep_spectra": {
         "nice_name": "%pre WISeREP spectra",

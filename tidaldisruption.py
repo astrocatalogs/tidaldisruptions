@@ -3,8 +3,6 @@
 import warnings
 from collections import OrderedDict
 
-from astropy.time import Time as astrotime
-
 from astrocats.catalog.entry import ENTRY, Entry
 from astrocats.catalog.error import ERROR
 from astrocats.catalog.key import KEY_TYPES, Key
@@ -19,6 +17,8 @@ from astrocats.tidaldisruptions.constants import (MAX_BANDS, PREF_KINDS,
                                                   REPR_BETTER_QUANTITY)
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
                                               name_clean, radec_clean)
+from astropy.time import Time as astrotime
+
 from cdecimal import Decimal
 
 
@@ -371,6 +371,26 @@ class TidalDisruption(Entry):
             source = self.add_self_source()
             self.add_quantity(self._KEYS.CLAIMED_TYPE, 'Candidate', source)
 
+        if self._KEYS.PHOTOMETRY in self:
+            self[self._KEYS.PHOTOMETRY].sort(
+                key=lambda x: ((float(x[PHOTOMETRY.TIME]) if
+                                isinstance(x[PHOTOMETRY.TIME], str)
+                                else min([float(y) for y in
+                                          x[PHOTOMETRY.TIME]])) if
+                               PHOTOMETRY.TIME in x else 0.0,
+                               x[PHOTOMETRY.BAND] if PHOTOMETRY.BAND in
+                               x else '',
+                               float(x[PHOTOMETRY.MAGNITUDE]) if
+                               PHOTOMETRY.MAGNITUDE in x else ''))
+
+        if (self._KEYS.SPECTRA in self and list(
+                filter(None, [
+                    SPECTRUM.TIME in x for x in self[self._KEYS.SPECTRA]
+                ]))):
+            self[self._KEYS.SPECTRA].sort(
+                key=lambda x: (float(x[SPECTRUM.TIME]) if SPECTRUM.TIME in x else 0.0, x[SPECTRUM.FILENAME] if SPECTRUM.FILENAME in x else '')
+            )
+
         if self._KEYS.SOURCES in self:
             for source in self[self._KEYS.SOURCES]:
                 if SOURCE.BIBCODE in source:
@@ -403,8 +423,8 @@ class TidalDisruption(Entry):
 
                         if not bibcodeauthor:
                             warnings.warn(
-                                "Bibcode didn't return authors, not converting "
-                                "this bibcode.")
+                                "Bibcode didn't return authors, not "
+                                "converting this bibcode.")
 
                         self.catalog.bibauthor_dict[bibcode] = unescape(
                             bibcodeauthor).strip()

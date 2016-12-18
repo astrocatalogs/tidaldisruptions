@@ -6,7 +6,9 @@
         "tde-boneyard"
     ],
     "external":[
-        "tde-external"
+        "tde-external",
+        "tde-external-spectra",
+        "tde-external-WISEREP"
     ],
     "internal":[
         "tde-internal"
