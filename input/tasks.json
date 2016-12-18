@@ -85,6 +85,17 @@
         "always_journal": true,
         "priority": 201
     },
+    "crts": {
+        "nice_name": "%pre CRTS",
+        "active": true,
+        "update": true,
+        "archived": false,
+        "module": "tidaldisruptions.tasks.crts",
+        "function": "do_crts",
+        "repo": "input/tde-external",
+        "always_journal": true,
+        "priority": -350
+    },
     "asassn": {
         "nice_name": "%pre ASASSN",
         "active": true,
