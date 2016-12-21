@@ -7,91 +7,170 @@ import re
 import urllib
 from glob import glob
 
-from astropy.time import Time as astrotime
-
+from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import pbar_strings
 from astrocats.tidaldisruptions.tidaldisruption import (TIDALDISRUPTION,
                                                         TidalDisruption)
+from astropy.time import Time as astrotime
+
 from cdecimal import Decimal
 
 
 def do_external(catalog):
     task_str = catalog.get_current_task_str()
     oldbanddict = {
-        "Pg": {"instrument": "Pan-STARRS1",
-               "band": "g"},
-        "Pr": {"instrument": "Pan-STARRS1",
-               "band": "r"},
-        "Pi": {"instrument": "Pan-STARRS1",
-               "band": "i"},
-        "Pz": {"instrument": "Pan-STARRS1",
-               "band": "z"},
-        "Mu": {"instrument": "MegaCam",
-               "band": "u"},
-        "Mg": {"instrument": "MegaCam",
-               "band": "g"},
-        "Mr": {"instrument": "MegaCam",
-               "band": "r"},
-        "Mi": {"instrument": "MegaCam",
-               "band": "i"},
-        "Mz": {"instrument": "MegaCam",
-               "band": "z"},
-        "Su": {"instrument": "SDSS",
-               "band": "u"},
-        "Sg": {"instrument": "SDSS",
-               "band": "g"},
-        "Sr": {"instrument": "SDSS",
-               "band": "r"},
-        "Si": {"instrument": "SDSS",
-               "band": "i"},
-        "Sz": {"instrument": "SDSS",
-               "band": "z"},
-        "bU": {"instrument": "Bessel",
-               "band": "U"},
-        "bB": {"instrument": "Bessel",
-               "band": "B"},
-        "bV": {"instrument": "Bessel",
-               "band": "V"},
-        "bR": {"instrument": "Bessel",
-               "band": "R"},
-        "bI": {"instrument": "Bessel",
-               "band": "I"},
-        "4g": {"instrument": "PTF 48-Inch",
-               "band": "g"},
-        "4r": {"instrument": "PTF 48-Inch",
-               "band": "r"},
-        "6g": {"instrument": "PTF 60-Inch",
-               "band": "g"},
-        "6r": {"instrument": "PTF 60-Inch",
-               "band": "r"},
-        "6i": {"instrument": "PTF 60-Inch",
-               "band": "i"},
-        "Uu": {"instrument": "UVOT",
-               "band": "U"},
-        "Ub": {"instrument": "UVOT",
-               "band": "B"},
-        "Uv": {"instrument": "UVOT",
-               "band": "V"},
-        "Um": {"instrument": "UVOT",
-               "band": "M2"},
-        "U1": {"instrument": "UVOT",
-               "band": "W1"},
-        "U2": {"instrument": "UVOT",
-               "band": "W2"},
-        "GN": {"instrument": "GALEX",
-               "band": "NUV"},
-        "GF": {"instrument": "GALEX",
-               "band": "FUV"},
-        "CR": {"instrument": "Clear",
-               "band": "r"},
-        "RO": {"instrument": "ROTSE"},
-        "X1": {"instrument": "Chandra"},
-        "X2": {"instrument": "XRT"},
-        "Xs": {"instrument": "XRT",
-               "band": "soft"},
-        "Xm": {"instrument": "XRT",
-               "band": "hard"},
-        "XM": {"instrument": "XMM"}
+        "Pg": {
+            "instrument": "Pan-STARRS1",
+            "band": "g"
+        },
+        "Pr": {
+            "instrument": "Pan-STARRS1",
+            "band": "r"
+        },
+        "Pi": {
+            "instrument": "Pan-STARRS1",
+            "band": "i"
+        },
+        "Pz": {
+            "instrument": "Pan-STARRS1",
+            "band": "z"
+        },
+        "Mu": {
+            "instrument": "MegaCam",
+            "band": "u"
+        },
+        "Mg": {
+            "instrument": "MegaCam",
+            "band": "g"
+        },
+        "Mr": {
+            "instrument": "MegaCam",
+            "band": "r"
+        },
+        "Mi": {
+            "instrument": "MegaCam",
+            "band": "i"
+        },
+        "Mz": {
+            "instrument": "MegaCam",
+            "band": "z"
+        },
+        "Su": {
+            "instrument": "SDSS",
+            "band": "u"
+        },
+        "Sg": {
+            "instrument": "SDSS",
+            "band": "g"
+        },
+        "Sr": {
+            "instrument": "SDSS",
+            "band": "r"
+        },
+        "Si": {
+            "instrument": "SDSS",
+            "band": "i"
+        },
+        "Sz": {
+            "instrument": "SDSS",
+            "band": "z"
+        },
+        "bU": {
+            "instrument": "Bessel",
+            "band": "U"
+        },
+        "bB": {
+            "instrument": "Bessel",
+            "band": "B"
+        },
+        "bV": {
+            "instrument": "Bessel",
+            "band": "V"
+        },
+        "bR": {
+            "instrument": "Bessel",
+            "band": "R"
+        },
+        "bI": {
+            "instrument": "Bessel",
+            "band": "I"
+        },
+        "4g": {
+            "instrument": "PTF 48-Inch",
+            "band": "g"
+        },
+        "4r": {
+            "instrument": "PTF 48-Inch",
+            "band": "r"
+        },
+        "6g": {
+            "instrument": "PTF 60-Inch",
+            "band": "g"
+        },
+        "6r": {
+            "instrument": "PTF 60-Inch",
+            "band": "r"
+        },
+        "6i": {
+            "instrument": "PTF 60-Inch",
+            "band": "i"
+        },
+        "Uu": {
+            "instrument": "UVOT",
+            "band": "U"
+        },
+        "Ub": {
+            "instrument": "UVOT",
+            "band": "B"
+        },
+        "Uv": {
+            "instrument": "UVOT",
+            "band": "V"
+        },
+        "Um": {
+            "instrument": "UVOT",
+            "band": "M2"
+        },
+        "U1": {
+            "instrument": "UVOT",
+            "band": "W1"
+        },
+        "U2": {
+            "instrument": "UVOT",
+            "band": "W2"
+        },
+        "GN": {
+            "instrument": "GALEX",
+            "band": "NUV"
+        },
+        "GF": {
+            "instrument": "GALEX",
+            "band": "FUV"
+        },
+        "CR": {
+            "instrument": "Clear",
+            "band": "r"
+        },
+        "RO": {
+            "instrument": "ROTSE"
+        },
+        "X1": {
+            "instrument": "Chandra"
+        },
+        "X2": {
+            "instrument": "XRT"
+        },
+        "Xs": {
+            "instrument": "XRT",
+            "band": "soft"
+        },
+        "Xm": {
+            "instrument": "XRT",
+            "band": "hard"
+        },
+        "XM": {
+            "instrument": "XMM"
+        }
     }
     path_pattern = os.path.join(catalog.get_current_task_repo(),
                                 'old-tdefit/*.dat')
@@ -121,6 +200,9 @@ def do_external(catalog):
                 yrsmjdoffset = float(row[1])
             if row[0] == 'redshift':
                 redshift = float(row[1].split(',')[0].strip(' *'))
+
+        if not source:
+            source = catalog.entries[name].add_self_source()
 
         f.seek(0)
 
@@ -176,36 +258,39 @@ def do_external(catalog):
                     band = iband
                 upperlimit = True if row[6] == '1' else False
                 if 'X' in iband:
-                    # Old TDEFit stored counts in log
-                    e_counts = str((Decimal(10.0)**(Decimal(row[4]) + Decimal(
-                        row[5])) - Decimal(10.0)**Decimal(row[4]))
-                                   if float(row[5]) != 0.0 else '')
                     counts = Decimal(10.0)**Decimal(row[4])
-                    catalog.entries[name].add_photometry(
-                        time=time,
-                        u_time=timeunit,
-                        band=band,
-                        counts=counts,
-                        e_counts=e_counts,
-                        upperlimit=upperlimit,
-                        restframe=lrestframe,
-                        hostnhcorr=hostnhcorr,
-                        instrument=instrument,
-                        source=source)
+                    photodict = {
+                        PHOTOMETRY.TIME: time,
+                        PHOTOMETRY.U_TIME: timeunit,
+                        PHOTOMETRY.BAND: band,
+                        PHOTOMETRY.COUNTS: counts,
+                        PHOTOMETRY.UPPER_LIMIT: upperlimit,
+                        PHOTOMETRY.REST_FRAME: lrestframe,
+                        PHOTOMETRY.HOST_NH_CORR: hostnhcorr,
+                        PHOTOMETRY.INSTRUMENT: instrument,
+                        PHOTOMETRY.SOURCE: source
+                    }
+                    # Old TDEFit stored counts in log
+                    if float(row[5]) != 0.0:
+                        photodict[PHOTOMETRY.E_COUNTS] = str(
+                            (Decimal(10.0)**(Decimal(row[4]) + Decimal(row[5]))
+                             - Decimal(10.0)**Decimal(row[4])))
                 else:
                     magnitude = row[4]
-                    e_magnitude = row[5] if float(row[5]) != 0.0 else ''
-                    catalog.entries[name].add_photometry(
-                        time=time,
-                        u_time=timeunit,
-                        band=band,
-                        magnitude=magnitude,
-                        e_magnitude=e_magnitude,
-                        upperlimit=upperlimit,
-                        restframe=lrestframe,
-                        hostnhcorr=hostnhcorr,
-                        instrument=instrument,
-                        source=source)
+                    photodict = {
+                        PHOTOMETRY.TIME: time,
+                        PHOTOMETRY.U_TIME: timeunit,
+                        PHOTOMETRY.BAND: band,
+                        PHOTOMETRY.MAGNITUDE: magnitude,
+                        PHOTOMETRY.UPPER_LIMIT: upperlimit,
+                        PHOTOMETRY.REST_FRAME: lrestframe,
+                        PHOTOMETRY.HOST_NH_CORR: hostnhcorr,
+                        PHOTOMETRY.INSTRUMENT: instrument,
+                        PHOTOMETRY.SOURCE: source
+                    }
+                    if float(row[5]) != 0.0:
+                        photodict[PHOTOMETRY.E_MAGNITUDE] = row[5]
+                catalog.entries[name].add_photometry(**photodict)
 
     catalog.journal_entries()
     return
