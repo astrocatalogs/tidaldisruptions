@@ -284,7 +284,7 @@ def do_cleanup(catalog):
             for host in catalog.entries[name][TIDALDISRUPTION.HOST]:
                 if host[QUANTITY.VALUE] in catalog.nedd_dict:
                     source = catalog.entries[name].add_source(
-                        bibcode='2015arXiv150201589P')
+                        bibcode='2016A&A...594A..13P')
                     secondarysource = catalog.entries[name].add_source(
                         name=reference, url=refurl, secondary=True)
                     meddist = statistics.median(catalog.nedd_dict[host[
@@ -349,7 +349,7 @@ def do_cleanup(catalog):
                         sources = [
                             catalog.entries[name].add_self_source(),
                             catalog.entries[name]
-                            .add_source(bibcode='2015arXiv150201589P')
+                            .add_source(bibcode='2016A&A...594A..13P')
                         ]
                         sources = uniq_cdl(sources + bestsrc.split(','))
                         catalog.entries[name].add_quantity(
@@ -381,7 +381,7 @@ def do_cleanup(catalog):
                         sources = [
                             catalog.entries[name].add_self_source(),
                             catalog.entries[name]
-                            .add_source(bibcode='2015arXiv150201589P')
+                            .add_source(bibcode='2016A&A...594A..13P')
                         ]
                         sources = uniq_cdl(sources + bestsrc.split(','))
                         catalog.entries[name].add_quantity(
