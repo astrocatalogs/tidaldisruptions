@@ -13,18 +13,18 @@ pids[1]=$!
 #$pids[2]=$!
 #python3.5 -m astrocats.tidaldisruptions.scripts.conflictcat &
 #$pids[3]=$!
-#python3.5 -m astrocats.tidaldisruptions.scripts.bibliocat &
-#$pids[4]=$!
+python3.5 -m astrocats.scripts.bibliocat -c tde &
+pids[2]=$!
 #python3.5 -m astrocats.tidaldisruptions.scripts.erratacat &
 #$pids[5]=$!
 python3.5 -m astrocats.scripts.hostcat -c tde &
-pids[2]=$!
-python3.5 -m astrocats.scripts.hammertime -c tde &
 pids[3]=$!
+python3.5 -m astrocats.scripts.hammertime -c tde &
+pids[4]=$!
 #python3.5 -m astrocats.tidaldisruptions.scripts.histograms &
 #$pids[8]=$!
 python3.5 -m astrocats.scripts.atelscbetsiaucs -c tde &
-pids[4]=$!
+pids[5]=$!
 for pid in ${pids[*]}; do
 	wait $pid
 done
