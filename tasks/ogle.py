@@ -4,16 +4,18 @@ import os
 import re
 import urllib
 
+from astrocats.catalog.utils import is_number, jd_to_mjd, pbar, uniq_cdl
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from astrocats.catalog.utils import is_number, jd_to_mjd, pbar, uniq_cdl
 from cdecimal import Decimal
 
 
 def do_ogle(catalog):
     task_str = catalog.get_current_task_str()
-    basenames = ['transients', 'transients/2014b', 'transients/2014',
-                 'transients/2013', 'transients/2012']
+    basenames = [
+        'transients', 'transients/2015', 'transients/2014b', 'transients/2014',
+        'transients/2013', 'transients/2012'
+    ]
     oglenames = []
     ogleupdate = [True, False, False, False, False]
     for b, bn in enumerate(pbar(basenames, task_str)):
@@ -24,8 +26,8 @@ def do_ogle(catalog):
                                 'OGLE-')
         filepath += bn.replace('/', '-') + '-transients.html'
         htmltxt = catalog.load_cached_url(
-            'http://ogle.astrouw.edu.pl/ogle4/' + bn +
-            '/transients.html', filepath)
+            'http://ogle.astrouw.edu.pl/ogle4/' + bn + '/transients.html',
+            filepath)
         if not htmltxt:
             continue
 
@@ -37,11 +39,11 @@ def do_ogle(catalog):
         for a in links:
             if a.has_attr('href'):
                 if '.dat' in a['href']:
-                    datalinks.append(
-                        'http://ogle.astrouw.edu.pl/ogle4/' + bn + '/' +
-                        a['href'])
-                    datafnames.append(bn.replace('/', '-') +
-                                      '-' + a['href'].replace('/', '-'))
+                    datalinks.append('http://ogle.astrouw.edu.pl/ogle4/' + bn +
+                                     '/' + a['href'])
+                    datafnames.append(
+                        bn.replace('/', '-') + '-' + a['href'].replace('/',
+                                                                       '-'))
 
         ec = -1
         reference = 'OGLE-IV Transient Detection System'
@@ -66,9 +68,8 @@ def do_ogle(catalog):
                 while 'Ra,Dec=' not in mySibling:
                     if isinstance(mySibling, NavigableString):
                         if not claimedtype and 'class=' in str(mySibling):
-                            claimedtype = re.sub(
-                                r'\([^)]*\)', '',
-                                str(mySibling).split('=')[-1])
+                            claimedtype = re.sub(r'\([^)]*\)', '',
+                                                 str(mySibling).split('=')[-1])
                             claimedtype = claimedtype.replace('SN', '').strip()
                             if claimedtype == '-':
                                 claimedtype = ''
@@ -84,7 +85,7 @@ def do_ogle(catalog):
                     if mySibling is None:
                         break
 
-                if claimedtype != 'TDE':
+                if name not in catalog.entries and claimedtype != 'TDE':
                     continue
 
                 name = catalog.add_entry(name)
@@ -112,8 +113,10 @@ def do_ogle(catalog):
                         f.write(csvtxt)
 
                 lcdat = csvtxt.splitlines()
-                sources = [catalog.entries[name].add_source(
-                    name=reference, url=refurl)]
+                sources = [
+                    catalog.entries[name].add_source(
+                        name=reference, url=refurl)
+                ]
                 catalog.entries[name].add_quantity('alias', name, sources[0])
                 if atelref and atelref != 'ATel#----':
                     sources.append(catalog.entries[name].add_source(
@@ -134,12 +137,12 @@ def do_ogle(catalog):
                 # catalog.entries[name].add_quantity('ra', ra, sources)
                 # catalog.entries[name].add_quantity('dec', dec, sources)
                 if claimedtype and claimedtype != '-':
-                    catalog.entries[name].add_quantity(
-                        'claimedtype', claimedtype, sources)
-                elif ('SN' not in name and 'claimedtype' not in
-                      catalog.entries[name]):
-                    catalog.entries[name].add_quantity(
-                        'claimedtype', 'Candidate', sources)
+                    catalog.entries[name].add_quantity('claimedtype',
+                                                       claimedtype, sources)
+                elif ('SN' not in name and
+                      'claimedtype' not in catalog.entries[name]):
+                    catalog.entries[name].add_quantity('claimedtype',
+                                                       'Candidate', sources)
                 for row in lcdat:
                     row = row.split()
                     mjd = str(jd_to_mjd(Decimal(row[0])))
@@ -152,9 +155,13 @@ def do_ogle(catalog):
                         e_mag = ''
                         upperlimit = True
                     catalog.entries[name].add_photometry(
-                        time=mjd, band='I', magnitude=magnitude,
+                        time=mjd,
+                        band='I',
+                        magnitude=magnitude,
                         e_magnitude=e_mag,
-                        system='Vega', source=sources, upperlimit=upperlimit)
+                        system='Vega',
+                        source=sources,
+                        upperlimit=upperlimit)
                 if catalog.args.update:
                     catalog.journal_entries()
 
