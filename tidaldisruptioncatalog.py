@@ -131,13 +131,6 @@ class TidalDisruptionCatalog(Catalog):
         with codecs.open(self.PATHS.EXTINCT, 'w', encoding='utf8') as f:
             f.write(jsonstring)
 
-    def clone_repos(self):
-        # Load the local 'supernovae' repository names
-        all_repos = self.PATHS.get_repo_input_folders()
-        all_repos += self.PATHS.get_repo_output_folders()
-        super()._clone_repos(all_repos)
-        return
-
     def merge_duplicates(self):
         """Merge and remove duplicate entries.
 
