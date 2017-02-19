@@ -12,9 +12,9 @@ from astrocats.catalog.source import SOURCE
 from astrocats.catalog.spectrum import SPECTRUM
 from astrocats.catalog.utils import (bib_priority, get_sig_digits,
                                      get_source_year, is_number, jd_to_mjd,
-                                     make_date_string, pretty_num, uniq_cdl)
-from astrocats.tidaldisruptions.constants import (MAX_BANDS, PREF_KINDS,
-                                                  REPR_BETTER_QUANTITY)
+                                     listify, make_date_string, pretty_num,
+                                     uniq_cdl)
+from astrocats.tidaldisruptions.constants import MAX_BANDS, PREF_KINDS
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
                                               name_clean, radec_clean)
 from astropy.time import Time as astrotime
@@ -167,65 +167,136 @@ class TidalDisruption(Entry):
         return True
 
     def add_quantity(self,
-                     quantity,
+                     quantities,
                      value,
                      source,
                      forcereplacebetter=False,
                      **kwargs):
-        quantity_added = super().add_quantity(quantity, value, source,
-                                              **kwargs)
+        success = super().add_quantity(quantities, value, source, **kwargs)
 
-        if not quantity_added:
+        if not success:
             return
 
-        my_quantity_list = self.get(quantity, [])
+        for quantity in listify(quantities):
+            my_quantity_list = self.get(quantity, [])
 
-        if (forcereplacebetter or quantity in REPR_BETTER_QUANTITY) and \
-                len(my_quantity_list) > 1:
+            if ((forcereplacebetter or quantity.replace_better) and
+                    len(my_quantity_list) > 1):
 
-            # The quantity that was just added should be last in the list
-            added_quantity = my_quantity_list.pop()
+                # The quantity that was just added should be last in the list
+                added_quantity = my_quantity_list.pop()
 
-            newquantities = []
-            isworse = True
-            if quantity in [self._KEYS.DISCOVER_DATE, self._KEYS.MAX_DATE]:
-                for ct in my_quantity_list:
-                    ctsplit = ct[QUANTITY.VALUE].split('/')
-                    svsplit = added_quantity[QUANTITY.VALUE].split('/')
-                    if len(ctsplit) < len(svsplit):
-                        isworse = False
-                        continue
-                    elif len(ctsplit) < len(svsplit) and len(svsplit) == 3:
-                        val_one = max(2,
-                                      get_sig_digits(ctsplit[-1].lstrip('0')))
-                        val_two = max(2,
-                                      get_sig_digits(svsplit[-1].lstrip('0')))
-                        if val_one < val_two:
+                newquantities = []
+                isworse = True
+                if quantity in [self._KEYS.DISCOVER_DATE, self._KEYS.MAX_DATE]:
+                    for ct in my_quantity_list:
+                        ctsplit = ct[QUANTITY.VALUE].split('/')
+                        svsplit = added_quantity[QUANTITY.VALUE].split('/')
+                        if len(ctsplit) < len(svsplit):
                             isworse = False
                             continue
-                    newquantities.append(ct)
-            else:
-                newsig = get_sig_digits(added_quantity[QUANTITY.VALUE])
-                for ct in my_quantity_list:
-                    if QUANTITY.E_VALUE in ct:
-                        if QUANTITY.E_VALUE in added_quantity:
-                            if (float(added_quantity[QUANTITY.E_VALUE]) <=
-                                    float(ct[QUANTITY.E_VALUE])):
+                        elif len(ctsplit) < len(svsplit) and len(svsplit) == 3:
+                            val_one = max(
+                                2, get_sig_digits(ctsplit[-1].lstrip('0')))
+                            val_two = max(
+                                2, get_sig_digits(svsplit[-1].lstrip('0')))
+                            if val_one < val_two:
                                 isworse = False
                                 continue
                         newquantities.append(ct)
-                    else:
-                        if QUANTITY.E_VALUE in added_quantity:
-                            isworse = False
-                            continue
-                        oldsig = get_sig_digits(ct[QUANTITY.VALUE])
-                        if oldsig >= newsig:
-                            newquantities.append(ct)
-                        if newsig >= oldsig:
-                            isworse = False
-            if not isworse:
-                newquantities.append(added_quantity)
-            self[quantity] = newquantities
+                else:
+                    if type(quantity) != Key:
+                        isworse = False
+                    elif quantity.type == KEY_TYPES.NUMERIC:
+                        newsig = get_sig_digits(added_quantity[QUANTITY.VALUE])
+                        for ct in my_quantity_list:
+                            addct = False
+                            checke = False
+                            if (len(quantity.kind_preference) > 0 and not set(
+                                    listify(ct.get(QUANTITY.KIND, [])))
+                                    .isdisjoint(quantity.kind_preference) and
+                                    not set(
+                                        listify(
+                                            added_quantity.get(QUANTITY.KIND,
+                                                               [])))
+                                    .isdisjoint(quantity.kind_preference)):
+                                aqi = min([
+                                    quantity.kind_preference.index(x)
+                                    for x in listify(added_quantity[
+                                        QUANTITY.KIND])
+                                ])
+                                qqi = min([
+                                    quantity.kind_preference.index(x)
+                                    for x in listify(ct[QUANTITY.KIND])
+                                ])
+                                if aqi > qqi:
+                                    addct = True
+                                if aqi == qqi:
+                                    checke = True
+                                if aqi <= qqi:
+                                    isworse = False
+                            else:
+                                checke = True
+                            if checke and QUANTITY.E_VALUE in ct:
+                                if QUANTITY.E_VALUE in added_quantity:
+                                    if (float(added_quantity[QUANTITY.E_VALUE])
+                                            >= float(ct[QUANTITY.E_VALUE])):
+                                        addct = True
+                                    if (float(added_quantity[QUANTITY.E_VALUE])
+                                            <= float(ct[QUANTITY.E_VALUE])):
+                                        isworse = False
+                            else:
+                                if (checke and
+                                        QUANTITY.E_VALUE in added_quantity):
+                                    isworse = False
+                                else:
+                                    oldsig = get_sig_digits(ct[QUANTITY.VALUE])
+                                    if oldsig >= newsig:
+                                        addct = True
+                                    if newsig >= oldsig:
+                                        isworse = False
+                            if addct:
+                                newquantities.append(ct)
+                    elif quantity.type == KEY_TYPES.STRING:
+                        for ct in my_quantity_list:
+                            addct = False
+                            if (len(quantity.kind_preference) > 0 and not set(
+                                    listify(ct.get(QUANTITY.KIND, [])))
+                                    .isdisjoint(quantity.kind_preference) and
+                                    not set(
+                                        listify(
+                                            added_quantity.get(QUANTITY.KIND,
+                                                               [])))
+                                    .isdisjoint(quantity.kind_preference)):
+                                aqi = min([
+                                    quantity.kind_preference.index(x)
+                                    for x in listify(added_quantity[
+                                        QUANTITY.KIND])
+                                ])
+                                qqi = min([
+                                    quantity.kind_preference.index(x)
+                                    for x in listify(ct[QUANTITY.KIND])
+                                ])
+                                if aqi >= qqi:
+                                    addct = True
+                                if aqi <= qqi:
+                                    isworse = False
+                            else:
+                                isworse = False
+                            if addct:
+                                newquantities.append(ct)
+
+                if isworse:
+                    self._log.info("Removing quantity '{}' with value '{}' "
+                                   "and kind '{}' determined to be worse than "
+                                   "existing alternative values.".format(
+                                       quantity, added_quantity[
+                                           QUANTITY.VALUE],
+                                       added_quantity.get(QUANTITY.KIND, '')))
+                else:
+                    newquantities.append(added_quantity)
+                if len(newquantities) > 0:
+                    self[quantity] = newquantities
         return
 
     def add_source(self, **kwargs):
@@ -422,9 +493,8 @@ class TidalDisruption(Entry):
                             pass
 
                         if not bibcodeauthor:
-                            warnings.warn(
-                                "Bibcode didn't return authors, not "
-                                "converting this bibcode.")
+                            warnings.warn("Bibcode didn't return authors, not "
+                                          "converting this bibcode.")
 
                         self.catalog.bibauthor_dict[bibcode] = unescape(
                             bibcodeauthor).strip()

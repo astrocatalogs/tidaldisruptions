@@ -5,14 +5,14 @@ import statistics
 import warnings
 from math import hypot, log10, pi, sqrt
 
+from astrocats.catalog.quantity import QUANTITY
+from astrocats.catalog.utils import (get_sig_digits, is_number, pbar,
+                                     pretty_num, tprint, uniq_cdl)
 from astropy import units as un
 from astropy.coordinates import SkyCoord as coord
 from astropy.cosmology import Planck15 as cosmo
 from astropy.cosmology import z_at_value
 
-from astrocats.catalog.quantity import QUANTITY
-from astrocats.catalog.utils import (get_sig_digits, is_number, pbar,
-                                     pretty_num, tprint, uniq_cdl)
 from cdecimal import Decimal
 
 from ..constants import CLIGHT, KM, PREF_KINDS
@@ -42,10 +42,11 @@ def do_cleanup(catalog):
                 for prefix in prefixes:
                     if (alias.startswith(prefix) and
                             is_number(alias.replace(prefix, '')[:2])):
-                        discoverdate = ('/'.join(
-                            ['20' + alias.replace(prefix, '')[:2],
-                             alias.replace(prefix, '')[2:4],
-                             alias.replace(prefix, '')[4:6]]))
+                        discoverdate = ('/'.join([
+                            '20' + alias.replace(prefix, '')[:2],
+                            alias.replace(prefix, '')[2:4],
+                            alias.replace(prefix, '')[4:6]
+                        ]))
                         if catalog.args.verbose:
                             tprint('Added discoverdate from name [' + alias +
                                    ']: ' + discoverdate)
@@ -59,10 +60,11 @@ def do_cleanup(catalog):
                 if TIDALDISRUPTION.DISCOVER_DATE in catalog.entries[name]:
                     break
         if TIDALDISRUPTION.DISCOVER_DATE not in catalog.entries[name]:
-            prefixes = ['ASASSN-', 'PS1-', 'PS1', 'PS', 'iPTF', 'PTF', 'SCP-',
-                        'SNLS-', 'SPIRITS', 'LSQ', 'DES', 'SNHiTS', 'Gaia',
-                        'GND', 'GNW', 'GSD', 'GSW', 'EGS', 'COS', 'OGLE',
-                        'HST']
+            prefixes = [
+                'ASASSN-', 'PS1-', 'PS1', 'PS', 'iPTF', 'PTF', 'SCP-', 'SNLS-',
+                'SPIRITS', 'LSQ', 'DES', 'SNHiTS', 'Gaia', 'GND', 'GNW', 'GSD',
+                'GSW', 'EGS', 'COS', 'OGLE', 'HST'
+            ]
             for alias in aliases:
                 for prefix in prefixes:
                     if (alias.startswith(prefix) and
@@ -87,10 +89,11 @@ def do_cleanup(catalog):
                 for prefix in prefixes:
                     if (alias.startswith(prefix) and
                             is_number(alias.replace(prefix, '')[:4])):
-                        discoverdate = ('/'.join(
-                            [alias.replace(prefix, '')[:4],
-                             alias.replace(prefix, '')[4:6],
-                             alias.replace(prefix, '')[6:8]]))
+                        discoverdate = ('/'.join([
+                            alias.replace(prefix, '')[:4],
+                            alias.replace(prefix, '')[4:6],
+                            alias.replace(prefix, '')[6:8]
+                        ]))
                         if catalog.args.verbose:
                             tprint('Added discoverdate from name [' + alias +
                                    ']: ' + discoverdate)
@@ -109,9 +112,10 @@ def do_cleanup(catalog):
                 for prefix in prefixes:
                     if (alias.startswith(prefix) and
                             is_number(alias.replace(prefix, '')[:2])):
-                        discoverdate = ('/'.join(
-                            ['20' + alias.replace(prefix, '')[:2],
-                             alias.replace(prefix, '')[2:4]]))
+                        discoverdate = ('/'.join([
+                            '20' + alias.replace(prefix, '')[:2],
+                            alias.replace(prefix, '')[2:4]
+                        ]))
                         if catalog.args.verbose:
                             tprint('Added discoverdate from name [' + alias +
                                    ']: ' + discoverdate)
@@ -154,9 +158,10 @@ def do_cleanup(catalog):
 
         if (TIDALDISRUPTION.RA not in catalog.entries[name] or
                 TIDALDISRUPTION.DEC not in catalog.entries[name]):
-            prefixes = ['PSN J', 'MASJ', 'CSS', 'SSS', 'MASTER OT J', 'HST J',
-                        'TCP J', 'MACS J', '2MASS J', 'EQ J', 'CRTS J',
-                        'SMT J']
+            prefixes = [
+                'PSN J', 'MASJ', 'CSS', 'SSS', 'MASTER OT J', 'HST J', 'TCP J',
+                'MACS J', '2MASS J', 'EQ J', 'CRTS J', 'SMT J'
+            ]
             for alias in aliases:
                 for prefix in prefixes:
                     if (alias.startswith(prefix) and
@@ -186,19 +191,19 @@ def do_cleanup(catalog):
                 if TIDALDISRUPTION.RA in catalog.entries[name]:
                     break
 
-        no_host = (
-            TIDALDISRUPTION.HOST not in catalog.entries[name] or
-            not any([x[QUANTITY.VALUE] == 'Milky Way'
-                     for x in catalog.entries[name][TIDALDISRUPTION.HOST]]))
+        no_host = (TIDALDISRUPTION.HOST not in catalog.entries[name] or
+                   not any([
+                       x[QUANTITY.VALUE] == 'Milky Way'
+                       for x in catalog.entries[name][TIDALDISRUPTION.HOST]
+                   ]))
         if (TIDALDISRUPTION.RA in catalog.entries[name] and
                 TIDALDISRUPTION.DEC in catalog.entries[name] and no_host):
             from astroquery.irsa_dust import IrsaDust
             if name not in catalog.extinctions_dict:
                 try:
-                    ra_dec = catalog.entries[name][
-                        TIDALDISRUPTION.RA][0][QUANTITY.VALUE] + \
-                        " " + \
-                        catalog.entries[name][TIDALDISRUPTION.DEC][0][QUANTITY.VALUE]
+                    ra_dec = (catalog.entries[name][TIDALDISRUPTION.RA][0][
+                        QUANTITY.VALUE] + " " + catalog.entries[name][
+                            TIDALDISRUPTION.DEC][0][QUANTITY.VALUE])
                     result = IrsaDust.get_query_table(ra_dec, section='ebv')
                 except (KeyboardInterrupt, SystemExit):
                     raise
@@ -210,10 +215,11 @@ def do_cleanup(catalog):
                     ebverr = result['ext SandF std'][0]
                     catalog.extinctions_dict[name] = [ebv, ebverr]
             if name in catalog.extinctions_dict:
-                sources = uniq_cdl(
-                    [catalog.entries[name].add_self_source(),
-                     catalog.entries[name]
-                     .add_source(bibcode='2011ApJ...737..103S')])
+                sources = uniq_cdl([
+                    catalog.entries[name].add_self_source(),
+                    catalog.entries[name]
+                    .add_source(bibcode='2011ApJ...737..103S')
+                ])
                 (catalog.entries[name].add_quantity(
                     TIDALDISRUPTION.EBV,
                     str(catalog.extinctions_dict[name][0]),
@@ -314,10 +320,12 @@ def do_cleanup(catalog):
             if bestsig > 0 and is_number(bestld) and float(bestld) > 0.:
                 source = catalog.entries[name].add_self_source()
                 sources = uniq_cdl([source] + bestsrc.split(','))
-                # FIX: what's happening here?!
+                bestldz = z_at_value(cosmo.luminosity_distance,
+                                     float(bestld) * un.Mpc)
                 pnum = (float(catalog.entries[name][
                     TIDALDISRUPTION.MAX_APP_MAG][0][QUANTITY.VALUE]) - 5.0 *
-                        (log10(float(bestld) * 1.0e6) - 1.0))
+                        (log10(float(bestld) * 1.0e6) - 1.0
+                         ) + 2.5 * log10(1.0 + bestldz))
                 pnum = pretty_num(pnum, sig=bestsig)
                 catalog.entries[name].add_quantity(
                     TIDALDISRUPTION.MAX_ABS_MAG, pnum, sources, derived=True)
@@ -368,8 +376,9 @@ def do_cleanup(catalog):
                                 float(catalog.entries[name][
                                     TIDALDISRUPTION.MAX_APP_MAG][0][
                                         QUANTITY.VALUE]) - 5.0 *
-                                (log10(dl.to('pc').value) - 1.0),
-                                sig=bestsig)
+                                (log10(dl.to('pc').value) - 1.0
+                                 ) + 2.5 * log10(1.0 + bestz),
+                                sig=bestsig + 1)
                             catalog.entries[name].add_quantity(
                                 TIDALDISRUPTION.MAX_ABS_MAG,
                                 pnum,
@@ -390,20 +399,26 @@ def do_cleanup(catalog):
                                 cd.value, sig=bestsig),
                             sources,
                             derived=True)
-        if all([x in catalog.entries[name]
-                for x in [TIDALDISRUPTION.RA, TIDALDISRUPTION.DEC,
-                          TIDALDISRUPTION.HOST_RA, TIDALDISRUPTION.HOST_DEC]]):
+        if all([
+                x in catalog.entries[name]
+                for x in [
+                    TIDALDISRUPTION.RA, TIDALDISRUPTION.DEC,
+                    TIDALDISRUPTION.HOST_RA, TIDALDISRUPTION.HOST_DEC
+                ]
+        ]):
             # For now just using first coordinates that appear in entry
             try:
                 c1 = coord(
                     ra=catalog.entries[name][TIDALDISRUPTION.RA][0][
-                        QUANTITY.VALUE], dec=catalog.entries[name][
-                            TIDALDISRUPTION.DEC][0][QUANTITY.VALUE],
+                        QUANTITY.VALUE],
+                    dec=catalog.entries[name][TIDALDISRUPTION.DEC][0][
+                        QUANTITY.VALUE],
                     unit=(un.hourangle, un.deg))
                 c2 = coord(
                     ra=catalog.entries[name][TIDALDISRUPTION.HOST_RA][0][
-                        QUANTITY.VALUE], dec=catalog.entries[name][
-                            TIDALDISRUPTION.HOST_DEC][0][QUANTITY.VALUE],
+                        QUANTITY.VALUE],
+                    dec=catalog.entries[name][TIDALDISRUPTION.HOST_DEC][0][
+                        QUANTITY.VALUE],
                     unit=(un.hourangle, un.deg))
             except (KeyboardInterrupt, SystemExit):
                 raise
@@ -411,13 +426,12 @@ def do_cleanup(catalog):
                 pass
             else:
                 sources = uniq_cdl(
-                    [catalog.entries[name].add_self_source()
-                     ] + catalog.entries[name][TIDALDISRUPTION.RA][0][
-                         'source'].split(',') + catalog.entries[name][
-                             TIDALDISRUPTION.DEC][0]['source'].split(',') +
-                    catalog.entries[name][TIDALDISRUPTION.HOST_RA][0][
-                        'source'].split(',') + catalog.entries[name][
-                            TIDALDISRUPTION.HOST_DEC][0]['source'].split(','))
+                    [catalog.entries[name].add_self_source()] + catalog.
+                    entries[name][TIDALDISRUPTION.RA][0]['source'].split(',') +
+                    catalog.entries[name][TIDALDISRUPTION.DEC][0]['source'].
+                    split(',') + catalog.entries[name][TIDALDISRUPTION.HOST_RA]
+                    [0]['source'].split(',') + catalog.entries[name][
+                        TIDALDISRUPTION.HOST_DEC][0]['source'].split(','))
                 if 'hostoffsetang' not in catalog.entries[name]:
                     hosa = Decimal(
                         hypot(c1.ra.degree - c2.ra.degree, c1.dec.degree -
@@ -435,11 +449,10 @@ def do_cleanup(catalog):
                     offsetsig = get_sig_digits(catalog.entries[name][
                         'hostoffsetang'][0][QUANTITY.VALUE])
                     sources = uniq_cdl(
-                        sources.split(',') +
-                        (catalog.entries[name][TIDALDISRUPTION.COMOVING_DIST][
-                            0]['source']).split(',') + (catalog.entries[name][
-                                TIDALDISRUPTION.REDSHIFT][0]['source']).split(
-                                    ','))
+                        sources.split(',') + (catalog.entries[name][
+                            TIDALDISRUPTION.COMOVING_DIST][0]['source']).
+                        split(',') + (catalog.entries[name][
+                            TIDALDISRUPTION.REDSHIFT][0]['source']).split(','))
                     (catalog.entries[name].add_quantity(
                         'hostoffsetdist',
                         pretty_num(
