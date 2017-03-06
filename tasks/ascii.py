@@ -5,6 +5,8 @@ but sometimes provided as supplementary datafiles on the journal webpages.
 import csv
 import os
 
+from astropy.io.ascii import read
+
 from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import pbar
 from cdecimal import Decimal
@@ -15,6 +17,33 @@ def do_ascii(catalog):
     published works.
     """
     task_str = catalog.get_current_task_str()
+
+    # iPTF16fnl
+    file_path = os.path.join(catalog.get_current_task_repo(), 'ASCII',
+                             'iPTF16fnl.tex')
+    data = read(file_path, format='latex')
+    name, source = catalog.new_entry(
+        'iPTF16fnl', arxivid='1703.00965')
+    header = [s[s.find("{") + 1:s.find("}")].replace('$', '')
+              for s in list(data.columns)]
+    bands = header[2:]
+    for row in pbar(data, task_str):
+        for bi, band in enumerate(bands):
+            if row[bi + 2] == '--':
+                continue
+            mag, err = row[bi + 2].split('$\pm$')
+            tel, ins = row[1].split('+')
+            photodict = {
+                PHOTOMETRY.MAGNITUDE: mag,
+                PHOTOMETRY.E_MAGNITUDE: err,
+                PHOTOMETRY.TIME: str(row[0]),
+                PHOTOMETRY.U_TIME: 'MJD',
+                PHOTOMETRY.BAND: band,
+                PHOTOMETRY.TELESCOPE: tel,
+                PHOTOMETRY.INSTRUMENT: ins,
+                PHOTOMETRY.SOURCE: source
+            }
+            catalog.entries[name].add_photometry(**photodict)
 
     # 2011ApJ...735..106D
     file_path = os.path.join(catalog.get_current_task_repo(), 'ASCII',
