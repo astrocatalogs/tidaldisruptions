@@ -7,12 +7,13 @@ import re
 import urllib
 from glob import glob
 
+from astropy.time import Time as astrotime
+
+from astrocats.catalog.key import Key, KEY_TYPES
 from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import pbar_strings
 from astrocats.tidaldisruptions.tidaldisruption import (TIDALDISRUPTION,
                                                         TidalDisruption)
-from astropy.time import Time as astrotime
-
 from cdecimal import Decimal
 
 
@@ -211,23 +212,27 @@ def do_external(catalog):
                 continue
             if row[0] == 'redshift':
                 for rs in [x.strip() for x in row[1].split(',')]:
-                    catalog.entries[name].add_quantity('redshift',
-                                                       rs.strip(' *'), source)
+                    catalog.entries[name].add_quantity(
+                        TIDALDISRUPTION.REDSHIFT, rs.strip(' *'), source)
             elif row[0] == 'host':
                 hostname = re.sub('<[^<]+?>', '', row[1])
-                catalog.entries[name].add_quantity('host', hostname, source)
+                catalog.entries[name].add_quantity(
+                    TIDALDISRUPTION.HOST, hostname, source)
             elif row[0] == 'claimedtype' and row[1] != 'TDE':
                 cts = row[1].split(',')
                 for ct in cts:
                     ctype = ct.strip()
-                    catalog.entries[name].add_quantity('claimedtype', ctype,
-                                                       source)
+                    catalog.entries[name].add_quantity(
+                        TIDALDISRUPTION.CLAIMED_TYPE, ctype, source)
             elif row[0] == 'citations':
-                catalog.entries[name].add_quantity('citations', row[1], source)
+                catalog.entries[name].add_quantity(
+                    Key('citations', KEY_TYPES.STRING), row[1], source)
             elif row[0] == 'notes':
-                catalog.entries[name].add_quantity('notes', row[1], source)
+                catalog.entries[name].add_quantity(
+                    Key('notes', KEY_TYPES.STRING), row[1], source)
             elif row[0] == 'nh':
-                catalog.entries[name].add_quantity('nh', row[1], source)
+                catalog.entries[name].add_quantity(
+                    Key('nh', KEY_TYPES.STRING), row[1], source)
             elif row[0] == 'photometry':
                 timeunit = row[1]
                 if timeunit == 'yrs':
