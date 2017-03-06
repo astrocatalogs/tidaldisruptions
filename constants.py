@@ -19,7 +19,7 @@ REPR_BETTER_QUANTITY = {
     'maxdate'
 }
 
-MAX_BANDS = [
+MAX_VISUAL_BANDS = [
     ['B', 'b', 'g'],  # B-like bands first
     ['V', 'G'],       # if not, V-like bands
     ['R', 'r']        # if not, R-like bands

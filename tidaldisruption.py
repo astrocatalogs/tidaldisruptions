@@ -3,6 +3,7 @@
 import warnings
 from collections import OrderedDict
 
+import numpy as np
 from astropy.time import Time as astrotime
 
 from astrocats.catalog.entry import ENTRY, Entry
@@ -20,6 +21,8 @@ from astrocats.tidaldisruptions.constants import MAX_BANDS, PREF_KINDS
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
                                               name_clean, radec_clean)
 from cdecimal import Decimal
+
+from .constants import MAX_VISUAL_BANDS
 
 
 class TIDALDISRUPTION(ENTRY):
@@ -560,7 +563,8 @@ class TidalDisruption(Entry):
                     item[item._KEYS.SOURCE] = ','.join(aliases)
 
     def clean_internal(self, data):
-        """Clean input data from the 'Supernovae/input/internal' repository.
+        """Clean input data from the 'tidaldisruptions/input/internal'
+        repository.
 
         FIX: instead of making changes in place to `dirty_event`, should a new
              event be created, values filled, then returned??
@@ -641,26 +645,44 @@ class TidalDisruption(Entry):
 
         return data
 
-    def _get_max_light(self):
+    def _get_max_light(self, visual=False):
         if self._KEYS.PHOTOMETRY not in self:
             return (None, None, None, None)
 
-        # FIX: THIS
-        eventphoto = [(x['u_time'], x['time'], Decimal(x['magnitude']),
-                       x['band'] if 'band' in x else '', x['source'])
-                      for x in self[self._KEYS.PHOTOMETRY]
-                      if ('magnitude' in x and 'time' in x and 'u_time' in x
-                          and 'upperlimit' not in x)]
+        eventphoto = [
+            (x[PHOTOMETRY.U_TIME], Decimal(x[PHOTOMETRY.TIME])
+             if not isinstance(x[PHOTOMETRY.TIME], list) else
+             Decimal(np.mean(float(y) for y in x[PHOTOMETRY.TIME])),
+             Decimal(x[PHOTOMETRY.MAGNITUDE]), x.get(PHOTOMETRY.BAND, ''),
+             x[PHOTOMETRY.SOURCE]) for x in self[self._KEYS.PHOTOMETRY]
+            if (PHOTOMETRY.MAGNITUDE in x and PHOTOMETRY.TIME in x and x.get(
+                PHOTOMETRY.U_TIME, '') == 'MJD' and PHOTOMETRY.UPPER_LIMIT
+                not in x and not x.get(PHOTOMETRY.INCLUDES_HOST, False))
+        ]
+        # Use photometry that includes host if no other photometry available.
+        if not eventphoto:
+            eventphoto = [
+                (x[PHOTOMETRY.U_TIME], Decimal(x[PHOTOMETRY.TIME])
+                 if not isinstance(x[PHOTOMETRY.TIME], list) else
+                 Decimal(np.mean(float(y) for y in x[PHOTOMETRY.TIME])),
+                 Decimal(x[PHOTOMETRY.MAGNITUDE]), x.get(PHOTOMETRY.BAND, ''),
+                 x[PHOTOMETRY.SOURCE]) for x in self[self._KEYS.PHOTOMETRY]
+                if (PHOTOMETRY.MAGNITUDE in x and PHOTOMETRY.TIME in x and
+                    x.get(PHOTOMETRY.U_TIME, '') == 'MJD' and not x.get(
+                        PHOTOMETRY.INCLUDES_HOST, False))
+            ]
         if not eventphoto:
             return None, None, None, None
 
         mlmag = None
-        for mb in MAX_BANDS:
-            leventphoto = [x for x in eventphoto if x[3] in mb]
-            if leventphoto:
-                mlmag = min([x[2] for x in leventphoto])
-                eventphoto = leventphoto
-                break
+
+        if visual:
+            for mb in MAX_VISUAL_BANDS:
+                leventphoto = [x for x in eventphoto if x[3] in mb]
+                if leventphoto:
+                    mlmag = min([x[2] for x in leventphoto])
+                    eventphoto = leventphoto
+                    break
 
         if not mlmag:
             mlmag = min([x[2] for x in eventphoto])
@@ -680,12 +702,24 @@ class TidalDisruption(Entry):
         if self._KEYS.PHOTOMETRY not in self:
             return None, None
 
-        # FIX THIS
-        eventphoto = [(Decimal(x['time']) if isinstance(x['time'], str) else
-                       Decimal(min(float(y) for y in x['time'])), x['source'])
+        eventphoto = [(Decimal(x[PHOTOMETRY.TIME])
+                       if not isinstance(x[PHOTOMETRY.TIME], list) else
+                       Decimal(min(float(y) for y in x[PHOTOMETRY.TIME])),
+                       x[PHOTOMETRY.SOURCE])
                       for x in self[self._KEYS.PHOTOMETRY]
-                      if 'upperlimit' not in x and 'time' in x and 'u_time' in
-                      x and x['u_time'] == 'MJD']
+                      if PHOTOMETRY.UPPER_LIMIT not in x and PHOTOMETRY.TIME in
+                      x and x.get(PHOTOMETRY.U_TIME, '') == 'MJD' and
+                      PHOTOMETRY.INCLUDES_HOST not in x]
+        # Use photometry that includes host if no other photometry available.
+        if not eventphoto:
+            eventphoto = [
+                (Decimal(x[PHOTOMETRY.TIME])
+                 if not isinstance(x[PHOTOMETRY.TIME], list) else
+                 Decimal(min(float(y) for y in x[PHOTOMETRY.TIME])),
+                 x[PHOTOMETRY.SOURCE]) for x in self[self._KEYS.PHOTOMETRY]
+                if PHOTOMETRY.UPPER_LIMIT not in x and PHOTOMETRY.TIME in x and
+                x.get(PHOTOMETRY.U_TIME, '') == 'MJD'
+            ]
         if not eventphoto:
             return None, None
         flmjd = min([x[0] for x in eventphoto])
