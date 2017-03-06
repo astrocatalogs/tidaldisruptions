@@ -17,12 +17,10 @@ from astrocats.catalog.utils import (bib_priority, get_sig_digits,
                                      get_source_year, is_number, jd_to_mjd,
                                      listify, make_date_string, pretty_num,
                                      uniq_cdl)
-from astrocats.tidaldisruptions.constants import MAX_BANDS, PREF_KINDS
+from astrocats.tidaldisruptions.constants import MAX_VISUAL_BANDS, PREF_KINDS
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
                                               name_clean, radec_clean)
 from cdecimal import Decimal
-
-from .constants import MAX_VISUAL_BANDS
 
 
 class TIDALDISRUPTION(ENTRY):
