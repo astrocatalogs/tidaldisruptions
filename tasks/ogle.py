@@ -4,9 +4,10 @@ import os
 import re
 import urllib
 
-from astrocats.catalog.utils import is_number, jd_to_mjd, pbar, uniq_cdl
 from bs4 import BeautifulSoup, NavigableString, Tag
 
+from astrocats.catalog.tidaldisruption import TIDALDISRUPTION
+from astrocats.catalog.utils import is_number, jd_to_mjd, pbar, uniq_cdl
 from cdecimal import Decimal
 
 
@@ -117,7 +118,8 @@ def do_ogle(catalog):
                     catalog.entries[name].add_source(
                         name=reference, url=refurl)
                 ]
-                catalog.entries[name].add_quantity('alias', name, sources[0])
+                catalog.entries[name].add_quantity(
+                    TIDALDISRUPTION.ALIAS, name, sources[0])
                 if atelref and atelref != 'ATel#----':
                     sources.append(catalog.entries[name].add_source(
                         name=atelref, url=atelurl))
@@ -127,22 +129,24 @@ def do_ogle(catalog):
                     if name[4] == '-':
                         if is_number(name[5:9]):
                             catalog.entries[name].add_quantity(
-                                'discoverdate', name[5:9], sources)
+                                TIDALDISRUPTION.DISCOVER_DATE, name[5:9],
+                                sources)
                     else:
                         if is_number(name[4:6]):
                             catalog.entries[name].add_quantity(
-                                'discoverdate', '20' + name[4:6], sources)
+                                TIDALDISRUPTION.DISCOVER_DATE,
+                                '20' + name[4:6], sources)
 
                 # RA and Dec from OGLE pages currently not reliable
                 # catalog.entries[name].add_quantity('ra', ra, sources)
                 # catalog.entries[name].add_quantity('dec', dec, sources)
                 if claimedtype and claimedtype != '-':
-                    catalog.entries[name].add_quantity('claimedtype',
-                                                       claimedtype, sources)
+                    catalog.entries[name].add_quantity(
+                        TIDALDISRUPTION.CLAIMED_TYPE, claimedtype, sources)
                 elif ('SN' not in name and
                       'claimedtype' not in catalog.entries[name]):
-                    catalog.entries[name].add_quantity('claimedtype',
-                                                       'Candidate', sources)
+                    catalog.entries[name].add_quantity(
+                        TIDALDISRUPTION.CLAIMED_TYPE, 'Candidate', sources)
                 for row in lcdat:
                     row = row.split()
                     mjd = str(jd_to_mjd(Decimal(row[0])))
