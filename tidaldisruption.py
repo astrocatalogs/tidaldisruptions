@@ -3,6 +3,8 @@
 import warnings
 from collections import OrderedDict
 
+from astropy.time import Time as astrotime
+
 from astrocats.catalog.entry import ENTRY, Entry
 from astrocats.catalog.error import ERROR
 from astrocats.catalog.key import KEY_TYPES, Key
@@ -17,8 +19,6 @@ from astrocats.catalog.utils import (bib_priority, get_sig_digits,
 from astrocats.tidaldisruptions.constants import MAX_BANDS, PREF_KINDS
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
                                               name_clean, radec_clean)
-from astropy.time import Time as astrotime
-
 from cdecimal import Decimal
 
 
@@ -82,7 +82,7 @@ class TidalDisruption(Entry):
         if error and (not is_number(error) or float(error) < 0):
             raise ValueError(self.parent[
                 self.parent._KEYS.NAME] + "'s quanta " + key +
-                             ' error value must be a number and positive.')
+                ' error value must be a number and positive.')
 
         # Set default units
         if not unit and key == self._KEYS.VELOCITY:
@@ -459,7 +459,8 @@ class TidalDisruption(Entry):
                     SPECTRUM.TIME in x for x in self[self._KEYS.SPECTRA]
                 ]))):
             self[self._KEYS.SPECTRA].sort(
-                key=lambda x: (float(x[SPECTRUM.TIME]) if SPECTRUM.TIME in x else 0.0, x[SPECTRUM.FILENAME] if SPECTRUM.FILENAME in x else '')
+                key=lambda x: (float(x[SPECTRUM.TIME]) if SPECTRUM.TIME in x else 0.0,
+                               x[SPECTRUM.FILENAME] if SPECTRUM.FILENAME in x else '')
             )
 
         if self._KEYS.SOURCES in self:
@@ -688,30 +689,48 @@ class TidalDisruption(Entry):
         return flmjd, flsource
 
     def set_first_max_light(self):
-        if 'maxappmag' not in self:
+        if TIDALDISRUPTION.MAX_APP_MAG not in self:
+            # Get the maximum amongst all bands
             mldt, mlmag, mlband, mlsource = self._get_max_light()
-            if mldt:
+            if mldt or mlmag or mlband:
                 source = self.add_self_source()
+                uniq_src = uniq_cdl([source] + mlsource.split(','))
+            if mldt:
                 max_date = make_date_string(mldt.year, mldt.month, mldt.day)
                 self.add_quantity(
-                    'maxdate',
+                    TIDALDISRUPTION.MAX_DATE, max_date, uniq_src, derived=True)
+            if mlmag:
+                mlmag = pretty_num(mlmag)
+                self.add_quantity(
+                    TIDALDISRUPTION.MAX_APP_MAG, mlmag, uniq_src, derived=True)
+            if mlband:
+                self.add_quantity(
+                    TIDALDISRUPTION.MAX_BAND, mlband, uniq_src, derived=True)
+
+        if TIDALDISRUPTION.MAX_VISUAL_APP_MAG not in self:
+            # Get the "visual" maximum
+            mldt, mlmag, mlband, mlsource = self._get_max_light(visual=True)
+            if mldt or mlmag or mlband:
+                source = self.add_self_source()
+                uniq_src = uniq_cdl([source] + mlsource.split(','))
+            if mldt:
+                max_date = make_date_string(mldt.year, mldt.month, mldt.day)
+                self.add_quantity(
+                    TIDALDISRUPTION.MAX_VISUAL_DATE,
                     max_date,
-                    uniq_cdl([source] + mlsource.split(',')),
+                    uniq_src,
                     derived=True)
             if mlmag:
-                source = self.add_self_source()
+                mlmag = pretty_num(mlmag)
                 self.add_quantity(
-                    'maxappmag',
-                    pretty_num(mlmag),
-                    uniq_cdl([source] + mlsource.split(',')),
+                    TIDALDISRUPTION.MAX_VISUAL_APP_MAG,
+                    mlmag,
+                    uniq_src,
                     derived=True)
             if mlband:
-                source = self.add_self_source()
-                (self.add_quantity(
-                    'maxband',
-                    mlband,
-                    uniq_cdl([source] + mlsource.split(',')),
-                    derived=True))
+                self.add_quantity(
+                    TIDALDISRUPTION.MAX_VISUAL_BAND, mlband, uniq_src,
+                    derived=True)
 
         if (self._KEYS.DISCOVER_DATE not in self or max([
                 len(x[QUANTITY.VALUE].split('/'))
@@ -740,7 +759,7 @@ class TidalDisruption(Entry):
 
                     if mjd < minspecmjd:
                         minspecmjd = mjd
-                        minspecsource = spectrum['source']
+                        minspecsource = spectrum[SPECTRUM.SOURCE]
 
             if minspecmjd < float("+inf"):
                 fldt = astrotime(minspecmjd, format='mjd').datetime
@@ -756,7 +775,7 @@ class TidalDisruption(Entry):
     def get_best_redshift(self):
         bestsig = -1
         bestkind = 10
-        for z in self['redshift']:
+        for z in self[TIDALDISRUPTION.REDSHIFT]:
             kind = PREF_KINDS.index(z['kind'] if 'kind' in z else '')
             sig = get_sig_digits(z[QUANTITY.VALUE])
             if sig > bestsig and kind <= bestkind:
