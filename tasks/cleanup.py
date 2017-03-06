@@ -5,14 +5,14 @@ import statistics
 import warnings
 from math import hypot, log10, pi, sqrt
 
-from astrocats.catalog.quantity import QUANTITY
-from astrocats.catalog.utils import (get_sig_digits, is_number, pbar,
-                                     pretty_num, tprint, uniq_cdl)
 from astropy import units as un
 from astropy.coordinates import SkyCoord as coord
 from astropy.cosmology import Planck15 as cosmo
 from astropy.cosmology import z_at_value
 
+from astrocats.catalog.quantity import QUANTITY
+from astrocats.catalog.utils import (get_sig_digits, is_number, pbar,
+                                     pretty_num, tprint, uniq_cdl)
 from cdecimal import Decimal
 
 from ..constants import CLIGHT, KM, PREF_KINDS
@@ -179,7 +179,7 @@ def do_cleanup(catalog):
                             ('.' + rastr[6:] if len(rastr) > 6 else '')
                         dec = (decsign + ':'.join(
                             [decstr[:2], decstr[2:4], decstr[4:6]]) +
-                               ('.' + decstr[6:] if len(decstr) > 6 else ''))
+                            ('.' + decstr[6:] if len(decstr) > 6 else ''))
                         if catalog.args.verbose:
                             tprint('Added ra/dec from name: ' + ra + ' ' + dec)
                         source = catalog.entries[name].add_self_source()
@@ -300,7 +300,6 @@ def do_cleanup(catalog):
                     redshift = pretty_num(
                         redz, sig=get_sig_digits(str(meddist)))
                     catalog.entries[name].add_quantity(
-                        name,
                         TIDALDISRUPTION.REDSHIFT,
                         redshift,
                         uniq_cdl([source, secondarysource]),
@@ -324,8 +323,8 @@ def do_cleanup(catalog):
                                      float(bestld) * un.Mpc)
                 pnum = (float(catalog.entries[name][
                     TIDALDISRUPTION.MAX_APP_MAG][0][QUANTITY.VALUE]) - 5.0 *
-                        (log10(float(bestld) * 1.0e6) - 1.0
-                         ) + 2.5 * log10(1.0 + bestldz))
+                    (log10(float(bestld) * 1.0e6) - 1.0
+                     ) + 2.5 * log10(1.0 + bestldz))
                 pnum = pretty_num(pnum, sig=bestsig)
                 catalog.entries[name].add_quantity(
                     TIDALDISRUPTION.MAX_ABS_MAG, pnum, sources, derived=True)
@@ -438,25 +437,27 @@ def do_cleanup(catalog):
                               c2.dec.degree))
                     hosa = pretty_num(hosa * Decimal(3600.))
                     catalog.entries[name].add_quantity(
-                        'hostoffsetang',
+                        TIDALDISRUPTION.HOST_OFFSET_ANG,
                         hosa,
                         sources,
                         derived=True,
                         u_value='arcseconds')
                 if (TIDALDISRUPTION.COMOVING_DIST in catalog.entries[name] and
                         TIDALDISRUPTION.REDSHIFT in catalog.entries[name] and
-                        'hostoffsetdist' not in catalog.entries[name]):
+                        TIDALDISRUPTION.HOST_OFFSET_DIST not in
+                        catalog.entries[name]):
                     offsetsig = get_sig_digits(catalog.entries[name][
-                        'hostoffsetang'][0][QUANTITY.VALUE])
+                        TIDALDISRUPTION.HOST_OFFSET_ANG][0][QUANTITY.VALUE])
                     sources = uniq_cdl(
                         sources.split(',') + (catalog.entries[name][
                             TIDALDISRUPTION.COMOVING_DIST][0]['source']).
                         split(',') + (catalog.entries[name][
                             TIDALDISRUPTION.REDSHIFT][0]['source']).split(','))
                     (catalog.entries[name].add_quantity(
-                        'hostoffsetdist',
+                        TIDALDISRUPTION.HOST_OFFSET_DIST,
                         pretty_num(
-                            float(catalog.entries[name]['hostoffsetang'][0][
+                            float(catalog.entries[name][
+                                TIDALDISRUPTION.HOST_OFFSET_ANG][0][
                                 QUANTITY.VALUE]) / 3600. * (pi / 180.) *
                             float(catalog.entries[name][
                                 TIDALDISRUPTION.COMOVING_DIST][0][
