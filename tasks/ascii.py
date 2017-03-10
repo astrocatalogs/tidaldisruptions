@@ -23,7 +23,7 @@ def do_ascii(catalog):
                              'iPTF16fnl.tex')
     data = read(file_path, format='latex')
     name, source = catalog.new_entry(
-        'iPTF16fnl', arxivid='1703.00965')
+        'iPTF16fnl', bibcode='2017arXiv170300965B')
     header = [s[s.find("{") + 1:s.find("}")].replace('$', '')
               for s in list(data.columns)]
     bands = header[2:]
