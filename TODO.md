@@ -13,7 +13,10 @@ Other multiple TDE datasets:
 * No missing multiple TDE datasets known at this time.
 
 Other single TDE datasets:
-* No missing single TDE datasets known at this time.
+* Photometry for iPTF16axa
+* Spectra for ASASSN-15oi
+* Spectra for PS1-10jh
+* Spectra for PS1-11af
 
 Online catalogs:
 * No known missing online catalogs at this time.
