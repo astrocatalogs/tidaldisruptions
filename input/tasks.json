@@ -84,6 +84,17 @@
         "always_journal": true,
         "priority": 8
     },
+    "cpcs": {
+        "nice_name": "%pre CPCS",
+        "active": true,
+        "update": true,
+        "archived": false,
+        "module": "tidaldisruptions.tasks.cpcs",
+        "function": "do_cpcs",
+        "repo": "input/tde-external",
+        "always_journal": true,
+        "priority": 9
+    },
     "donated_spectra": {
         "nice_name": "%pre Donated spectra",
         "active": true,

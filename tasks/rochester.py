@@ -1,5 +1,4 @@
-"""Import tasks for David Bishop's Latest Supernovae page.
-"""
+"""Import tasks for David Bishop's Latest Supernovae page."""
 import csv
 import os
 import re
@@ -11,26 +10,65 @@ from bs4 import BeautifulSoup
 
 from astrocats.catalog.utils import is_number, make_date_string, pbar, uniq_cdl
 
+from ..tidaldisruption import TIDALDISRUPTION
+
 
 def do_rochester(catalog):
-    rochestermirrors = ['http://www.rochesterastronomy.org/',
-                        'http://www.supernova.thistlethwaites.com/']
-    rochesterpaths = ['snimages/snredshiftall.html',
-                      'sn2016/snredshift.html', 'snimages/snredboneyard.html']
-    rochesterupdate = [False, True, True]
+    """Import data from the Latest Supernovae page."""
+    rochestermirrors = [
+        'http://www.rochesterastronomy.org/',
+        'http://www.supernova.thistlethwaites.com/'
+    ]
+    rochesterpaths = [
+        'snimages/snredshiftall.html', 'sn2017/snredshift.html',
+        'snimages/snredboneyard.html', 'snimages/snredboneyard-old.html'
+    ]
+    rochesterupdate = [False, True, True, False]
     task_str = catalog.get_current_task_str()
+    baddates = ['2440587', '2440587.292', '0001/01/01']
 
     for pp, path in enumerate(pbar(rochesterpaths, task_str)):
         if catalog.args.update and not rochesterupdate[pp]:
             continue
 
-        filepath = (os.path.join(
-            catalog.get_current_task_repo(), 'rochester/') +
-                    os.path.basename(path))
+        if 'snredboneyard.html' in path:
+            cns = {
+                'name': 0,
+                'host': 1,
+                'ra': 2,
+                'dec': 3,
+                'type': 7,
+                'z': 8,
+                'mmag': 9,
+                'max': 10,
+                'disc': 11,
+                'ref': 12,
+                'dver': 13,
+                'aka': 14
+            }
+        else:
+            cns = {
+                'name': 0,
+                'type': 1,
+                'host': 2,
+                'ra': 3,
+                'dec': 4,
+                'disc': 6,
+                'max': 7,
+                'mmag': 8,
+                'z': 11,
+                'zh': 12,
+                'ref': 13,
+                'dver': 14,
+                'aka': 15
+            }
+
+        filepath = (
+            os.path.join(catalog.get_current_task_repo(), 'rochester/') +
+            path.replace('/', '-'))
         for mirror in rochestermirrors:
-            html = catalog.load_cached_url(
-                mirror + path, filepath,
-                failhard=(mirror != rochestermirrors[-1]))
+            html = catalog.load_url(
+                mirror + path, filepath, fail=(mirror != rochestermirrors[-1]))
             if html:
                 break
 
@@ -42,6 +80,7 @@ def do_rochester(catalog):
         sec_ref = 'Latest Supernovae'
         sec_refurl = ('http://www.rochesterastronomy.org/'
                       'snimages/snredshiftall.html')
+        loopcnt = 0
         for rr, row in enumerate(pbar(rows, task_str)):
             if rr == 0:
                 continue
@@ -50,27 +89,29 @@ def do_rochester(catalog):
                 continue
 
             name = ''
-            if cols[14].contents:
-                aka = str(cols[14].contents[0]).strip()
-                if is_number(aka.strip('?')):
-                    aka = 'SN' + aka.strip('?') + 'A'
-                    oldname = aka
-                    name = catalog.add_entry(aka)
-                elif len(aka) == 4 and is_number(aka[:4]):
-                    aka = 'SN' + aka
-                    oldname = aka
-                    name = catalog.add_entry(aka)
+            if cols[cns['aka']].contents:
+                for rawaka in str(cols[cns['aka']].contents[0]).split(','):
+                    aka = rawaka.strip()
+                    if is_number(aka.strip('?')):
+                        aka = 'SN' + aka.strip('?') + 'A'
+                        oldname = aka
+                        name = catalog.add_entry(aka)
+                    elif len(aka) == 4 and is_number(aka[:4]):
+                        aka = 'SN' + aka
+                        oldname = aka
+                        name = catalog.add_entry(aka)
 
-            ra = str(cols[3].contents[0]).strip()
-            dec = str(cols[4].contents[0]).strip()
+            ra = str(cols[cns['ra']].contents[0]).strip()
+            dec = str(cols[cns['dec']].contents[0]).strip()
 
-            sn = re.sub('<[^<]+?>', '', str(cols[0].contents[0])).strip()
+            sn = re.sub('<[^<]+?>', '',
+                        str(cols[cns['name']].contents[0])).strip()
             if is_number(sn.strip('?')):
                 sn = 'SN' + sn.strip('?') + 'A'
             elif len(sn) == 4 and is_number(sn[:4]):
                 sn = 'SN' + sn
             if not name:
-                if not sn:
+                if not sn or sn in ['Transient']:
                     continue
                 if sn[:8] == 'MASTER J':
                     sn = sn.replace('MASTER J', 'MASTER OT J').replace(
@@ -80,77 +121,115 @@ def do_rochester(catalog):
                     sn += dec.replace(':', '').replace('.', '')
                 oldname = sn
                 name = catalog.add_entry(sn)
-
-            reference = cols[12].findAll('a')[0].contents[0].strip()
-            refurl = cols[12].findAll('a')[0]['href'].strip()
-            source = catalog.entries[name].add_source(
-                name=reference, url=refurl)
             sec_source = catalog.entries[name].add_source(
                 name=sec_ref, url=sec_refurl, secondary=True)
-            sources = uniq_cdl(list(filter(None, [source, sec_source])))
-            catalog.entries[name].add_quantity('alias', oldname, sources)
-            catalog.entries[name].add_quantity('alias', sn, sources)
+            sources = []
+            if 'ref' in cns:
+                reftag = reference = cols[cns['ref']].findAll('a')
+                if len(reftag):
+                    reference = reftag[0].contents[0].strip()
+                    refurl = reftag[0]['href'].strip()
+                    sources.append(catalog.entries[name].add_source(
+                        name=reference, url=refurl))
+            sources.append(sec_source)
+            sources = uniq_cdl(list(filter(None, sources)))
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.ALIAS, oldname,
+                                               sources)
+            catalog.entries[name].add_quantity(
+                TIDALDISRUPTION.ALIAS, sn, sources)
 
-            if cols[14].contents:
-                if aka == 'SNR G1.9+0.3':
-                    aka = 'G001.9+00.3'
-                if aka[:4] == 'PS1 ':
-                    aka = 'PS1-' + aka[4:]
-                if aka[:8] == 'MASTER J':
-                    aka = aka.replace('MASTER J', 'MASTER OT J').replace(
-                        'SNHunt', 'SNhunt')
-                if 'POSSIBLE' in aka.upper() and ra and dec:
-                    aka = 'PSN J' + ra.replace(':', '').replace('.', '')
-                    aka += dec.replace(':', '').replace('.', '')
-                catalog.entries[name].add_quantity('alias', aka, sources)
+            if cols[cns['aka']].contents:
+                for rawaka in str(cols[cns['aka']].contents[0]).split(','):
+                    aka = rawaka.strip()
+                    if aka == 'SNR G1.9+0.3':
+                        aka = 'G001.9+00.3'
+                    if aka[:4] == 'PS1 ':
+                        aka = 'PS1-' + aka[4:]
+                    if aka[:8] == 'MASTER J':
+                        aka = aka.replace('MASTER J', 'MASTER OT J').replace(
+                            'SNHunt', 'SNhunt')
+                    if 'POSSIBLE' in aka.upper() and ra and dec:
+                        aka = 'PSN J' + ra.replace(':', '').replace('.', '')
+                        aka += dec.replace(':', '').replace('.', '')
+                    catalog.entries[name].add_quantity(
+                        TIDALDISRUPTION.ALIAS, aka, sources)
 
-            if str(cols[1].contents[0]).strip() != 'unk':
-                type = str(cols[1].contents[0]).strip(' :,')
+            if str(cols[cns['type']].contents[0]).strip() != 'unk':
+                ctype = str(cols[cns['type']].contents[0]).strip(' :,')
                 catalog.entries[name].add_quantity(
-                    'claimedtype', type, sources)
-            if str(cols[2].contents[0]).strip() != 'anonymous':
-                catalog.entries[name].add_quantity('host', str(
-                    cols[2].contents[0]).strip(), sources)
-            catalog.entries[name].add_quantity('ra', ra, sources)
-            catalog.entries[name].add_quantity('dec', dec, sources)
-            if (str(cols[6].contents[0]).strip() not in
-                    ['2440587', '2440587.292']):
-                astrot = astrotime(
-                    float(str(cols[6].contents[0]).strip()),
-                    format='jd').datetime
-                ddate = make_date_string(astrot.year, astrot.month, astrot.day)
+                    TIDALDISRUPTION.CLAIMED_TYPE, ctype, sources)
+            if (len(cols[cns['host']].contents) > 0 and
+                    str(cols[cns['host']].contents[0]).strip() != 'anonymous'):
                 catalog.entries[name].add_quantity(
-                    'discoverdate', ddate, sources)
-            if (str(cols[7].contents[0]).strip() not in
-                    ['2440587', '2440587.292']):
-                astrot = astrotime(
-                    float(str(cols[7].contents[0]).strip()), format='jd')
-                if ((float(str(cols[8].contents[0]).strip()) <= 90.0 and
-                     not any('GRB' in xx for xx in
-                             catalog.entries[name].get_aliases()))):
-                    mag = str(cols[8].contents[0]).strip()
+                    TIDALDISRUPTION.HOST,
+                    str(cols[cns['host']].contents[0]).strip(), sources)
+            catalog.entries[name].add_quantity(TIDALDISRUPTION.RA, ra, sources)
+            catalog.entries[name].add_quantity(
+                TIDALDISRUPTION.DEC, dec, sources)
+            discstr = str(cols[cns['disc']].contents[0]).strip()
+            if discstr and discstr not in baddates:
+                if '/' not in discstr:
+                    astrot = astrotime(float(discstr), format='jd').datetime
+                    ddate = make_date_string(astrot.year, astrot.month,
+                                             astrot.day)
+                else:
+                    ddate = discstr
+                catalog.entries[name].add_quantity(
+                    TIDALDISRUPTION.DISCOVER_DATE, ddate, sources)
+            maxstr = str(cols[cns.get('max', '')].contents[0]).strip()
+            if maxstr and maxstr not in baddates:
+                try:
+                    if '/' not in maxstr:
+                        astrot = astrotime(float(maxstr), format='jd')
+                    else:
+                        astrot = astrotime(
+                            maxstr.replace('/', '-'), format='iso')
+                except Exception:
+                    catalog.log.info(
+                        'Max date conversion failed for `{}`.'.format(maxstr))
+                if ((float(str(
+                    cols[cns['mmag']].contents[0])
+                    .strip()) <= 90.0 and not any(
+                        'GRB' in xx for xx in
+                        catalog.entries[name].get_aliases()))):
+                    mag = str(cols[cns['mmag']].contents[0]).strip()
                     catalog.entries[name].add_photometry(
-                        time=str(astrot.mjd), magnitude=mag,
+                        time=str(astrot.mjd),
+                        u_time='MJD',
+                        magnitude=mag,
                         source=sources)
-            if cols[11].contents[0] != 'n/a':
-                catalog.entries[name].add_quantity('redshift', str(
-                    cols[11].contents[0]).strip(), sources)
-            catalog.entries[name].add_quantity('discoverer', str(
-                cols[13].contents[0]).strip(), sources)
+            if 'z' in cns and cols[cns['z']].contents[0] != 'n/a':
+                catalog.entries[name].add_quantity(
+                    TIDALDISRUPTION.REDSHIFT,
+                    str(cols[cns['z']].contents[0]).strip(), sources)
+            if 'zh' in cns:
+                zhost = str(cols[cns['zh']].contents[0]).strip()
+                if is_number(zhost):
+                    catalog.entries[name].add_quantity(
+                        TIDALDISRUPTION.REDSHIFT, zhost, sources)
+            if 'dver' in cns:
+                catalog.entries[name].add_quantity(
+                    TIDALDISRUPTION.DISCOVERER,
+                    str(cols[cns['dver']].contents[0]).strip(), sources)
             if catalog.args.update:
                 catalog.journal_entries()
+            loopcnt = loopcnt + 1
+            if (catalog.args.travis and
+                    loopcnt % catalog.TRAVIS_QUERY_LIMIT == 0):
+                break
 
     if not catalog.args.update:
         vsnetfiles = ['latestsne.dat']
         for vsnetfile in vsnetfiles:
-            file_name = os.path.join(
-                catalog.get_current_task_repo(), "" + vsnetfile)
+            file_name = os.path.join(catalog.get_current_task_repo(),
+                                     "" + vsnetfile)
             with open(file_name, 'r', encoding='latin1') as csv_file:
-                tsvin = csv.reader(csv_file, delimiter=' ',
-                                   skipinitialspace=True)
+                tsvin = csv.reader(
+                    csv_file, delimiter=' ', skipinitialspace=True)
+                loopcnt = 0
                 for rr, row in enumerate(tsvin):
-                    if (not row or row[0][:4] in ['http', 'www.'] or
-                            len(row) < 3):
+                    if (not row or row[0] in ['Transient'] or
+                            row[0][:4] in ['http', 'www.'] or len(row) < 3):
                         continue
                     name = row[0].strip()
                     if name[:4].isdigit():
@@ -163,7 +242,7 @@ def do_rochester(catalog):
                     sec_source = catalog.entries[name].add_source(
                         name=sec_ref, url=sec_refurl, secondary=True)
                     catalog.entries[name].add_quantity(
-                        'alias', name, sec_source)
+                        TIDALDISRUPTION.ALIAS, name, sec_source)
 
                     if not is_number(row[1]):
                         continue
@@ -172,8 +251,8 @@ def do_rochester(catalog):
                     day = row[1][6:]
                     if '.' not in day:
                         day = day[:2] + '.' + day[2:]
-                    mjd = astrotime(year + '-' + month + '-' +
-                                    str(floor(float(day))).zfill(2)).mjd
+                    mjd = astrotime(year + '-' + month + '-' + str(
+                        floor(float(day))).zfill(2)).mjd
                     mjd += float(day) - floor(float(day))
                     magnitude = row[2].rstrip(ascii_letters)
                     if not is_number(magnitude):
@@ -197,10 +276,10 @@ def do_rochester(catalog):
                             sources = sec_source
                         else:
                             reference = ' '.join(row[refind:])
-                            source = catalog.entries[
-                                name].add_source(name=reference)
+                            source = catalog.entries[name].add_source(
+                                name=reference)
                             catalog.entries[name].add_quantity(
-                                'alias', name, sec_source)
+                                TIDALDISRUPTION.ALIAS, name, sec_source)
                             sources = uniq_cdl([source, sec_source])
                     else:
                         sources = sec_source
@@ -208,8 +287,16 @@ def do_rochester(catalog):
                     band = row[2].lstrip('1234567890.')
 
                     catalog.entries[name].add_photometry(
-                        time=mjd, band=band, magnitude=magnitude,
-                        e_magnitude=e_magnitude, source=sources)
+                        time=mjd,
+                        u_time='MJD',
+                        band=band,
+                        magnitude=magnitude,
+                        e_magnitude=e_magnitude,
+                        source=sources)
+
+                    if (catalog.args.travis and
+                            loopcnt % catalog.TRAVIS_QUERY_LIMIT == 0):
+                        break
 
     catalog.journal_entries()
     return
