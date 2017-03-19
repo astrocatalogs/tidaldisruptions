@@ -73,6 +73,17 @@
         "repo": "input/tde-external",
         "priority": 7
     },
+    "tns_photo": {
+        "nice_name": "%pre TNS photometry",
+        "active": true,
+        "update": false,
+        "archived": false,
+        "module": "tidaldisruptions.tasks.tns",
+        "function": "do_tns_photo",
+        "repo": "input/tde-external",
+        "always_journal": true,
+        "priority": 8
+    },
     "donated_spectra": {
         "nice_name": "%pre Donated spectra",
         "active": true,
@@ -94,6 +105,17 @@
         "repo": "input/tde-external-WISEREP",
         "always_journal": true,
         "priority": 201
+    },
+    "tns_spectra": {
+        "nice_name": "%pre TNS spectra",
+        "active": true,
+        "update": true,
+        "module": "tidaldisruptions.tasks.tns",
+        "function": "do_tns_spectra",
+        "groups": ["spectra"],
+        "repo": "input/tde-external-spectra",
+        "always_journal": true,
+        "priority": 301
     },
     "crts": {
         "nice_name": "%pre CRTS",
