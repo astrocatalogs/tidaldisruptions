@@ -96,7 +96,6 @@ class TidalDisruptionCatalog(Catalog):
                     if up_val in up_types:
                         bury_entry = True
                         ct_val = ct['value']
-                        break
 
             if bury_entry:
                 self.log.debug(
