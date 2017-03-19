@@ -63,6 +63,16 @@
         "repo": "input/tde-external",
         "priority": 6
     },
+    "tns": {
+        "nice_name": "%pre TNS metadata",
+        "active": true,
+        "update": true,
+        "archived": false,
+        "module": "tidaldisruptions.tasks.tns",
+        "function": "do_tns",
+        "repo": "input/tde-external",
+        "priority": 7
+    },
     "donated_spectra": {
         "nice_name": "%pre Donated spectra",
         "active": true,
