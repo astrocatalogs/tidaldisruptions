@@ -77,7 +77,9 @@ def do_tns(catalog):
             if ri == 0:
                 continue
             oname = row[1].replace(' ', '')
-            if not catalog.entry_exists(oname):
+            alt = row[10]
+            if (not catalog.entry_exists(oname) and
+                    not catalog.entry_exists(alt)):
                 continue
             name = catalog.add_entry(oname)
             source = catalog.entries[name].add_source(
@@ -118,9 +120,9 @@ def do_tns(catalog):
             #        catalog.entries[name].add_quantity('observer',
             #                                  observer.strip(),
             #                                  source)
-            if row[10]:
+            if alt:
                 catalog.entries[name].add_quantity(
-                    TIDALDISRUPTION.ALIAS, row[10], source)
+                    TIDALDISRUPTION.ALIAS, alt, source)
             if row[16]:
                 date = row[16].split()[0].replace('-', '/')
                 if date != '0000/00/00':
