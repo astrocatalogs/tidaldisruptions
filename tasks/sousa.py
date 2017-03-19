@@ -1,5 +1,4 @@
-"""Import tasks for data directly donated to the Open Supernova Catalog.
-"""
+"""Import tasks for SOUSA."""
 import os
 from html import unescape
 from glob import glob
@@ -12,6 +11,7 @@ from astrocats.catalog.entry import ENTRY
 
 
 def do_sousa(catalog):
+    """Import data from SOUSA."""
     task_str = catalog.get_current_task_str()
 
     html = catalog.load_url(

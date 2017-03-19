@@ -362,9 +362,9 @@ class TidalDisruption(Entry):
 
     def add_self_source(self):
         return self.add_source(
-            bibcode=self.catalog.OSC_BIBCODE,
-            name=self.catalog.OSC_NAME,
-            url=self.catalog.OSC_URL,
+            bibcode=self.catalog.OTC_BIBCODE,
+            name=self.catalog.OTC_NAME,
+            url=self.catalog.OTC_URL,
             secondary=True)
 
     def is_erroneous(self, field, sources):

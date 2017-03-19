@@ -1,5 +1,4 @@
-"""Tidal disruption-specific catalog class.
-"""
+"""Tidal disruption-specific catalog class."""
 import codecs
 import json
 import os
@@ -15,6 +14,10 @@ from .utils import name_clean
 
 
 class TidalDisruptionCatalog(Catalog):
+
+    OTC_BIBCODE = '2017ApJ...835...64G'
+    OTC_NAME = 'The Open TDE Catalog'
+    OTC_URL = 'https://tde.space'
 
     class PATHS(Catalog.PATHS):
 
@@ -102,8 +105,7 @@ class TidalDisruptionCatalog(Catalog):
         return (bury_entry, save_entry)
 
     def _load_aux_data(self):
-        """Load auxiliary dictionaries for use in this catalog.
-        """
+        """Load auxiliary dictionaries for use in this catalog."""
         # Create/Load auxiliary dictionaries
         self.nedd_dict = OrderedDict()
         self.bibauthor_dict = read_json_dict(self.PATHS.BIBAUTHORS)
