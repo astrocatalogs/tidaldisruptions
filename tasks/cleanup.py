@@ -1,5 +1,4 @@
-"""
-"""
+"""Cleanup catalog before writing to disk."""
 import re
 import statistics
 import warnings
@@ -20,6 +19,7 @@ from ..tidaldisruption import TIDALDISRUPTION
 
 
 def do_cleanup(catalog):
+    """Task to cleanup catalog before final write."""
     task_str = catalog.get_current_task_str()
 
     # Set preferred names, calculate some columns based on imported data,
@@ -144,8 +144,8 @@ def do_cleanup(catalog):
                                 len(year) <= 4):
                             discoverdate = year
                             if catalog.args.verbose:
-                                tprint('Added discoverdate from name [' + alias
-                                       + ']: ' + discoverdate)
+                                tprint('Added discoverdate from name [' +
+                                       alias + ']: ' + discoverdate)
                             source = catalog.entries[name].add_self_source()
                             catalog.entries[name].add_quantity(
                                 TIDALDISRUPTION.DISCOVER_DATE,
@@ -207,7 +207,7 @@ def do_cleanup(catalog):
                     result = IrsaDust.get_query_table(ra_dec, section='ebv')
                 except (KeyboardInterrupt, SystemExit):
                     raise
-                except:
+                except Exception:
                     warnings.warn("Coordinate lookup for " + name +
                                   " failed in IRSA.")
                 else:
@@ -335,7 +335,7 @@ def do_cleanup(catalog):
             if bestsig > 0:
                 try:
                     bestz = float(bestz)
-                except:
+                except Exception:
                     print(catalog.entries[name])
                     raise
                 if TIDALDISRUPTION.VELOCITY not in catalog.entries[name]:
@@ -348,7 +348,8 @@ def do_cleanup(catalog):
                         TIDALDISRUPTION.VELOCITY,
                         pnum,
                         source,
-                        kind=PREF_KINDS[bestkind])
+                        kind=PREF_KINDS[bestkind],
+                        derived=True)
                 if bestz > 0.:
                     from astropy.cosmology import Planck15 as cosmo
                     if TIDALDISRUPTION.LUM_DIST not in catalog.entries[name]:
@@ -421,7 +422,7 @@ def do_cleanup(catalog):
                     unit=(un.hourangle, un.deg))
             except (KeyboardInterrupt, SystemExit):
                 raise
-            except:
+            except Exception:
                 pass
             else:
                 sources = uniq_cdl(
