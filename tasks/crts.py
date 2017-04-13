@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import is_number, pbar
-from cdecimal import Decimal
+from decimal import Decimal
 
 from ..tidaldisruption import TIDALDISRUPTION
 

@@ -1,7 +1,7 @@
 '''Clean various supernova-specific values.
 '''
 from astrocats.catalog.utils import is_number, zpad, get_sig_digits, pretty_num
-from cdecimal import Decimal
+from decimal import Decimal
 from math import floor
 
 __all__ = ['name_clean', 'host_clean', 'radec_clean', 'clean_snname']

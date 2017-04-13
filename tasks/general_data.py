@@ -14,7 +14,7 @@ from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import pbar_strings
 from astrocats.tidaldisruptions.tidaldisruption import (TIDALDISRUPTION,
                                                         TidalDisruption)
-from cdecimal import Decimal
+from decimal import Decimal
 
 
 def do_external(catalog):

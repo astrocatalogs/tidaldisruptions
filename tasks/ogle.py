@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 
 from astrocats.tidaldisruptions.tidaldisruption import TIDALDISRUPTION
 from astrocats.catalog.utils import is_number, jd_to_mjd, pbar, uniq_cdl
-from cdecimal import Decimal
+from decimal import Decimal
 
 
 def do_ogle(catalog):

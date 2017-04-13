@@ -12,7 +12,7 @@ from astropy.cosmology import z_at_value
 from astrocats.catalog.quantity import QUANTITY
 from astrocats.catalog.utils import (get_sig_digits, is_number, pbar,
                                      pretty_num, tprint, uniq_cdl)
-from cdecimal import Decimal
+from decimal import Decimal
 
 from ..constants import CLIGHT, KM, PREF_KINDS
 from ..tidaldisruption import TIDALDISRUPTION

@@ -6,7 +6,7 @@ import re
 import urllib
 
 from astrocats.catalog.utils import jd_to_mjd, pbar
-from cdecimal import Decimal
+from decimal import Decimal
 
 
 def do_gaia(catalog):

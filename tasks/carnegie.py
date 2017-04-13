@@ -6,7 +6,7 @@ from glob import glob
 
 from astrocats.catalog.utils import jd_to_mjd, pbar_strings
 from astrocats.tidaldisruptions.utils import clean_snname
-from cdecimal import Decimal
+from decimal import Decimal
 
 
 def do_csp_photo(catalog):

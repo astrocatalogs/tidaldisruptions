@@ -12,7 +12,7 @@ from astropy.cosmology import z_at_value
 from astrocats.catalog.utils import (get_sig_digits, is_number, pbar,
                                      pretty_num, uniq_cdl)
 from astrocats.tidaldisruptions.utils import host_clean, name_clean
-from cdecimal import Decimal
+from decimal import Decimal
 
 
 def do_nedd(catalog):

@@ -20,7 +20,7 @@ from astrocats.catalog.utils import (bib_priority, get_sig_digits,
 from astrocats.tidaldisruptions.constants import MAX_VISUAL_BANDS, PREF_KINDS
 from astrocats.tidaldisruptions.utils import (frame_priority, host_clean,
                                               name_clean, radec_clean)
-from cdecimal import Decimal
+from decimal import Decimal
 
 
 class TIDALDISRUPTION(ENTRY):

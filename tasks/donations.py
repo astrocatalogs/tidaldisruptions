@@ -12,7 +12,7 @@ from astrocats.tidaldisruptions.tidaldisruption import TIDALDISRUPTION
 from astropy.io.ascii import read
 from astropy.time import Time as astrotime
 
-from cdecimal import Decimal
+from decimal import Decimal
 
 
 def do_donated_photo(catalog):
