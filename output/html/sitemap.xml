@@ -57,6 +57,9 @@
     <loc>https://tde.space/tde/2MASX J0249</loc>
   </url>
   <url>
+    <loc>https://tde.space/tde/2XMMi J1847</loc>
+  </url>
+  <url>
     <loc>https://tde.space/tde/3XMM J152130.7+074916</loc>
   </url>
   <url>
@@ -70,6 +73,12 @@
   </url>
   <url>
     <loc>https://tde.space/tde/ASASSN-15oi</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/CSS100217</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/CXOU J0332</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/D1-9</loc>
@@ -93,13 +102,31 @@
     <loc>https://tde.space/tde/GRB 060218A</loc>
   </url>
   <url>
+    <loc>https://tde.space/tde/HLX-1</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/IGR J12580</loc>
+  </url>
+  <url>
     <loc>https://tde.space/tde/IGR J17361-4441</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/iPTF16axa</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/iPTF16fnl</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/LEDA 095953</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/MAXI J1807+132</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 1097</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/NGC 2110</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/NGC 247</loc>
@@ -139,9 +166,6 @@
   </url>
   <url>
     <loc>https://tde.space/tde/PGC 170392</loc>
-  </url>
-  <url>
-    <loc>https://tde.space/tde/PGC1185375</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/PS1-10jh</loc>
@@ -207,10 +231,10 @@
     <loc>https://tde.space/tde/SDSSJ1350</loc>
   </url>
   <url>
-    <loc>https://tde.space/tde/Swift J1112-82</loc>
+    <loc>https://tde.space/tde/SN2017bcc</loc>
   </url>
   <url>
-    <loc>https://tde.space/tde/Swift J1112.2-8238</loc>
+    <loc>https://tde.space/tde/Swift J1112-82</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/Swift J1644+57</loc>
@@ -232,6 +256,9 @@
   </url>
   <url>
     <loc>https://tde.space/tde/WINGS J1348</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/XJ1231+1106</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/XJ1500+0154</loc>
