@@ -72,24 +72,24 @@
 			"WINGS J1348"
 		],
 		"types":[
-			"Giant + SMBH",
-			"No claim",
-			"Ib/c",
+			"MS + SMBH",
 			"He + SMBH",
 			"AGN",
-			"IIn",
-			"MS + IMBH",
-			"TDE",
-			"Low-mass TDE",
-			"SLSN",
-			"WD + IMBH",
-			"Planet + SMBH",
-			"Giant + IMBH",
-			"LMXB",
-			"Planet + WD",
-			"MS + SMBH",
 			"Wind-fed IMBH",
-			"GRB"
+			"GRB",
+			"SLSN",
+			"Planet + WD",
+			"MS + IMBH",
+			"WD + IMBH",
+			"TDE",
+			"IIn",
+			"Giant + IMBH",
+			"Giant + SMBH",
+			"LMXB",
+			"Low-mass TDE",
+			"No claim",
+			"Ib/c",
+			"Planet + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -431,25 +431,25 @@
 			"XJ1231+1106"
 		],
 		"types":[
-			"Giant + SMBH",
-			"No claim",
-			"Ib/c",
-			"SL-II",
+			"MS + SMBH",
 			"He + SMBH",
 			"AGN",
-			"IIn",
-			"MS + IMBH",
-			"TDE",
-			"Low-mass TDE",
-			"SLSN",
-			"WD + IMBH",
-			"Planet + SMBH",
-			"Giant + IMBH",
-			"LMXB",
-			"Planet + WD",
-			"MS + SMBH",
 			"Wind-fed IMBH",
-			"GRB"
+			"GRB",
+			"SLSN",
+			"SL-II",
+			"Planet + WD",
+			"MS + IMBH",
+			"WD + IMBH",
+			"TDE",
+			"IIn",
+			"Giant + IMBH",
+			"Giant + SMBH",
+			"LMXB",
+			"Low-mass TDE",
+			"No claim",
+			"Ib/c",
+			"Planet + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -473,8 +473,8 @@
 			"SDSSJ1323"
 		],
 		"types":[
-			"AGN",
-			"TDE"
+			"TDE",
+			"AGN"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -562,25 +562,25 @@
 			"XJ1231+1106"
 		],
 		"types":[
-			"Giant + SMBH",
-			"No claim",
-			"Ib/c",
-			"SL-II",
+			"MS + SMBH",
 			"He + SMBH",
 			"AGN",
-			"IIn",
-			"MS + IMBH",
-			"TDE",
-			"Low-mass TDE",
-			"SLSN",
-			"WD + IMBH",
-			"Giant + IMBH",
-			"Planet + SMBH",
-			"LMXB",
-			"Planet + WD",
-			"MS + SMBH",
 			"Wind-fed IMBH",
-			"GRB"
+			"GRB",
+			"SLSN",
+			"SL-II",
+			"Planet + WD",
+			"MS + IMBH",
+			"WD + IMBH",
+			"TDE",
+			"IIn",
+			"Giant + IMBH",
+			"Giant + SMBH",
+			"LMXB",
+			"Low-mass TDE",
+			"No claim",
+			"Ib/c",
+			"Planet + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -672,21 +672,21 @@
 			"XJ1231+1106"
 		],
 		"types":[
+			"MS + SMBH",
+			"He + SMBH",
+			"AGN",
+			"GRB",
+			"IIn",
 			"Giant + SMBH",
-			"No claim",
 			"SLSN",
+			"SL-II",
+			"Planet + WD",
+			"Low-mass TDE",
+			"No claim",
 			"Ib/c",
 			"WD + IMBH",
-			"Planet + WD",
-			"Planet + SMBH",
-			"He + SMBH",
-			"SL-II",
-			"AGN",
-			"IIn",
-			"MS + SMBH",
 			"TDE",
-			"GRB",
-			"Low-mass TDE"
+			"Planet + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -710,8 +710,8 @@
 			"3XMM J152130.7+074916"
 		],
 		"types":[
-			"AGN",
-			"TDE"
+			"TDE",
+			"AGN"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -787,8 +787,8 @@
 			"ASASSN-14ae"
 		],
 		"types":[
-			"AGN",
-			"TDE"
+			"TDE",
+			"AGN"
 		],
 		"photocount":268,
 		"spectracount":8,
@@ -836,10 +836,10 @@
 			"ASASSN-15lh"
 		],
 		"types":[
-			"AGN",
 			"MS + SMBH",
 			"SLSN",
-			"TDE"
+			"TDE",
+			"AGN"
 		],
 		"photocount":0,
 		"spectracount":83,
@@ -879,14 +879,14 @@
 			"iPTF16fnl"
 		],
 		"types":[
-			"Ib/c",
-			"WD + IMBH",
+			"MS + SMBH",
 			"He + SMBH",
 			"AGN",
+			"GRB",
 			"IIn",
-			"MS + SMBH",
-			"TDE",
-			"GRB"
+			"Ib/c",
+			"WD + IMBH",
+			"TDE"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1122,9 +1122,9 @@
 			"ASASSN-15lh"
 		],
 		"types":[
-			"TDE",
 			"MS + SMBH",
-			"SLSN"
+			"SLSN",
+			"TDE"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1189,9 +1189,9 @@
 			"ASASSN-15lh"
 		],
 		"types":[
-			"TDE",
 			"MS + SMBH",
-			"SLSN"
+			"SLSN",
+			"TDE"
 		],
 		"photocount":0,
 		"spectracount":21,
@@ -1236,9 +1236,9 @@
 			"ASASSN-15lh"
 		],
 		"types":[
-			"TDE",
 			"MS + SMBH",
-			"SLSN"
+			"SLSN",
+			"TDE"
 		],
 		"photocount":0,
 		"spectracount":8,
@@ -1275,9 +1275,9 @@
 			"ASASSN-15lh"
 		],
 		"types":[
-			"TDE",
 			"MS + SMBH",
-			"SLSN"
+			"SLSN",
+			"TDE"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1297,9 +1297,9 @@
 			"ASASSN-15lh"
 		],
 		"types":[
-			"TDE",
 			"MS + SMBH",
-			"SLSN"
+			"SLSN",
+			"TDE"
 		],
 		"photocount":475,
 		"spectracount":0,
@@ -1904,8 +1904,8 @@
 		],
 		"types":[
 			"Wind-fed IMBH",
-			"Giant + IMBH",
 			"MS + IMBH",
+			"Giant + IMBH",
 			"LMXB"
 		],
 		"photocount":0,
@@ -1938,8 +1938,8 @@
 		],
 		"types":[
 			"Wind-fed IMBH",
-			"Giant + IMBH",
 			"MS + IMBH",
+			"Giant + IMBH",
 			"LMXB"
 		],
 		"photocount":0,
@@ -1964,8 +1964,8 @@
 		],
 		"types":[
 			"Wind-fed IMBH",
-			"Giant + IMBH",
 			"MS + IMBH",
+			"Giant + IMBH",
 			"LMXB"
 		],
 		"photocount":0,
@@ -2180,8 +2180,8 @@
 			"NGC 2110"
 		],
 		"types":[
-			"AGN",
-			"No claim"
+			"No claim",
+			"AGN"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -2349,8 +2349,8 @@
 			"PS1-10jh"
 		],
 		"types":[
-			"He + SMBH",
-			"MS + SMBH"
+			"MS + SMBH",
+			"He + SMBH"
 		],
 		"photocount":1,
 		"spectracount":0,
@@ -2399,8 +2399,8 @@
 			"PS1-10jh"
 		],
 		"types":[
-			"He + SMBH",
-			"MS + SMBH"
+			"MS + SMBH",
+			"He + SMBH"
 		],
 		"photocount":178,
 		"spectracount":0,
@@ -2588,8 +2588,8 @@
 			"PTF09djl"
 		],
 		"types":[
-			"AGN",
-			"TDE"
+			"TDE",
+			"AGN"
 		],
 		"photocount":0,
 		"spectracount":0,
