@@ -31,9 +31,11 @@ def do_simbad(catalog):
         try:
             table = customSimbad.query_criteria(
                 'maintype=SN* | maintype=SN | maintype="SN?" | maintype="ev"')
-        except:
+        except Exception:
             continue
         else:
+            if not table:
+                continue
             break
 
     if not table:
