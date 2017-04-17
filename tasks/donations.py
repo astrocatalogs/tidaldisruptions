@@ -34,10 +34,11 @@ def do_donated_photo(catalog):
             mjd = [str(smjd), str(emjd)]
             instrument = ''
             tel = ''
+            mode = ''
             if row[-1] == 'chandra':
                 instrument = 'ACIS-S'
                 tel = 'Chandra'
-            elif row[-1] == 'xmm' or row[-1] == 'slew':
+            elif row[-1] in ['xmm', 'slew']:
                 instrument = 'PN'
                 tel = 'XMM'
             elif row[-1] == 'swift':
