@@ -1,4 +1,3 @@
-#!/usr/local/bin/python
 import os
 import urllib.error
 import urllib.parse
