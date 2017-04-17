@@ -32,6 +32,21 @@ def do_donated_photo(catalog):
             smjd = Decimal(row[3])
             emjd = str(smjd + Decimal(row[4]) / Decimal(86400))[:9]
             mjd = [str(smjd), str(emjd)]
+            instrument = ''
+            tel = ''
+            if row[-1] == 'chandra':
+                instrument = 'ACIS-S'
+                tel = 'Chandra'
+            elif row[-1] == 'xmm' or row[-1] == 'slew':
+                instrument = 'PN'
+                tel = 'XMM'
+            elif row[-1] == 'swift':
+                instrument = 'XRT'
+                mode = 'PC'
+                tel = 'Swift'
+            elif row[-1] == 'rosat':
+                instrument = 'PSPC'
+                tel = 'ROSAT'
             photodict = {
                 PHOTOMETRY.TIME: mjd,
                 PHOTOMETRY.U_TIME: 'MJD',
@@ -42,6 +57,9 @@ def do_donated_photo(catalog):
                 PHOTOMETRY.U_FLUX: 'ergs/cm^2/s',
                 PHOTOMETRY.PHOTON_INDEX: row[17],
                 PHOTOMETRY.LUMINOSITY: row[24],
+                PHOTOMETRY.INSTRUMENT: instrument,
+                PHOTOMETRY.TELESCOPE: tel,
+                PHOTOMETRY.MODE: mode,
                 PHOTOMETRY.SOURCE: source
             }
             if row[11] == 'D' and row[21] != row[22]:
