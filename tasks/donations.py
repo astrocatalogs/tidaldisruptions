@@ -51,7 +51,7 @@ def do_donated_photo(catalog):
             photodict = {
                 PHOTOMETRY.TIME: mjd,
                 PHOTOMETRY.U_TIME: 'MJD',
-                PHOTOMETRY.COUNTS: row[12],
+                PHOTOMETRY.COUNT_RATE: row[12],
                 PHOTOMETRY.ENERGY: ["0.3", "2.0"],
                 PHOTOMETRY.U_ENERGY: 'keV',
                 PHOTOMETRY.FLUX: row[21],
@@ -67,7 +67,7 @@ def do_donated_photo(catalog):
             if mode:
                 photodict[PHOTOMETRY.MODE] = mode
             if row[11] == 'D' and row[21] != row[22]:
-                photodict[PHOTOMETRY.E_COUNTS] = row[13]
+                photodict[PHOTOMETRY.E_COUNT_RATE] = row[13]
                 photodict[PHOTOMETRY.E_LOWER_FLUX] = row[22]
                 photodict[PHOTOMETRY.E_UPPER_FLUX] = row[23]
                 photodict[PHOTOMETRY.E_LOWER_LUMINOSITY] = row[25]

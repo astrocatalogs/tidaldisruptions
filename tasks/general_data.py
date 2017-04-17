@@ -268,7 +268,7 @@ def do_external(catalog):
                         PHOTOMETRY.TIME: time,
                         PHOTOMETRY.U_TIME: timeunit,
                         PHOTOMETRY.BAND: band,
-                        PHOTOMETRY.COUNTS: counts,
+                        PHOTOMETRY.COUNT_RATE: counts,
                         PHOTOMETRY.UPPER_LIMIT: upperlimit,
                         PHOTOMETRY.REST_FRAME: lrestframe,
                         PHOTOMETRY.HOST_NH_CORR: hostnhcorr,
@@ -277,7 +277,7 @@ def do_external(catalog):
                     }
                     # Old TDEFit stored counts in log
                     if float(row[5]) != 0.0:
-                        photodict[PHOTOMETRY.E_COUNTS] = str(
+                        photodict[PHOTOMETRY.E_COUNT_RATE] = str(
                             (Decimal(10.0)**(Decimal(row[4]) + Decimal(row[5]))
                              - Decimal(10.0)**Decimal(row[4])))
                 else:
