@@ -57,11 +57,14 @@ def do_donated_photo(catalog):
                 PHOTOMETRY.U_FLUX: 'ergs/cm^2/s',
                 PHOTOMETRY.PHOTON_INDEX: row[17],
                 PHOTOMETRY.LUMINOSITY: row[24],
-                PHOTOMETRY.INSTRUMENT: instrument,
-                PHOTOMETRY.TELESCOPE: tel,
-                PHOTOMETRY.MODE: mode,
                 PHOTOMETRY.SOURCE: source
             }
+            if instrument:
+                photodict[PHOTOMETRY.INSTRUMENT] = instrument
+            if tel:
+                photodict[PHOTOMETRY.TELESCOPE] = tel
+            if mode:
+                photodict[PHOTOMETRY.MODE] = mode
             if row[11] == 'D' and row[21] != row[22]:
                 photodict[PHOTOMETRY.E_COUNTS] = row[13]
                 photodict[PHOTOMETRY.E_LOWER_FLUX] = row[22]
