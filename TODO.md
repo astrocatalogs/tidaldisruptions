@@ -1,4 +1,4 @@
-####Below are known sources of data that need to be added to the catalog. 
+#### Below are known sources of data that need to be added to the catalog. 
 
 Donated datasets:
 * None to add at this time.
@@ -14,6 +14,7 @@ Other multiple TDE datasets:
 
 Other single TDE datasets:
 * Photometry for iPTF16axa
+* Subtracted photometry for iPTF16fnl
 * Spectra for ASASSN-15oi
 * Spectra for PS1-10jh
 * Spectra for PS1-11af
@@ -21,10 +22,10 @@ Other single TDE datasets:
 Online catalogs:
 * No known missing online catalogs at this time.
 
-####Data that likely exists but no known source
+#### Data that likely exists but no known source
 * Most TDEs should have host galaxy spectra available.
 * Optical TDEs likely have optical spectra.
 * X-ray TDEs likely have X-ray spectra.
 
-####Known errors that need to be corrected:
+#### Known errors that need to be corrected:
 * No known errors at this time.
