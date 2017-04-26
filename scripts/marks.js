@@ -17,7 +17,7 @@ function markError(name, quantity, sourcekind, source, edit) {
 		codemessage += '### Due to limitations of the GitHub URL interface, you must copy the contents\n';
 		codemessage += '### of this file into the existing JSON file for this event in order to edit it\n';
 		codemessage += '### The location of the file to paste into is located at:\n';
-		codemessage += '### https://github.com/astrocatalogs/sne-internal/edit/master/' + encodeURIComponent(filename) + '\n';
+		codemessage += '### https://github.com/astrocatalogs/tde-internal/edit/master/' + encodeURIComponent(filename) + '\n';
 		codemessage += '### COMMITTING THE FILE ON THIS PAGE WILL RESULT IN A "FILE ALREADY EXISTS" ERROR.\n';
 		codemessage += '### Delete all lines preceded by a # before committing any changes to the file\n';
 		codemessage += '### located at the above URL.\n';
@@ -35,7 +35,7 @@ function markError(name, quantity, sourcekind, source, edit) {
 		'\t}\n' +
 		'}');
 	var instructions = encodeURIComponent(name + '\'s ' + quantity + ' from ' + source + ' marked as being erroneous.');
-	var win = window.open('https://github.com/astrocatalogs/sne-internal/new/master/?filename=' +
+	var win = window.open('https://github.com/astrocatalogs/tde-internal/new/master/?filename=' +
 		encodeURIComponent(filename) + '&value=' + value + '&message=' + instructions, '_blank');
 	win.focus();
 }
