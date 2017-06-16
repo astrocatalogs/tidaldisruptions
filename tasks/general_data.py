@@ -232,7 +232,7 @@ def do_external(catalog):
                     Key('notes', KEY_TYPES.STRING), row[1], source)
             elif row[0] == 'nh':
                 catalog.entries[name].add_quantity(
-                    Key('nh', KEY_TYPES.STRING), row[1], source)
+                    Key('nhhost', KEY_TYPES.STRING), row[1], source)
             elif row[0] == 'photometry':
                 timeunit = row[1]
                 if timeunit == 'yrs':
