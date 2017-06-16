@@ -312,7 +312,7 @@
 			}
 		],
 		"photolink":"458,-64.6,42.5",
-		"spectralink":"15,-388,59.9",
+		"spectralink":"15,-62.8,59.9",
 		"xraylink":"0",
 		"references":"2014MNRAS.445.3263H,2014ApJ...793...38A,2017ApJ...838..149A,2014ATel.5831....1P,2016A&A...594A..13P",
 		"download":"e"
@@ -2125,7 +2125,7 @@
 				"value":"0.0243"
 			}
 		],
-		"photolink":"41,-343,50.5",
+		"photolink":"42,-343,158",
 		"references":"2011ApJ...737..103S",
 		"download":"e"
 	},
@@ -4059,7 +4059,7 @@
 				"value":"0.0196"
 			}
 		],
-		"photolink":"77,-31.4,3.74",
+		"photolink":"108,-31.4,30",
 		"spectralink":"1,-29.8",
 		"references":"2016A&A...594A..13P,2011ApJ...737..103S",
 		"download":"e"

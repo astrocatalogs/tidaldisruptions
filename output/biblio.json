@@ -67,14 +67,14 @@
 			"UGC 03317"
 		],
 		"types":[
-			"IIn",
-			"Planet + WD",
 			"Low-mass TDE",
+			"Planet + WD",
 			"TDE",
+			"MS + SMBH",
+			"IIn",
 			"AGN",
 			"SLSN",
-			"He + SMBH",
-			"MS + SMBH"
+			"He + SMBH"
 		],
 		"photocount":356,
 		"spectracount":0,
@@ -411,16 +411,16 @@
 			"XJ1500+0154"
 		],
 		"types":[
-			"IIn",
+			"Low-mass TDE",
 			"Planet + WD",
 			"SLSN-I",
-			"Low-mass TDE",
 			"TDE",
+			"SL-II",
+			"IIn",
+			"MS + SMBH",
 			"AGN",
 			"SLSN",
-			"He + SMBH",
-			"SL-II",
-			"MS + SMBH"
+			"He + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -529,17 +529,17 @@
 			"XJ1500+0154"
 		],
 		"types":[
-			"IIn",
-			"WD + IMBH",
+			"Low-mass TDE",
 			"Planet + WD",
 			"SLSN-I",
-			"Low-mass TDE",
 			"TDE",
+			"SL-II",
+			"IIn",
+			"MS + SMBH",
 			"AGN",
 			"SLSN",
-			"He + SMBH",
-			"SL-II",
-			"MS + SMBH"
+			"WD + IMBH",
+			"He + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -627,17 +627,17 @@
 			"XJ1500+0154"
 		],
 		"types":[
-			"IIn",
-			"WD + IMBH",
+			"Low-mass TDE",
 			"Planet + WD",
 			"SLSN-I",
-			"Low-mass TDE",
 			"TDE",
+			"SL-II",
+			"IIn",
+			"MS + SMBH",
 			"AGN",
 			"SLSN",
-			"He + SMBH",
-			"SL-II",
-			"MS + SMBH"
+			"WD + IMBH",
+			"He + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -787,8 +787,8 @@
 			"ASASSN-15lh"
 		],
 		"types":[
-			"SLSN",
 			"AGN",
+			"SLSN",
 			"MS + SMBH",
 			"TDE"
 		],
@@ -829,11 +829,11 @@
 			"iPTF16fnl"
 		],
 		"types":[
-			"IIn",
-			"TDE",
 			"AGN",
+			"TDE",
 			"He + SMBH",
-			"MS + SMBH"
+			"MS + SMBH",
+			"IIn"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1738,8 +1738,8 @@
 			"IGR J17361-4441"
 		],
 		"types":[
-			"MS + SMBH",
-			"Planet + WD"
+			"Planet + WD",
+			"MS + SMBH"
 		],
 		"photocount":0,
 		"spectracount":0,
