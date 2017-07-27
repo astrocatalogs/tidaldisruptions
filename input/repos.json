@@ -8,6 +8,7 @@
     "external":[
         "tde-external",
         "tde-external-spectra",
+        "tde-external-fits-spectra",
         "tde-external-WISEREP"
     ],
     "internal":[
