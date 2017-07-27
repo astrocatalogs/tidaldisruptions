@@ -16,7 +16,7 @@ from astropy.coordinates import SkyCoord as coord
 from astropy.io import fits
 from astropy.table import Table
 
-from ..supernova import SUPERNOVA
+from ..tidaldisruption import TIDALDISRUPTION
 
 try:  # Python 3.x
     from urllib.parse import quote as urlencode
@@ -106,21 +106,23 @@ def do_mast_spectra(catalog):
 
     objs = []
     for entry in catalog.entries:
-        if SUPERNOVA.DISCOVER_DATE in catalog.entries[entry]:
+        if TIDALDISRUPTION.DISCOVER_DATE in catalog.entries[entry]:
             dd = catalog.entries[entry][
-                SUPERNOVA.DISCOVER_DATE][0][QUANTITY.VALUE]
+                TIDALDISRUPTION.DISCOVER_DATE][0][QUANTITY.VALUE]
             try:
                 dt = datetime.strptime(dd, '%Y/%m/%d')
                 if dt < datetime(1997, 1, 1):
                     continue
             except Exception:
                 pass
-        if (SUPERNOVA.RA in catalog.entries[entry] and
-                SUPERNOVA.DEC in catalog.entries[entry]):
+        if (TIDALDISRUPTION.RA in catalog.entries[entry] and
+                TIDALDISRUPTION.DEC in catalog.entries[entry]):
             objs.append([
                 entry,
-                catalog.entries[entry][SUPERNOVA.RA][0][QUANTITY.VALUE],
-                catalog.entries[entry][SUPERNOVA.DEC][0][QUANTITY.VALUE]])
+                catalog.entries[entry][
+                    TIDALDISRUPTION.RA][0][QUANTITY.VALUE],
+                catalog.entries[entry][
+                    TIDALDISRUPTION.DEC][0][QUANTITY.VALUE]])
     if not len(objs):
         return
     objs = np.array(objs).T
