@@ -33,7 +33,7 @@ def do_sousa(catalog):
                              'SOUSA/') + ulink.split('/')[-1])
 
     files = glob(os.path.join(catalog.get_current_task_repo(), 'SOUSA/*.dat'))
-    tde_whitelist = ['ASASSN-15lh']
+    tde_whitelist = ['ASASSN-15lh', 'SN2016ezh']
     for fi in pbar(files, task_str):
         name = os.path.basename(fi).split('_')[0]
         if name not in tde_whitelist:
