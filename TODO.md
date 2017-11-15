@@ -18,6 +18,8 @@ Other single TDE datasets:
 * Spectra for ASASSN-15oi
 * Spectra for PS1-10jh
 * Spectra for PS1-11af
+* Spectra and photometry for PS1-10adi
+* Spectra and photometry for PS1-13jw
 
 Online catalogs:
 * No known missing online catalogs at this time.
