@@ -128,6 +128,17 @@
         "always_journal": true,
         "priority": 301
     },
+    "psthreepi": {
+        "nice_name": "%pre Pan-STARRS 3π",
+        "active": true,
+        "update": false,
+        "archived": false,
+        "module": "tidaldisruptions.tasks.panstarrs",
+        "function": "do_ps_threepi",
+        "repo": "input/tde-external",
+        "always_journal": true,
+        "priority": -450
+    },
     "mast_spectra": {
         "nice_name": "%pre MAST spectra",
         "active": true,
