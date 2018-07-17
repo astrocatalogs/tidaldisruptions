@@ -9,7 +9,6 @@ from astropy.io.ascii import read
 
 from astrocats.catalog.photometry import PHOTOMETRY
 from astrocats.catalog.utils import pbar
-from decimal import Decimal
 
 
 def do_ascii(catalog):
