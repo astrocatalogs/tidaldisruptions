@@ -23,7 +23,7 @@ def do_ascii(catalog):
                              'iPTF16fnl.tex')
     data = read(file_path, format='latex')
     name, source = catalog.new_entry(
-        'iPTF16fnl', bibcode='2017arXiv170300965B')
+        'iPTF16fnl', bibcode='2017ApJ...844...46B')
     header = [s[s.find("{") + 1:s.find("}")].replace('$', '')
               for s in list(data.columns)]
     bands = header[2:]
@@ -35,7 +35,6 @@ def do_ascii(catalog):
             tel, ins = row[1].split('+')
             photodict = {
                 PHOTOMETRY.MAGNITUDE: mag,
-                PHOTOMETRY.E_MAGNITUDE: err,
                 PHOTOMETRY.TIME: str(row[0]),
                 PHOTOMETRY.U_TIME: 'MJD',
                 PHOTOMETRY.BAND: band,
@@ -43,6 +42,8 @@ def do_ascii(catalog):
                 PHOTOMETRY.INSTRUMENT: ins,
                 PHOTOMETRY.SOURCE: source
             }
+            if float(err) > 0.0:
+                photodict[PHOTOMETRY.E_MAGNITUDE] = err
             catalog.entries[name].add_photometry(**photodict)
 
     # 2011ApJ...735..106D
