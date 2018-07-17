@@ -1,99 +1,84 @@
 [
 	{
-		"authors":"Auchettl, Guillochon, & Ramirez-Ruiz (2016)",
+		"authors":"Auchettl, Guillochon, & Ramirez-Ruiz (2017)",
 		"allauthors":[
 			"Auchettl, Katie",
 			"Guillochon, James",
 			"Ramirez-Ruiz, Enrico"
 		],
-		"bibcode":"2016arXiv161102291A",
+		"bibcode":"2017ApJ...838..149A",
 		"events":[
+			"NGC 5905",
+			"RX J1420+53",
+			"RX J1624+75",
+			"RBS 1032",
+			"RX J1242-11A",
+			"WINGS J1348",
+			"SDSSJ0159",
+			"3XMM J152130.7+074916",
+			"NGC 3599",
 			"CSS100217",
+			"IGR J17361-4441",
+			"SDSSJ1323",
 			"D3-13",
+			"SDSSJ1311",
 			"D1-9",
+			"2MASX J0249",
 			"TDE1",
-			"GRB 060218A",
 			"TDE2",
 			"D23H-1",
+			"SDSSJ0952",
 			"Dougie",
 			"PTF09ge",
+			"SDSSJ1342",
 			"PTF09axc",
 			"PTF09djl",
-			"PTF10iya",
 			"PTF10nuj",
 			"PS1-10jh",
+			"SDSSJ1201",
+			"PTF10iya",
 			"PS1-11af",
 			"PTF11glr",
 			"Swift J1644+57",
+			"Swift J2058+05",
+			"Swift J1112-82",
 			"PS1-12yp",
-			"OGLE16aaa",
 			"DES14C1kia",
 			"ASASSN-14ae",
 			"XMMSL1 J0740-85",
+			"NGC247",
 			"ASASSN-14li",
 			"ASASSN-15lh",
 			"ASASSN-15oi",
+			"OGLE16aaa",
 			"iPTF16fnl",
-			"2MASX J0249",
-			"3XMM J152130.7+074916",
-			"HLX-1",
-			"IGR J12580",
-			"IGR J17361-4441",
 			"LEDA 095953",
-			"NGC 1097",
-			"NGC 2110",
 			"NGC 247",
-			"NGC 3599",
-			"NGC 5905",
 			"NGC 6021",
-			"NGC247",
 			"PGC 015259",
 			"PGC 1127938",
 			"PGC 1185375",
 			"PGC 1190358",
 			"PGC 133344",
 			"PGC 170392",
-			"RBS 1032",
-			"RX J1242-11A",
-			"RX J1420+53",
-			"RX J1624+75",
-			"SDSSJ0159",
 			"SDSSJ0748",
-			"SDSSJ0952",
-			"SDSSJ1201",
-			"SDSSJ1311",
-			"SDSSJ1323",
-			"SDSSJ1342",
 			"SDSSJ1350",
-			"Swift J1112-82",
-			"Swift J2058+05",
 			"UGC 01791",
-			"UGC 03317",
-			"WINGS J1348"
+			"UGC 03317"
 		],
 		"types":[
-			"MS + SMBH",
-			"He + SMBH",
-			"AGN",
-			"Wind-fed IMBH",
-			"GRB",
-			"SLSN",
-			"Planet + WD",
-			"MS + IMBH",
-			"WD + IMBH",
-			"TDE",
-			"IIn",
-			"Giant + IMBH",
-			"Giant + SMBH",
-			"LMXB",
 			"Low-mass TDE",
-			"No claim",
-			"Ib/c",
-			"Planet + SMBH"
+			"SLSN",
+			"He + SMBH",
+			"IIn",
+			"TDE",
+			"AGN",
+			"Planet + WD",
+			"MS + SMBH"
 		],
-		"photocount":0,
+		"photocount":356,
 		"spectracount":0,
-		"metacount":576
+		"metacount":548
 	},
 	{
 		"authors":"Planck Collaboration et al. (2016)",
@@ -363,47 +348,75 @@
 		],
 		"bibcode":"2016A&A...594A..13P",
 		"events":[
+			"NGC 5905",
+			"RX J1420+53",
+			"RX J1624+75",
+			"RBS 1032",
+			"RX J1242-11A",
+			"WINGS J1348",
+			"SDSSJ0159",
+			"3XMM J152130.7+074916",
+			"NGC 3599",
 			"CSS100217",
+			"IGR J17361-4441",
+			"SDSSJ1323",
 			"D3-13",
+			"SDSSJ1311",
 			"D1-9",
-			"F01004-2237",
-			"XJ1500+0154",
+			"2MASX J0249",
 			"TDE1",
-			"GRB 060218A",
 			"TDE2",
 			"D23H-1",
+			"SDSSJ0952",
 			"Dougie",
+			"J091225",
+			"J100933",
+			"J134244",
+			"J113527",
+			"J133737",
+			"J130819",
+			"J141036",
+			"J142401",
+			"J145851",
+			"J121116",
 			"PTF09ge",
+			"SDSSJ1342",
+			"J155223",
 			"PTF09axc",
 			"PTF09djl",
-			"PTF10iya",
+			"J133837",
+			"J030257",
+			"PS1-10adi",
 			"PTF10nuj",
+			"J123715",
 			"PS1-10jh",
+			"SDSSJ1201",
+			"PTF10iya",
+			"F01004-2237",
 			"PS1-11af",
 			"PTF11glr",
 			"Swift J1644+57",
-			"OGLE16aaa",
+			"Swift J2058+05",
+			"Swift J1112-82",
+			"PS1-13jw",
 			"DES14C1kia",
 			"ASASSN-14ae",
 			"XMMSL1 J0740-85",
 			"ASASSN-14li",
 			"ASASSN-15lh",
 			"ASASSN-15oi",
+			"OGLE16aaa",
 			"iPTF16axa",
+			"SN2016ezh",
 			"iPTF16fnl",
 			"SN2017bcc",
-			"2MASX J0249",
+			"PS18kh",
 			"2XMMi J1847",
-			"3XMM J152130.7+074916",
-			"HLX-1",
-			"IGR J12580",
-			"IGR J17361-4441",
+			"J094608",
+			"J094806",
+			"J233454",
 			"LEDA 095953",
-			"NGC 1097",
-			"NGC 2110",
 			"NGC 247",
-			"NGC 3599",
-			"NGC 5905",
 			"NGC 6021",
 			"PGC 015259",
 			"PGC 1127938",
@@ -411,49 +424,131 @@
 			"PGC 1190358",
 			"PGC 133344",
 			"PGC 170392",
-			"RBS 1032",
-			"RX J1242-11A",
-			"RX J1420+53",
-			"RX J1624+75",
-			"SDSSJ0159",
 			"SDSSJ0748",
-			"SDSSJ0952",
-			"SDSSJ1201",
-			"SDSSJ1311",
-			"SDSSJ1323",
-			"SDSSJ1342",
 			"SDSSJ1350",
-			"Swift J1112-82",
-			"Swift J2058+05",
 			"UGC 01791",
 			"UGC 03317",
-			"WINGS J1348",
-			"XJ1231+1106"
+			"XJ1231+1106",
+			"XJ1500+0154"
 		],
 		"types":[
-			"MS + SMBH",
-			"He + SMBH",
-			"AGN",
-			"Wind-fed IMBH",
-			"GRB",
+			"Low-mass TDE",
+			"II",
 			"SLSN",
+			"He + SMBH",
+			"IIn",
+			"TDE",
+			"AGN",
 			"SL-II",
 			"Planet + WD",
-			"MS + IMBH",
-			"WD + IMBH",
-			"TDE",
-			"IIn",
-			"Giant + IMBH",
-			"Giant + SMBH",
-			"LMXB",
-			"Low-mass TDE",
-			"No claim",
-			"Ib/c",
-			"Planet + SMBH"
+			"MS + SMBH",
+			"SLSN-I"
 		],
 		"photocount":0,
 		"spectracount":0,
-		"metacount":205
+		"metacount":272
+	},
+	{
+		"authors":"Schlafly & Finkbeiner (2011)",
+		"allauthors":[
+			"Schlafly, Edward F.",
+			"Finkbeiner, Douglas P."
+		],
+		"bibcode":"2011ApJ...737..103S",
+		"events":[
+			"RX J1420+53",
+			"RX J1624+75",
+			"RX J1242-11A",
+			"WINGS J1348",
+			"3XMM J152130.7+074916",
+			"CSS100217",
+			"IGR J17361-4441",
+			"D3-13",
+			"SDSSJ1311",
+			"D1-9",
+			"2MASX J0249",
+			"TDE1",
+			"TDE2",
+			"D23H-1",
+			"Dougie",
+			"J091225",
+			"J100933",
+			"J134244",
+			"J113527",
+			"J133737",
+			"J130819",
+			"J141036",
+			"J142401",
+			"J145851",
+			"J121116",
+			"PTF09ge",
+			"J155223",
+			"PTF09axc",
+			"PTF09djl",
+			"J133837",
+			"J030257",
+			"PS1-10adi",
+			"PTF10nuj",
+			"J123715",
+			"PS1-10jh",
+			"PTF10iya",
+			"F01004-2237",
+			"PS1-11af",
+			"PTF11glr",
+			"Swift J1644+57",
+			"Swift J1112-82",
+			"PS1-12yp",
+			"PS1-13jw",
+			"DES14C1kia",
+			"ASASSN-14ae",
+			"XMMSL1 J0740-85",
+			"CXOU J0332",
+			"ASASSN-14li",
+			"ASASSN-15lh",
+			"ASASSN-15oi",
+			"OGLE16aaa",
+			"OGLE17aaj",
+			"iPTF16axa",
+			"SN2016ezh",
+			"iPTF16fnl",
+			"SN2017bcc",
+			"MAXI J1807+132",
+			"PS18kh",
+			"2XMMi J1847",
+			"J094608",
+			"J094806",
+			"J233454",
+			"LEDA 095953",
+			"NGC 247",
+			"NGC 6021",
+			"PGC 015259",
+			"PGC 1127938",
+			"PGC 1185375",
+			"PGC 1190358",
+			"PGC 133344",
+			"PGC 170392",
+			"UGC 01791",
+			"UGC 03317",
+			"XJ1231+1106",
+			"XJ1500+0154"
+		],
+		"types":[
+			"Low-mass TDE",
+			"II",
+			"He + SMBH",
+			"IIn",
+			"TDE",
+			"WD + IMBH",
+			"AGN",
+			"SL-II",
+			"Planet + WD",
+			"SLSN",
+			"MS + SMBH",
+			"SLSN-I"
+		],
+		"photocount":0,
+		"spectracount":0,
+		"metacount":75
 	},
 	{
 		"authors":"Esquej et al. (2007)",
@@ -468,9 +563,9 @@
 		],
 		"bibcode":"2007A&A...462L..49E",
 		"events":[
-			"2MASX J0249",
 			"NGC 3599",
-			"SDSSJ1323"
+			"SDSSJ1323",
+			"2MASX J0249"
 		],
 		"types":[
 			"TDE",
@@ -478,7 +573,7 @@
 		],
 		"photocount":0,
 		"spectracount":0,
-		"metacount":18
+		"metacount":19
 	},
 	{
 		"authors":"Guillochon et al. (2017)",
@@ -490,51 +585,80 @@
 		],
 		"bibcode":"2017ApJ...835...64G",
 		"events":[
+			"NGC 5905",
+			"RX J1420+53",
+			"RX J1624+75",
+			"RBS 1032",
+			"RX J1242-11A",
+			"WINGS J1348",
+			"SDSSJ0159",
+			"3XMM J152130.7+074916",
+			"NGC 3599",
 			"CSS100217",
+			"IGR J17361-4441",
+			"SDSSJ1323",
 			"D3-13",
+			"SDSSJ1311",
 			"D1-9",
-			"F01004-2237",
-			"XJ1500+0154",
+			"2MASX J0249",
 			"TDE1",
-			"GRB 060218A",
 			"TDE2",
 			"D23H-1",
+			"SDSSJ0952",
 			"Dougie",
+			"J091225",
+			"J100933",
+			"J134244",
+			"J113527",
+			"J133737",
+			"J130819",
+			"J141036",
+			"J142401",
+			"J145851",
+			"J121116",
 			"PTF09ge",
+			"SDSSJ1342",
+			"J155223",
 			"PTF09axc",
 			"PTF09djl",
-			"PTF10iya",
+			"J133837",
+			"J030257",
+			"PS1-10adi",
 			"PTF10nuj",
+			"J123715",
 			"PS1-10jh",
+			"SDSSJ1201",
+			"PTF10iya",
+			"F01004-2237",
 			"PS1-11af",
 			"PTF11glr",
 			"Swift J1644+57",
+			"Swift J2058+05",
+			"Swift J1112-82",
 			"PS1-12yp",
-			"OGLE16aaa",
+			"PS1-13jw",
 			"DES14C1kia",
 			"ASASSN-14ae",
 			"XMMSL1 J0740-85",
+			"NGC247",
 			"CXOU J0332",
 			"ASASSN-14li",
 			"ASASSN-15lh",
 			"ASASSN-15oi",
-			"iPTF16axa",
+			"OGLE16aaa",
 			"OGLE17aaj",
+			"iPTF16axa",
+			"SN2016ezh",
 			"iPTF16fnl",
 			"SN2017bcc",
 			"MAXI J1807+132",
-			"2MASX J0249",
+			"PS18kh",
 			"2XMMi J1847",
-			"3XMM J152130.7+074916",
-			"HLX-1",
-			"IGR J12580",
-			"IGR J17361-4441",
+			"J094608",
+			"J094806",
+			"J233454",
 			"LEDA 095953",
-			"NGC 1097",
-			"NGC 2110",
 			"NGC 247",
-			"NGC 3599",
-			"NGC 5905",
 			"NGC 6021",
 			"PGC 015259",
 			"PGC 1127938",
@@ -542,49 +666,30 @@
 			"PGC 1190358",
 			"PGC 133344",
 			"PGC 170392",
-			"RBS 1032",
-			"RX J1242-11A",
-			"RX J1420+53",
-			"RX J1624+75",
-			"SDSSJ0159",
 			"SDSSJ0748",
-			"SDSSJ0952",
-			"SDSSJ1201",
-			"SDSSJ1311",
-			"SDSSJ1323",
-			"SDSSJ1342",
 			"SDSSJ1350",
-			"Swift J1112-82",
-			"Swift J2058+05",
 			"UGC 01791",
 			"UGC 03317",
-			"WINGS J1348",
-			"XJ1231+1106"
+			"XJ1231+1106",
+			"XJ1500+0154"
 		],
 		"types":[
-			"MS + SMBH",
-			"He + SMBH",
-			"AGN",
-			"Wind-fed IMBH",
-			"GRB",
+			"Low-mass TDE",
+			"II",
 			"SLSN",
+			"He + SMBH",
+			"IIn",
+			"TDE",
+			"WD + IMBH",
+			"AGN",
 			"SL-II",
 			"Planet + WD",
-			"MS + IMBH",
-			"WD + IMBH",
-			"TDE",
-			"IIn",
-			"Giant + IMBH",
-			"Giant + SMBH",
-			"LMXB",
-			"Low-mass TDE",
-			"No claim",
-			"Ib/c",
-			"Planet + SMBH"
+			"MS + SMBH",
+			"SLSN-I"
 		],
 		"photocount":0,
 		"spectracount":0,
-		"metacount":550
+		"metacount":852
 	},
 	{
 		"authors":"Lin et al. (2011)",
@@ -604,93 +709,6 @@
 		"photocount":0,
 		"spectracount":0,
 		"metacount":12
-	},
-	{
-		"authors":"Schlafly & Finkbeiner (2011)",
-		"allauthors":[
-			"Schlafly, Edward F.",
-			"Finkbeiner, Douglas P."
-		],
-		"bibcode":"2011ApJ...737..103S",
-		"events":[
-			"CSS100217",
-			"D3-13",
-			"D1-9",
-			"F01004-2237",
-			"XJ1500+0154",
-			"TDE1",
-			"GRB 060218A",
-			"TDE2",
-			"D23H-1",
-			"Dougie",
-			"PTF09ge",
-			"PTF09axc",
-			"PTF09djl",
-			"PTF10iya",
-			"PTF10nuj",
-			"PS1-10jh",
-			"PS1-11af",
-			"PTF11glr",
-			"Swift J1644+57",
-			"PS1-12yp",
-			"OGLE16aaa",
-			"DES14C1kia",
-			"ASASSN-14ae",
-			"XMMSL1 J0740-85",
-			"CXOU J0332",
-			"ASASSN-14li",
-			"ASASSN-15lh",
-			"ASASSN-15oi",
-			"iPTF16axa",
-			"OGLE17aaj",
-			"iPTF16fnl",
-			"SN2017bcc",
-			"MAXI J1807+132",
-			"2XMMi J1847",
-			"3XMM J152130.7+074916",
-			"IGR J12580",
-			"IGR J17361-4441",
-			"LEDA 095953",
-			"NGC 1097",
-			"NGC 2110",
-			"NGC 247",
-			"NGC 6021",
-			"PGC 015259",
-			"PGC 1127938",
-			"PGC 1185375",
-			"PGC 1190358",
-			"PGC 133344",
-			"PGC 170392",
-			"RX J1242-11A",
-			"RX J1420+53",
-			"RX J1624+75",
-			"SDSSJ1311",
-			"Swift J1112-82",
-			"UGC 01791",
-			"UGC 03317",
-			"WINGS J1348",
-			"XJ1231+1106"
-		],
-		"types":[
-			"MS + SMBH",
-			"He + SMBH",
-			"AGN",
-			"GRB",
-			"IIn",
-			"Giant + SMBH",
-			"SLSN",
-			"SL-II",
-			"Planet + WD",
-			"Low-mass TDE",
-			"No claim",
-			"Ib/c",
-			"WD + IMBH",
-			"TDE",
-			"Planet + SMBH"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":57
 	},
 	{
 		"authors":"Lin et al. (2015)",
@@ -837,9 +855,9 @@
 		],
 		"types":[
 			"MS + SMBH",
-			"SLSN",
 			"TDE",
-			"AGN"
+			"AGN",
+			"SLSN"
 		],
 		"photocount":0,
 		"spectracount":83,
@@ -863,34 +881,35 @@
 		"bibcode":"2000A&AS..143....9W",
 		"events":[
 			"CSS100217",
-			"GRB 060218A",
+			"TDE1",
+			"TDE2",
 			"PTF09ge",
 			"PTF09axc",
 			"PTF09djl",
-			"PTF10iya",
 			"PTF10nuj",
 			"PS1-10jh",
+			"PTF10iya",
 			"PS1-11af",
 			"PTF11glr",
-			"OGLE16aaa",
 			"DES14C1kia",
 			"ASASSN-14ae",
 			"ASASSN-15oi",
+			"OGLE16aaa",
+			"iPTF16axa",
+			"SN2016ezh",
 			"iPTF16fnl"
 		],
 		"types":[
-			"MS + SMBH",
+			"II",
 			"He + SMBH",
-			"AGN",
-			"GRB",
+			"MS + SMBH",
 			"IIn",
-			"Ib/c",
-			"WD + IMBH",
-			"TDE"
+			"TDE",
+			"AGN"
 		],
 		"photocount":0,
 		"spectracount":0,
-		"metacount":70
+		"metacount":81
 	},
 	{
 		"authors":"Holoien et al. (2016)",
@@ -1123,8 +1142,8 @@
 		],
 		"types":[
 			"MS + SMBH",
-			"SLSN",
-			"TDE"
+			"TDE",
+			"SLSN"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1190,8 +1209,8 @@
 		],
 		"types":[
 			"MS + SMBH",
-			"SLSN",
-			"TDE"
+			"TDE",
+			"SLSN"
 		],
 		"photocount":0,
 		"spectracount":21,
@@ -1237,8 +1256,8 @@
 		],
 		"types":[
 			"MS + SMBH",
-			"SLSN",
-			"TDE"
+			"TDE",
+			"SLSN"
 		],
 		"photocount":0,
 		"spectracount":8,
@@ -1276,8 +1295,8 @@
 		],
 		"types":[
 			"MS + SMBH",
-			"SLSN",
-			"TDE"
+			"TDE",
+			"SLSN"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1294,16 +1313,18 @@
 		],
 		"bibcode":"2014Ap&SS.354...89B",
 		"events":[
-			"ASASSN-15lh"
+			"ASASSN-15lh",
+			"SN2016ezh"
 		],
 		"types":[
 			"MS + SMBH",
-			"SLSN",
-			"TDE"
+			"TDE",
+			"II",
+			"SLSN"
 		],
-		"photocount":475,
+		"photocount":672,
 		"spectracount":0,
-		"metacount":7
+		"metacount":14
 	},
 	{
 		"authors":"Holoien et al. (2016)",
@@ -1393,6 +1414,33 @@
 		"metacount":11
 	},
 	{
+		"authors":"Blanchard et al. (2017)",
+		"allauthors":[
+			"Blanchard, P. K.",
+			"Nicholl, M.",
+			"Berger, E.",
+			"Guillochon, J.",
+			"Margutti, R.",
+			"Chornock, R.",
+			"Alexander, K. D.",
+			"Leja, J.",
+			"Drout, M. R."
+		],
+		"bibcode":"2017arXiv170307816B",
+		"events":[
+			"CSS100217",
+			"SN2016ezh"
+		],
+		"types":[
+			"TDE",
+			"II",
+			"IIn"
+		],
+		"photocount":0,
+		"spectracount":0,
+		"metacount":3
+	},
+	{
 		"authors":"Drake et al. (2011)",
 		"allauthors":[
 			"Drake, A. J.",
@@ -1436,8 +1484,8 @@
 			"CSS100217"
 		],
 		"types":[
-			"IIn",
-			"TDE"
+			"TDE",
+			"IIn"
 		],
 		"photocount":188,
 		"spectracount":4,
@@ -1463,8 +1511,8 @@
 			"CSS100217"
 		],
 		"types":[
-			"IIn",
-			"TDE"
+			"TDE",
+			"IIn"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1494,8 +1542,8 @@
 			"CSS100217"
 		],
 		"types":[
-			"IIn",
-			"TDE"
+			"TDE",
+			"IIn"
 		],
 		"photocount":0,
 		"spectracount":0,
@@ -1745,250 +1793,9 @@
 			"F01004-2237"
 		],
 		"types":[],
-		"photocount":283,
+		"photocount":397,
 		"spectracount":0,
-		"metacount":14
-	},
-	{
-		"authors":"Shcherbakov et al. (2013)",
-		"allauthors":[
-			"Shcherbakov, Roman V.",
-			"Pe'er, Asaf",
-			"Reynolds, Christopher S.",
-			"Haas, Roland",
-			"Bode, Tanja",
-			"Laguna, Pablo"
-		],
-		"bibcode":"2013ApJ...769...85S",
-		"events":[
-			"GRB 060218A"
-		],
-		"types":[
-			"WD + IMBH",
-			"Ib/c",
-			"GRB"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":1
-	},
-	{
-		"authors":"Roming et al. (2009)",
-		"allauthors":[
-			"Roming, P. W. A.",
-			"Koch, T. S.",
-			"Oates, S. R.",
-			"Porterfield, B. L.",
-			"Vanden Berk, D. E.",
-			"Boyd, P. T.",
-			"Holland, S. T.",
-			"Hoversten, E. A.",
-			"Immler, S.",
-			"Marshall, F. E.",
-			"Page, M. J.",
-			"Racusin, J. L.",
-			"Schneider, D. P.",
-			"Breeveld, A. A.",
-			"Brown, P. J.",
-			"Chester, M. M.",
-			"Cucchiara, A.",
-			"DePasquale, M.",
-			"Gronwall, C.",
-			"Hunsberger, S. D.",
-			"Kuin, N. P. M.",
-			"Landsman, W. B.",
-			"Schady, P.",
-			"Still, M."
-		],
-		"bibcode":"2009ApJ...690..163R",
-		"events":[
-			"GRB 060218A"
-		],
-		"types":[
-			"WD + IMBH",
-			"Ib/c",
-			"GRB"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":2
-	},
-	{
-		"authors":"Soderberg, Berger, & Schmidt (2006)",
-		"allauthors":[
-			"Soderberg, A.",
-			"Berger, E.",
-			"Schmidt, B."
-		],
-		"bibcode":"2006IAUC.8674....2S",
-		"events":[
-			"GRB 060218A"
-		],
-		"types":[
-			"WD + IMBH",
-			"Ib/c",
-			"GRB"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":4
-	},
-	{
-		"authors":"Campana et al. (2006)",
-		"allauthors":[
-			"Campana, S.",
-			"Mangano, V.",
-			"Blustin, A. J.",
-			"Brown, P.",
-			"Burrows, D. N.",
-			"Chincarini, G.",
-			"Cummings, J. R.",
-			"Cusumano, G.",
-			"Della Valle, M.",
-			"Malesani, D.",
-			"Mészáros, P.",
-			"Nousek, J. A.",
-			"Page, M.",
-			"Sakamoto, T.",
-			"Waxman, E.",
-			"Zhang, B.",
-			"Dai, Z. G.",
-			"Gehrels, N.",
-			"Immler, S.",
-			"Marshall, F. E.",
-			"Mason, K. O.",
-			"Moretti, A.",
-			"O'Brien, P. T.",
-			"Osborne, J. P.",
-			"Page, K. L.",
-			"Romano, P.",
-			"Roming, P. W. A.",
-			"Tagliaferri, G.",
-			"Cominsky, L. R.",
-			"Giommi, P.",
-			"Godet, O.",
-			"Kennea, J. A.",
-			"Krimm, H.",
-			"Angelini, L.",
-			"Barthelmy, S. D.",
-			"Boyd, P. T.",
-			"Palmer, D. M.",
-			"Wells, A. A.",
-			"White, N. E."
-		],
-		"bibcode":"2006Natur.442.1008C",
-		"events":[
-			"GRB 060218A"
-		],
-		"types":[
-			"WD + IMBH",
-			"Ib/c",
-			"GRB"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":7
-	},
-	{
-		"authors":"Yan et al. (2015)",
-		"allauthors":[
-			"Yan, Zhen",
-			"Zhang, Wenda",
-			"Soria, Roberto",
-			"Altamirano, Diego",
-			"Yu, Wenfei"
-		],
-		"bibcode":"2015ApJ...811...23Y",
-		"events":[
-			"HLX-1"
-		],
-		"types":[
-			"Wind-fed IMBH",
-			"MS + IMBH",
-			"Giant + IMBH",
-			"LMXB"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":2
-	},
-	{
-		"authors":"Webb et al. (2012)",
-		"allauthors":[
-			"Webb, N. A.",
-			"Barret, D.",
-			"Braito, V.",
-			"Corbel, S.",
-			"Cseh, D.",
-			"Farrell, S. A.",
-			"Fender, R. P.",
-			"Gehrels, N.",
-			"Godet, O.",
-			"Heywood, I.",
-			"Kawaguchi, T.",
-			"Lasota, J. -P.",
-			"Lenc, E.",
-			"Lin, D.",
-			"Plazolles, B.",
-			"Servillat, M."
-		],
-		"bibcode":"2012sf2a.conf..631W",
-		"events":[
-			"HLX-1"
-		],
-		"types":[
-			"Wind-fed IMBH",
-			"MS + IMBH",
-			"Giant + IMBH",
-			"LMXB"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":8
-	},
-	{
-		"authors":"Lasota et al. (2011)",
-		"allauthors":[
-			"Lasota, J. -P.",
-			"Alexander, T.",
-			"Dubus, G.",
-			"Barret, D.",
-			"Farrell, S. A.",
-			"Gehrels, N.",
-			"Godet, O.",
-			"Webb, N. A."
-		],
-		"bibcode":"2011ApJ...735...89L",
-		"events":[
-			"HLX-1"
-		],
-		"types":[
-			"Wind-fed IMBH",
-			"MS + IMBH",
-			"Giant + IMBH",
-			"LMXB"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":2
-	},
-	{
-		"authors":"Nikołajuk & Walter (2013)",
-		"allauthors":[
-			"Nikołajuk, M.",
-			"Walter, R."
-		],
-		"bibcode":"2013A&A...552A..75N",
-		"events":[
-			"IGR J12580"
-		],
-		"types":[
-			"AGN",
-			"Planet + SMBH"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":7
+		"metacount":21
 	},
 	{
 		"authors":"Del Santo et al. (2014)",
@@ -2013,6 +1820,34 @@
 		"photocount":0,
 		"spectracount":0,
 		"metacount":9
+	},
+	{
+		"authors":"Hung et al. (2017)",
+		"allauthors":[
+			"Hung, T.",
+			"Gezari, S.",
+			"Blagorodnova, N.",
+			"Roth, N.",
+			"Cenko, S. B.",
+			"Kulkarni, S. R.",
+			"Horesh, A.",
+			"Arcavi, I.",
+			"McCully, C.",
+			"Yan, Lin",
+			"Lunnan, R.",
+			"Fremling, C.",
+			"Cao, Y.",
+			"Nugent, P. E.",
+			"Wozniak, P."
+		],
+		"bibcode":"2017ApJ...842...29H",
+		"events":[
+			"iPTF16axa"
+		],
+		"types":[],
+		"photocount":163,
+		"spectracount":0,
+		"metacount":19
 	},
 	{
 		"authors":"Blagorodnova et al. (2017)",
@@ -2096,6 +1931,87 @@
 		"metacount":4
 	},
 	{
+		"authors":"Wang et al. (2018)",
+		"allauthors":[
+			"Wang, Tinggui",
+			"Yan, Lin",
+			"Dou, Liming",
+			"Jiang, Ning",
+			"Sheng, Zhenfeng",
+			"Yang, Chenwei"
+		],
+		"bibcode":"2018arXiv180205105W",
+		"events":[
+			"J091225",
+			"J100933",
+			"J134244",
+			"J113527",
+			"J133737",
+			"J130819",
+			"J141036",
+			"J142401",
+			"J145851",
+			"J121116",
+			"J155223",
+			"J133837",
+			"J030257",
+			"J123715"
+		],
+		"types":[],
+		"photocount":212,
+		"spectracount":0,
+		"metacount":238
+	},
+	{
+		"authors":"Kankare et al. (2017)",
+		"allauthors":[
+			"Kankare, E.",
+			"Kotak, R.",
+			"Mattila, S.",
+			"Lundqvist, P.",
+			"Ward, M. J.",
+			"Fraser, M.",
+			"Lawrence, A.",
+			"Smartt, S. J.",
+			"Meikle, W. P. S.",
+			"Bruce, A.",
+			"Harmanen, J.",
+			"Hutton, S. J.",
+			"Inserra, C.",
+			"Kangas, T.",
+			"Pastorello, A.",
+			"Reynolds, T.",
+			"Romero-Canizales, C.",
+			"Smith, K. W.",
+			"Valenti, S.",
+			"Chambers, K. C.",
+			"Hodapp, K. W.",
+			"Huber, M. E.",
+			"Kaiser, N.",
+			"Kudritzki, R. -P.",
+			"Magnier, E. A.",
+			"Tonry, J. L.",
+			"Wainscoat, R. J.",
+			"Waters, C."
+		],
+		"bibcode":"2017arXiv171104577K",
+		"events":[
+			"PS1-10adi",
+			"PS1-13jw",
+			"J094608",
+			"J094806",
+			"J233454"
+		],
+		"types":[
+			"TDE",
+			"AGN",
+			"IIn"
+		],
+		"photocount":0,
+		"spectracount":0,
+		"metacount":60
+	},
+	{
 		"authors":"Cappelluti et al. (2009)",
 		"allauthors":[
 			"Cappelluti, N.",
@@ -2144,48 +2060,6 @@
 		"photocount":6,
 		"spectracount":0,
 		"metacount":11
-	},
-	{
-		"authors":"Storchi-Bergmann et al. (1995)",
-		"allauthors":[
-			"Storchi-Bergmann, Thaisa",
-			"Eracleous, Michael",
-			"Livio, Mario",
-			"Wilson, Andrew S.",
-			"Filippenko, Alexei V.",
-			"Halpern, Jules P."
-		],
-		"bibcode":"1995ApJ...443..617S",
-		"events":[
-			"NGC 1097"
-		],
-		"types":[
-			"AGN",
-			"Giant + SMBH"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":8
-	},
-	{
-		"authors":"Moran et al. (2007)",
-		"allauthors":[
-			"Moran, Edward C.",
-			"Barth, Aaron J.",
-			"Eracleous, Michael",
-			"Kay, Laura E."
-		],
-		"bibcode":"2007ApJ...668L..31M",
-		"events":[
-			"NGC 2110"
-		],
-		"types":[
-			"No claim",
-			"AGN"
-		],
-		"photocount":0,
-		"spectracount":0,
-		"metacount":8
 	},
 	{
 		"authors":"Feng et al. (2015)",
@@ -2251,7 +2125,7 @@
 		"metacount":54
 	},
 	{
-		"authors":"Wyrzykowski et al. (2016)",
+		"authors":"Wyrzykowski et al. (2017)",
 		"allauthors":[
 			"Wyrzykowski, Łukasz",
 			"Zieliński, M.",
@@ -2279,7 +2153,7 @@
 			"Maguire, K.",
 			"Smith, K."
 		],
-		"bibcode":"2016arXiv160603125W",
+		"bibcode":"2017MNRAS.465L.114W",
 		"events":[
 			"OGLE16aaa"
 		],
@@ -2287,9 +2161,9 @@
 			"MS + SMBH",
 			"TDE"
 		],
-		"photocount":0,
+		"photocount":45,
 		"spectracount":0,
-		"metacount":11
+		"metacount":17
 	},
 	{
 		"authors":"Firth et al. (2016)",
@@ -2402,9 +2276,9 @@
 			"MS + SMBH",
 			"He + SMBH"
 		],
-		"photocount":178,
+		"photocount":176,
 		"spectracount":0,
-		"metacount":22
+		"metacount":23
 	},
 	{
 		"authors":"Chornock et al. (2014)",
@@ -2548,6 +2422,18 @@
 		"photocount":0,
 		"spectracount":0,
 		"metacount":7
+	},
+	{
+		"authors":"",
+		"allauthors":[],
+		"bibcode":"2018ATel11473....1T",
+		"events":[
+			"PS18kh"
+		],
+		"types":[],
+		"photocount":0,
+		"spectracount":0,
+		"metacount":11
 	},
 	{
 		"authors":"Arcavi et al. (2010)",
@@ -2797,8 +2683,8 @@
 		],
 		"bibcode":"2012ApJ...749..115W",
 		"events":[
-			"SDSSJ0748",
 			"SDSSJ1342",
+			"SDSSJ0748",
 			"SDSSJ1350"
 		],
 		"types":[],
@@ -2866,6 +2752,31 @@
 		"photocount":0,
 		"spectracount":0,
 		"metacount":6
+	},
+	{
+		"authors":"Blanchard et al. (2017)",
+		"allauthors":[
+			"Blanchard, P. K.",
+			"Nicholl, M.",
+			"Berger, E.",
+			"Guillochon, J.",
+			"Margutti, R.",
+			"Chornock, R.",
+			"Alexander, K. D.",
+			"Leja, J.",
+			"Drout, M. R."
+		],
+		"bibcode":"2017ApJ...843..106B",
+		"events":[
+			"SN2016ezh"
+		],
+		"types":[
+			"TDE",
+			"II"
+		],
+		"photocount":0,
+		"spectracount":0,
+		"metacount":2
 	},
 	{
 		"authors":"Brown et al. (2015)",
@@ -2978,9 +2889,9 @@
 			"TDE2"
 		],
 		"types":[],
-		"photocount":137,
+		"photocount":88,
 		"spectracount":0,
-		"metacount":38
+		"metacount":28
 	},
 	{
 		"authors":"Maksym et al. (2013)",
@@ -3046,9 +2957,9 @@
 		"types":[
 			"MS + SMBH"
 		],
-		"photocount":26,
+		"photocount":0,
 		"spectracount":0,
-		"metacount":14
+		"metacount":13
 	},
 	{
 		"authors":"Saxton et al. (2016)",
@@ -3065,7 +2976,7 @@
 			"XMMSL1 J0740-85"
 		],
 		"types":[],
-		"photocount":42,
+		"photocount":63,
 		"spectracount":0,
 		"metacount":18
 	},
@@ -3083,7 +2994,7 @@
 			"XMMSL1 J0740-85"
 		],
 		"types":[],
-		"photocount":0,
+		"photocount":16,
 		"spectracount":0,
 		"metacount":5
 	}
