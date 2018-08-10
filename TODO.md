@@ -22,6 +22,7 @@ Other single TDE datasets:
 * Spectra and photometry for PS1-13jw
 * https://arxiv.org/abs/1803.06362
 * AT2018cow - https://arxiv.org/abs/1808.00969 (photometry)
+* PS18kh - https://arxiv.org/abs/1808.02890 (photometry)
 
 Online catalogs:
 * No known missing online catalogs at this time.
