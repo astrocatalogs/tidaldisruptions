@@ -179,7 +179,7 @@ def do_external(catalog):
         f = open(datafile, 'r')
         tsvin = csv.reader(f, delimiter='\t', skipinitialspace=True)
 
-        source = ''
+        sources = []
         yrsmjdoffset = 0.
         for row in tsvin:
             if row[0] == 'name':
@@ -191,8 +191,8 @@ def do_external(catalog):
                     if '*' in cite:
                         bibcode = urllib.parse.unquote(
                             cite.split('/')[-2].split("'")[0])
-                        source = catalog.entries[name].add_source(
-                            bibcode=bibcode)
+                        sources.append(catalog.entries[name].add_source(
+                            bibcode=bibcode))
             elif row[0] == 'nhcorr':
                 hostnhcorr = True if row[1] == 'T' else False
             elif row[0] == 'restframe':
@@ -201,6 +201,8 @@ def do_external(catalog):
                 yrsmjdoffset = float(row[1])
             if row[0] == 'redshift':
                 redshift = float(row[1].split(',')[0].strip(' *'))
+
+        source = ','.join(sources)
 
         if not source:
             source = catalog.entries[name].add_self_source()
