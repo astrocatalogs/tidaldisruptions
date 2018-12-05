@@ -24,6 +24,7 @@ Other single TDE datasets:
 * AT2018cow - https://arxiv.org/abs/1808.00969 (photometry)
 * AT2018zr - https://arxiv.org/abs/1809.02608 (photometry)
 * iPTF15af - https://arxiv.org/abs/1809.07446
+* PS1-10adi - https://arxiv.org/abs/1812.01118 (IR photometry)
 
 Online catalogs:
 * No known missing online catalogs at this time.
