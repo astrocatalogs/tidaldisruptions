@@ -28,3 +28,6 @@ pids[5]=$!
 for pid in ${pids[*]}; do
 	wait $pid
 done
+cd /var/www/html/tde/astrocats/astrocats/tidaldisruptions/output/html
+bash thumbs.sh
+cd /var/www/html/tde/astrocats

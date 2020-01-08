@@ -31,6 +31,8 @@ def do_tns(catalog):
                                            'TNS', 'index.csv'))
     if not csvtxt:
         return
+
+
     maxid = csvtxt.splitlines()[1].split(',')[0].strip('"')
     maxpages = ceil(int(maxid) / 1000.)
 
@@ -61,7 +63,7 @@ def do_tns(catalog):
                            '&display[sources]=1'
                            '&display[bibcode]=1&format=csv&page=' + str(page))
                 try:
-                    response = session.get(ses_url)
+                    response = session.get(ses_url, timeout=30)
                     csvtxt = response.text
                 except Exception:
                     if os.path.isfile(fname):
@@ -77,7 +79,7 @@ def do_tns(catalog):
             if ri == 0:
                 continue
             oname = row[1].replace(' ', '')
-            alt = row[10]
+            alt = row[11]
             if (not catalog.entry_exists(oname) and
                     not catalog.entry_exists(alt)):
                 continue
@@ -123,26 +125,29 @@ def do_tns(catalog):
             if alt:
                 catalog.entries[name].add_quantity(
                     TIDALDISRUPTION.ALIAS, alt, source)
-            if row[16]:
-                date = row[16].split()[0].replace('-', '/')
+
+            if row[19]:
+                date = row[19].split()[0].replace('-', '/')
                 if date != '0000/00/00':
                     date = date.replace('/00', '')
-                    t = row[16].split()[1]
-                    if t != '00:00:00':
-                        ts = t.split(':')
-                        dt = timedelta(
-                            hours=int(ts[0]),
-                            minutes=int(ts[1]),
-                            seconds=int(ts[2]))
-                        date += pretty_num(
-                            dt.total_seconds() / (24 * 60 * 60),
-                            sig=6).lstrip('0')
-                    catalog.entries[name].add_quantity(
-                        TIDALDISRUPTION.DISCOVER_DATE, date, source)
+                    dsplit = row[19].split()
+                    if len(dsplit) >= 2:
+                        t = dsplit[1]
+                        if t != '00:00:00':
+                            ts = t.split(':')
+                            dt = timedelta(
+                                hours=int(ts[0]),
+                                minutes=int(ts[1]),
+                                seconds=int(ts[2]))
+                            date += pretty_num(
+                                dt.total_seconds() / (24 * 60 * 60),
+                                sig=6).lstrip('0')
+                    catalog.entries[name].add_quantity(TIDALDISRUPTION.DISCOVER_DATE,
+                                                       date, source)
             if catalog.args.travis and ri >= catalog.TRAVIS_QUERY_LIMIT:
                 break
-            if catalog.args.update:
-                catalog.journal_entries()
+
+        catalog.journal_entries()
 
     catalog.journal_entries()
 

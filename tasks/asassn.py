@@ -18,8 +18,9 @@ def do_asassn(catalog):
     bs = BeautifulSoup(html, 'html5lib')
     trs = bs.find('table').findAll('tr')
     for tri, tr in enumerate(pbar(trs, task_str)):
-        name = ''
+        asassn_name = ''
         alias = ''
+        name = ''
         ra = ''
         dec = ''
         redshift = ''
@@ -32,7 +33,7 @@ def do_asassn(catalog):
         tds = tr.findAll('td')
         for tdi, td in enumerate(tds):
             if tdi == 0:
-                name = td.text.strip()
+                asassn_name = td.text.strip()
             if tdi == 1:
                 alias = td.text.strip()
             if tdi == 2:
@@ -66,6 +67,13 @@ def do_asassn(catalog):
                 if 'z=' in tdt:
                     redshift = (tdt[tdt.find('z=') + 2:]
                                 .split(',')[0].split(';')[0].strip())
+
+        aliases = [x.strip(' ()=') for x in alias.split() if x.strip() not in ['---', '']]
+
+        name = (aliases[0] if aliases else '---') if asassn_name == '---' else asassn_name
+
+        if name == '---':
+            continue
 
         if claimedtype != 'TDE' and name not in catalog.entries:
             continue

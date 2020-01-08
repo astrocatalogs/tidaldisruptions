@@ -54,6 +54,9 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://tde.space/tde/---</loc>
+  </url>
+  <url>
     <loc>https://tde.space/tde/2MASX J0249</loc>
   </url>
   <url>
@@ -73,6 +76,15 @@
   </url>
   <url>
     <loc>https://tde.space/tde/ASASSN-15oi</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/AT2016ezh</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/AT2017eqx</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/AT2018zr</loc>
   </url>
   <url>
     <loc>https://tde.space/tde/CSS100217</loc>
@@ -276,9 +288,6 @@
     <loc>https://tde.space/tde/SDSSJ1350</loc>
   </url>
   <url>
-    <loc>https://tde.space/tde/SN2016ezh</loc>
-  </url>
-  <url>
     <loc>https://tde.space/tde/SN2017bcc</loc>
   </url>
   <url>
@@ -313,5 +322,8 @@
   </url>
   <url>
     <loc>https://tde.space/tde/XMMSL1 J0740-85</loc>
+  </url>
+  <url>
+    <loc>https://tde.space/tde/ZTF18abxftqm</loc>
   </url>
 </urlset>
